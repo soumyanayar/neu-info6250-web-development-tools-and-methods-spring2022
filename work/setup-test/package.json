@@ -1,0 +1,14 @@
+{
+  "name": "setup-confirm",
+  "version": "1.0.0",
+  "description": "Small test to make sure there are no permission issues",
+  "main": "list.js",
+  "author": "Brett Ritter <brett.ritter@northeastern.edu>",
+  "license": "ISC",
+  "scripts": {
+    "start": "node list.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
