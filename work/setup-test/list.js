@@ -1,16 +1,18 @@
-const path = require('path');
+const path = require("path");
 
 const people = `
-Name           |  NEUID   | Slack handle | github ID
-Brett Ritter   | ???      | @swiftone    | swiftone
+Name                  |  NEUID     | Slack handle | github ID
+Soumya Bhaskar Nayar  |  001567114 | @Soumya      | soumyanayar
 
-`.split('\n').filter( truthy => truthy );
+`
+  .split("\n")
+  .filter((truthy) => truthy);
 
 if (require.main === module) {
   // Run if we are being run directly
 
   // List the people
-  for ( person of people ) {
+  for (person of people) {
     console.log(person);
   }
 }
