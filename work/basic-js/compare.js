@@ -2,9 +2,16 @@
 /* DO NOT MODIFY EXCEPT WHERE ALLOWED */
 module.exports = compare; // DO NOT MODIFY - USED FOR TESTING
 
-function compare( word, guess ) {  // DO NOT MODIFY
-
-/* YOU MAY MODIFY THE LINES BELOW */
-
-  return 0; // this line is wrong
+function compare(word, guess) {
+  let count = 0;
+  let wordInLowerCase = word.toLowerCase();
+  let guessInLowerCase = guess.toLowerCase();
+  for (let i in wordInLowerCase) {
+    let currentLetter = wordInLowerCase[i];
+    if (guessInLowerCase.includes(currentLetter)) {
+      ++count;
+      guessInLowerCase = guessInLowerCase.replace(currentLetter, "");
+    }
+  }
+  return count;
 }
