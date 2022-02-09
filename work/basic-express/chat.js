@@ -1,6 +1,6 @@
 const users = {
-    "Amit": "Amit",
-    "Bao": "Bao",
+  Amit: "Amit",
+  Bao: "Bao",
 };
 
 const messages = [
@@ -11,11 +11,14 @@ const messages = [
   {
     sender: "Bao",
     text: "Yeah, still working on this INFO6250 work, but I keep getting distracted by cat videos",
-  }
+  },
 ];
 
 function addMessage({ sender, text }) {
-  // Fill in!
+  messages.push({
+    sender: sender,
+    text: text,
+  });
 }
 
 const chat = {
@@ -25,4 +28,3 @@ const chat = {
 };
 
 module.exports = chat;
-
