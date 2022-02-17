@@ -1,5 +1,11 @@
 const validateUserName = (username) => {
-  if (username.length < 3 || username.length > 20) {
+  // regex for letters and numbers
+  const regex = /^[a-zA-Z0-9]+$/;
+
+  if (username.length < 3 || username.length > 10) {
+    return false;
+  }
+  if (!regex.test(username)) {
     return false;
   }
   if (username === "dog") {
