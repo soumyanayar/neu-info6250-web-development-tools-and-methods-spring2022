@@ -7,8 +7,8 @@ const PORT = 3000;
 
 app.use(express.urlencoded({ extended: false }));
 
-const sessions = {};
-const words = {};
+const sessions = {}; //stores the session id and the username
+const words = {}; //stores the username and words
 
 app.use(cookieParser());
 
