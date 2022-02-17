@@ -1,17 +1,20 @@
-const validateUserName = (username) => {
+module.exports = (username) => {
   // regex for letters and numbers
   const regex = /^[a-zA-Z0-9]+$/;
-
-  if (username.length < 3 || username.length > 10) {
-    return false;
+  if (!username || username.length < 1) {
+    const error = "Username is required";
+    return [false, error];
   }
+
   if (!regex.test(username)) {
-    return false;
+    const error =
+      "Special characters are not allowed in the username field : " + username;
+    return [false, error];
   }
-  if (username === "dog") {
-    return false;
-  }
-  return true;
-};
 
-module.exports = validateUserName;
+  if (username.toLowerCase() === "dog") {
+    const error = "Dog is not allowed in the username field : " + username;
+    return [false, error];
+  }
+  return [true, ""];
+};

@@ -6,23 +6,27 @@ const { v4: uuidv4 } = require("uuid");
 const PORT = 3000;
 
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static("./public"));
 
 const sessions = {}; //stores the session id and the username
 const words = {}; //stores the username and words
 
 app.use(cookieParser());
 
+//User can add the words
 app.get("/", (req, res) => {
   const sid = req.cookies.sid;
   let html;
   if (sid && sessions[sid]) {
     const username = sessions[sid].username;
     const word = words[username] ? words[username].word : "";
-    const htmlForm = `<form method="POST" action="/">
-    Add Your Word : <input type="text" name="word" placeholder="Enter the word">
+    const htmlForm = `<link rel="stylesheet" href="/style.css" />
+    <form method="POST" action="/">
+    <label>Add Your Word : </label>
+     <input type="text" name="word" placeholder="Enter the word">
     <button type="submit">Add Word</button>
   </form>
-  <form method="POST" action="/logout">
+  <form method="POST" action="/logout" class="logout-form">
     <button type="submit">Logout</button>
   </form>`;
     let html;
@@ -31,15 +35,15 @@ app.get("/", (req, res) => {
     } else {
       sessions[sid].word = word;
       html =
-        `<h2>Welcome ${username} :Your Previous word was ${word} </h2>` +
+        `<h2>Welcome ${username} : Your Previous word was <span>${word}<span> </h2>` +
         htmlForm;
     }
     res.send(html);
   } else {
-    html = `
+    html = `<link rel="stylesheet" href="/style.css" />
     <h2>Please Login</h2>
     <form method="POST" action="/login">
-      UserName : <input type="text" name="username">
+    <label>Username : </label><input type="text" name="username">
       <button type="submit">Login</button>
     </form>`;
   }
@@ -50,8 +54,10 @@ app.get("/", (req, res) => {
 app.post("/login", (req, res) => {
   const username = req.body.username;
   const sid = uuidv4();
-  if (!validateUserName(username)) {
-    const invalidUserNameHtml = `<h2>Invalid UserName</h2>
+  const [isValid, errorMessage] = validateUserName(username);
+  if (!isValid) {
+    const invalidUserNameHtml = `<link rel="stylesheet" href="/style.css" />
+    <h2>${errorMessage}</h2>
     <h3>Please Login Again..!!</h3>
     <form method="GET" action="/">
     <button type="submit">Login</button>
