@@ -1,0 +1,84 @@
+body, html {
+    overflow: hidden
+  }
+
+#chat-app {
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+.users{
+    background-color: antiquewhite;
+    margin-bottom: 0;
+}
+
+.users li{
+    list-style-type: none;
+    margin-bottom: 1px;
+}
+
+.username{
+    font-size: 1.3rem;
+    padding: 0.2rem;
+}
+.user{  
+    margin: 0.5px;
+    padding: 1px;
+   
+}
+.messages {
+    background-color: whitesmoke;
+    overflow-y: scroll;
+    max-height: 40rem;
+    margin: 0px 0px 0px;
+    padding: 0.5rem 0.3rem;
+}
+
+.message{
+    margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.message:nth-child(odd){
+    background-color: rgb(255, 255, 255);
+}
+.message-text {
+    margin-top: 0.2rem;
+}
+.sender {
+    font-weight: bold;
+}
+
+.send-div {
+    padding: 0.2rem;
+    
+}
+
+.send-div form {
+    margin: 3px;
+}
+
+.send-div input {
+    width: 80%;
+    height:1.6rem;
+    outline-style: none;
+    border: 0px;
+    border-radius: 3px;
+    border:0.2rem solid black;
+}
+
+.send-div button {
+    width: 15%;
+    outline-style: none;
+    border: 0px;
+    border-radius: 3px;
+    padding: 0.6rem;
+    color:blue;
+    font-weight: bold;
+}
+
+.send-div button:hover{
+    color:green;
+    font:1.2rem;    
+    background-color: rgb(219, 233, 245);
+}
