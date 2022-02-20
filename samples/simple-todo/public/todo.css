@@ -1,0 +1,15 @@
+#todo-app .todo { 
+  cursor: pointer;
+}
+
+#todo-app .todo.complete {
+  text-decoration: line-through;
+}
+
+#todo-app .delete { 
+  margin-left: 10px;
+  font-weight: bold;
+  background: red;
+  border: 1px solid black;
+  cursor: pointer;
+}
