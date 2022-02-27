@@ -1,6 +1,6 @@
 # INFO6250 Midterm Project
 
-** Due Sun Mar 6 11:59pm PT  **
+** Due Sun Mar 13 11:59pm PT  **
 
 ## Goals
 
