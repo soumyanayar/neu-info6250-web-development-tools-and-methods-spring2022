@@ -1,0 +1,17 @@
+ul{
+	list-style-type: none;
+}
+
+body {
+	font-family: Sans-serif;
+    background-color: #DCDCDC;
+}
+
+li{
+   margin:0 0 5px 0;
+}
+
+li:hover {
+	background-color: #FF1493;
+	color: #F0FFFF;
+}
