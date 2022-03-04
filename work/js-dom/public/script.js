@@ -1,6 +1,6 @@
 "use strict";
 
-(function inventory() {
+(function () {
   const allItems = [
     {
       name: "Chair",
