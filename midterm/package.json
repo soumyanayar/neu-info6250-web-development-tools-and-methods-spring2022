@@ -1,0 +1,17 @@
+{
+  "name": "midterm",
+  "version": "1.0.0",
+  "description": "** Due Sun Mar 6 11:59pm PT  **",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.17.3",
+    "uuid": "^8.3.2"
+  }
+}
