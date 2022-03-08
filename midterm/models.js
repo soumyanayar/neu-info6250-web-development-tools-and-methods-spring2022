@@ -11,19 +11,35 @@ class Game {
     this.numberOfValidGuesses = 0;
     this.guessedWords = [];
     this.isGameWon = false;
+    this.message = "Try to guess the secret word!";
   }
 
   guessWord(guessedWord) {
+    this.addGuessedWord(guessedWord);
+
     if (isGuessedWordValid(guessedWord)) {
       ++this.numberOfValidGuesses;
+    } else {
+      this.message =
+        "Invalid word! " +
+        guessedWord +
+        " is not in the acceptable word list. Try Again!";
+      return;
     }
 
     this.isGameWon = isGuessedWordSameAsSecret(this.secretWord, guessedWord);
-    this.addGuessedWord(guessedWord);
+    if (this.isGameWon) {
+      this.message = "Congratulations! You won! Hit RESTART to play again!";
+    } else {
+      this.message = "Try to guess the secret word!";
+    }
   }
 
   addGuessedWord(guessedWord) {
-    const numberOfMatchingLetters = calculateMatchingLetters(guessedWord);
+    const numberOfMatchingLetters = calculateMatchingLetters(
+      this.secretWord,
+      guessedWord
+    );
     this.guessedWords.push(new Guess(guessedWord, numberOfMatchingLetters));
   }
 }

@@ -63,11 +63,11 @@ app.post("/login", validateUsername, (req, res) => {
 });
 
 app.post("/guess", (req, res) => {
-  const { guessedWord } = req.body;
+  let { guessedWord } = req.body;
   guessedWord = guessedWord.trim();
   const sid = req.cookies.sid;
   const user = getUser(sid);
-  user.game.addGuessedWord(guessedWord);
+  user.game.guessWord(guessedWord);
   res.redirect("/");
 });
 
