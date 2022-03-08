@@ -1,13 +1,15 @@
-const { userValidation } = require("./validation-helpers");
-const { Game, Guess, User, Session } = require("./models");
+const { validateUsername } = require("./validation-middlewares");
+const { Game, Guess, User } = require("./models");
+const { loginPage } = require("./html-templates");
 const express = require("express");
 const app = express();
-const uuid = require("uuid/v4");
+const { v4: uuidv4 } = require("uuid");
 const cookieParser = require("cookie-parser");
 const PORT = 3000;
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("./public"));
+app.use(cookieParser());
 
 const sessions = {};
 
@@ -24,17 +26,22 @@ app.get("/", (req, res) => {
   let htmlToBeRendered;
   if (sid && sessions[sid]) {
     const user = getUser(sid);
-
+    htmlToBeRendered = `<!doctype html>`;
   } else {
-    htmlToBeRendered = `<link rel="stylesheet" href="/style.css" />
-    <h2>Please Login</h2>
-    <form method="POST" action="/login">
-    <label>Username : </label><input type="text" name="username">
-      <button type="submit">Login</button>
-    </form>`;
+    htmlToBeRendered = loginPage();
   }
 
   res.send(htmlToBeRendered);
 });
 
-app.
+app.post("/login", validateUsername, (req, res) => {
+  const { username } = req.body;
+  const sid = uuidv4();
+  addNewUser(sid, username);
+  res.cookie("sid", sid);
+  res.redirect("/");
+});
+
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
+});
