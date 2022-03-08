@@ -5,7 +5,7 @@ const loginPage = () => {
     <!doctype html>
     <html>
       <head>
-        <link rel="stylesheet" href="/word-guess.css">
+        <link rel="stylesheet" href="/style.css">
         <title>Login Word Guessing Game</title>
       </head>
       <body>
@@ -13,7 +13,7 @@ const loginPage = () => {
           <div id="content" class="content-container">
             <form action="/login" method="POST"> 
               <div class="page-title">
-                <h2>Word Guessing Game</h2>
+                <h1>Word Guessing Game</h1>
               </div>
               <div class="text-input" id="login_username">
                 <input name="username" placeholder="Enter your username" required> 
@@ -45,7 +45,7 @@ const homePage = (user) => {
   <!doctype html>
   <html>
     <head>
-      <link rel="stylesheet" href="/word-guess.css">
+      <link rel="stylesheet" href="/style.css">
       <title>Word Guessing Game</title>
     </head>
     <body>
@@ -54,12 +54,6 @@ const homePage = (user) => {
             <h2>Word Guessing Game, Welcome ${user.username} </h2>
         </div>
         <div class="game-panel">
-          <div class="word-list-panel">
-            <h2>Secret Word List</h2>
-            <div class="word-list">
-              ${words.map((word) => `<div class="word">${word}</div>`).join("")}
-            </div>
-          </div>
           <div class="accepted-guess-panel">
             <h2>Guess & Matches History</h2>
             <div class="word-list">
@@ -74,7 +68,7 @@ const homePage = (user) => {
               Number Of Accepted Guesses: ${user.game.numberOfValidGuesses}
             </div>
           </div>
-          
+         
           <div class="control-panel">
             <h2>Control Panel</h2>
             <div class="word-input">
@@ -99,6 +93,12 @@ const homePage = (user) => {
               ${user.game.message}
             </div> 
           </div>
+          <div class="word-list-panel">
+          <h2>Secret Word List</h2>
+          <span class="word-list">
+            ${words.map((word) => `<span class="word">${word}</span>`).join("")}
+          </span>
+        </div>
         </div>
       </div>
     </body>
