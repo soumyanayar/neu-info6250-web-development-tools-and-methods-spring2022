@@ -2,6 +2,7 @@ const {
   getRandomSecretWord,
   isGuessedWordValid,
   calculateMatchingLetters,
+  isGuessedWordSameAsSecret,
 } = require("./game-helpers");
 
 class Game {
@@ -9,13 +10,19 @@ class Game {
     this.secretWord = secretWord;
     this.numberOfValidGuesses = 0;
     this.guessedWords = [];
+    this.isGameWon = false;
   }
 
-  addGuessedWord(guessedWord) {
+  guessWord(guessedWord) {
     if (isGuessedWordValid(guessedWord)) {
       ++this.numberOfValidGuesses;
     }
 
+    this.isGameWon = isGuessedWordSameAsSecret(this.secretWord, guessedWord);
+    this.addGuessedWord(guessedWord);
+  }
+
+  addGuessedWord(guessedWord) {
     const numberOfMatchingLetters = calculateMatchingLetters(guessedWord);
     this.guessedWords.push(new Guess(guessedWord, numberOfMatchingLetters));
   }

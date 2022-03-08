@@ -7,9 +7,13 @@ const getRandomSecretWord = () => {
   return words[Math.floor(Math.random() * words.length)];
 };
 
-// function to check if a word is a valid word from the list
+// function to check if a word is a valid word from the list case-insensitive
 const isGuessedWordValid = (guessedWord) => {
-  return words.includes(guessedWord);
+  return words.includes(guessedWord.toLowerCase());
+};
+
+const isGuessedWordSameAsSecret = (secretWord, guessedWord) => {
+  return secretWord.toLowerCase() === guessedWord.toLowerCase();
 };
 
 const calculateMatchingLetters = (secretWord, guessedWord) => {
@@ -33,4 +37,5 @@ module.exports = {
   getRandomSecretWord,
   isGuessedWordValid,
   calculateMatchingLetters,
+  isGuessedWordSameAsSecret,
 };

@@ -1,6 +1,6 @@
 const { validateUsername } = require("./validation-middlewares");
 const { Game, Guess, User } = require("./models");
-const { loginPage } = require("./html-templates");
+const { loginPage, homePage } = require("./html-templates");
 const express = require("express");
 const app = express();
 const { v4: uuidv4 } = require("uuid");
@@ -12,6 +12,19 @@ app.use(express.static("./public"));
 app.use(cookieParser());
 
 const sessions = {};
+const userSidMap = {};
+
+const getSidIfUserExists = (username) => {
+  if (username in userSidMap) {
+    return userSidMap[username];
+  }
+
+  return null;
+};
+
+const addNewUserSidMapping = (username, sid) => {
+  userSidMap[username] = sid;
+};
 
 const addNewUser = (sid, username) => {
   sessions[sid] = new User(username);
@@ -24,9 +37,9 @@ const getUser = (sid) => {
 app.get("/", (req, res) => {
   const sid = req.cookies.sid;
   let htmlToBeRendered;
-  if (sid && sessions[sid]) {
+  if (sid && sid in sessions) {
     const user = getUser(sid);
-    htmlToBeRendered = `<!doctype html>`;
+    htmlToBeRendered = homePage(user);
   } else {
     htmlToBeRendered = loginPage();
   }
@@ -36,9 +49,37 @@ app.get("/", (req, res) => {
 
 app.post("/login", validateUsername, (req, res) => {
   const { username } = req.body;
-  const sid = uuidv4();
-  addNewUser(sid, username);
-  res.cookie("sid", sid);
+  let sid = getSidIfUserExists(username);
+  if (!sid) {
+    sid = uuidv4();
+    addNewUser(sid, username);
+    addNewUserSidMapping(username, sid);
+  }
+  res.cookie("sid", sid, {
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+    httpOnly: true,
+  });
+  res.redirect("/");
+});
+
+app.post("/guess", (req, res) => {
+  const { guessedWord } = req.body;
+  guessedWord = guessedWord.trim();
+  const sid = req.cookies.sid;
+  const user = getUser(sid);
+  user.game.addGuessedWord(guessedWord);
+  res.redirect("/");
+});
+
+app.get("/restart", (req, res) => {
+  const sid = req.cookies.sid;
+  const user = getUser(sid);
+  user.createNewGame();
+  res.redirect("/");
+});
+
+app.post("/logout", (req, res) => {
+  res.clearCookie("sid");
   res.redirect("/");
 });
 

@@ -38,4 +38,10 @@ const invalidUserNameHtml = (errorMessage) => {
   `;
 };
 
-module.exports = { loginPage, invalidUserNameHtml };
+const homePage = (user) => {
+  return `
+    
+  `;
+};
+
+module.exports = { loginPage, invalidUserNameHtml, homePage };
