@@ -15,10 +15,14 @@ class Game {
   }
 
   guessWord(guessedWord) {
-    this.addGuessedWord(guessedWord);
+    if (this.checkIfTheWordAlreadyGuessed(guessedWord)) {
+      this.message = `You have already guessed "${guessedWord}"! Try a new word from the list!`;
+      return;
+    }
 
     if (isGuessedWordValid(guessedWord)) {
       ++this.numberOfValidGuesses;
+      this.addGuessedWord(guessedWord);
     } else {
       this.message =
         "Invalid word! " +
@@ -40,7 +44,15 @@ class Game {
       this.secretWord,
       guessedWord
     );
-    this.guessedWords.push(new Guess(guessedWord, numberOfMatchingLetters));
+    // Add to the beginning of the array
+    this.guessedWords.unshift(new Guess(guessedWord, numberOfMatchingLetters));
+  }
+
+  // Check if the word is already guessed
+  checkIfTheWordAlreadyGuessed(guessedWord) {
+    return this.guessedWords.some((word) => {
+      return word.guessedWord === guessedWord;
+    });
   }
 }
 
@@ -55,12 +67,13 @@ class User {
   constructor(username) {
     this.username = username;
     this.game = new Game(getRandomSecretWord());
-    console.log(this.game.secretWord);
+    console.log(
+      `Secret word for user "${this.username}" is "${this.game.secretWord}"`
+    );
   }
 
   createNewGame() {
     this.game = new Game(getRandomSecretWord());
-    console.log(this.game.secretWord);
   }
 }
 

@@ -14,6 +14,9 @@ h2,h3{
 h2{
     margin-bottom: 3rem;
 }
+.title{
+    text-align: center;
+}
 
 .text-input input {
     display: block;
@@ -68,7 +71,7 @@ button:hover{
 .word-input form input {
     display:block;
     margin: 1rem auto;
-    width: 20rem;
+    width: 25rem;
     height:0.25rem;
     padding: 1rem;
     border: 1px solid #ccc;
@@ -86,28 +89,45 @@ button:hover{
     background-color: rgb(24, 31, 32);
     color: white;
 }
-
-.word{
-    font-size: 1rem;
-    color: blue;
-}
-/* The words should be dispalyed in the grid and move to next row when the row is full
- */
 .word-list-panel{
-    display: flex;
-    flex-direction: column;
-    overflow-wrap: break-word;
-    align-content: space-between;
-    background-color: white;
-    margin:2rem;
-    box-shadow: #ccc 5px 5px 15px;
-    padding:1rem;
+    margin:1rem;
+}
+.word-list{
+  text-align: center;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+}
+
+.word-list p{
+    background-color: lightcoral;
+    border: 1px solid black;
+    margin:0.2rem;
+    padding:0.5rem;
+    cursor: pointer;
+    text-align: center;
+}
+.word-list p:hover{
+    background-color: green;
+    color:white;
+}
+.score .turns{
+    margin-top: 2.2rem;
+    color:black;
+    font-weight: black;
+}
+p{
+    margin: 1rem;
+    text-align: left;
+    padding:0.2rem;
 }
 
 .game-panel-container{
     display:grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-auto-flow: row;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    margin-top: 3rem;
 }
 
 .accepted-guess-panel{
@@ -115,12 +135,18 @@ button:hover{
     flex-direction: column;
     overflow-wrap: break-word;
     align-content: space-between;
-    margin-top : 1rem;
+    margin-top: 1rem;
+    margin-left: 3rem;
 }
+
 .turns{
-    margin:1rem;
-    color:brown;
+    margin-top: 2.2rem;
+    font-weight: bold; 
+    margin-left: 2rem;
+    margin-right: 0rem;
 }
+
+
 .control-panel{
     display: flex;
     flex-direction: row;
@@ -129,11 +155,11 @@ button:hover{
 
 }
 
-.word-list-panel span{
-    hyphens: auto;
-    white-space: normal; 
-   margin: 1rem;
-    font-size: 1.4rem;
-    color:brown;
+.history-panel{
+    height: 10rem; 
+    overflow-y:auto;
+    float:left;
+    position:relative;
+    margin-left:-5px;
 
-} 
+}

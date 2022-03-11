@@ -67,8 +67,13 @@ app.post("/guess", (req, res) => {
   guessedWord = guessedWord.trim();
   const sid = req.cookies.sid;
   const user = getUser(sid);
-  user.game.guessWord(guessedWord);
-  res.redirect("/");
+  if (user === undefined) {
+    let html = "<h1>Invalid User!! Please login Again</h1>" + loginPage();
+    res.send(html);
+  } else {
+    user.game.guessWord(guessedWord);
+    res.redirect("/");
+  }
 });
 
 app.get("/restart", (req, res) => {
