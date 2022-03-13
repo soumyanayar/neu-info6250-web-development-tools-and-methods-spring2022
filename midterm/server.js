@@ -76,7 +76,7 @@ app.post("/guess", (req, res) => {
   }
 });
 
-app.get("/restart", (req, res) => {
+app.get("/new-game", (req, res) => {
   const sid = req.cookies.sid;
   const user = getUser(sid);
   user.createNewGame();

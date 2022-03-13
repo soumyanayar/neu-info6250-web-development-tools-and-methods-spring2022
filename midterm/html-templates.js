@@ -102,7 +102,7 @@ const homePage = (user) => {
                 </div> 
                 <div class="controls">
                   <div class="restart"> 
-                    <form action="/restart" method="GET"> 
+                    <form action="/new-game" method="GET"> 
                       <button class="restart-button" type="submit">RESTART</button>
                     </form>
                   </div>
@@ -130,7 +130,7 @@ const homePage = (user) => {
           word.addEventListener("click", (e) => {
             guessField.value = e.target.innerText;
           });
-        }); 
+        });
       </script>
     </body>
   </html>

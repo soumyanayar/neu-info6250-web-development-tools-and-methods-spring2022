@@ -9,7 +9,7 @@ const validateUsername = (req, res, next) => {
   } else if (!regex.test(username)) {
     res.send(
       invalidUserNameHtml(
-        "Special characters are not allowed in the username field" + username
+        "Special characters are not allowed in the username field : " + username
       )
     );
   } else if (username.toLowerCase() === "dog") {
