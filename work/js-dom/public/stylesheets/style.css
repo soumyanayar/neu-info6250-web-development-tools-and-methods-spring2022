@@ -1,0 +1,44 @@
+
+body{
+	margin : 1rem;
+}
+	ul{
+	list-style-type: none;
+}
+
+#all-inventory .stock { 
+	cursor: pointer;
+}
+
+body {
+	font-family: Sans-serif;
+    background-color: rgb(217, 237, 241);
+}
+
+li{
+   margin:0 0 5px 0;
+   padding:0.5rem;
+   width :  12rem;
+}
+input {
+	width: 10rem; 
+	border:0.1rem solid black;
+}
+
+.delete{
+	background-color: red;
+}
+
+.delete:hover{
+	background-color:red;
+}
+
+li:hover {
+	background-color: rgb(216, 142, 142);
+	color: #F0FFFF;
+}
+
+button:hover{
+	background-color: #a9e24e;
+	color: #F0FFFF;
+}
