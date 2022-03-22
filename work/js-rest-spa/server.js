@@ -8,7 +8,7 @@ const users = require("./users");
 const inventory = require("./inventory");
 
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static("./public"));
+app.use(express.static(__dirname + "/public"));
 app.use(cookieParser());
 app.use(express.json());
 
