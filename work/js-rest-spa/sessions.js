@@ -1,4 +1,4 @@
-const uuid = require("uuid").v4;
+const uuid = require('uuid').v4;
 
 const sessions = {};
 
@@ -8,7 +8,7 @@ function addSession(username) {
     username,
   };
   return sid;
-}
+};
 
 function getSessionUser(sid) {
   return sessions[sid]?.username;

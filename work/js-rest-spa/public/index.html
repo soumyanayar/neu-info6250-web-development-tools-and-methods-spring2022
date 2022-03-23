@@ -2,10 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inventory</title>
-    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <title></title>
+    <link rel="stylesheet" href="inventory.css" />
   </head>
   <body>
     <main class="">
@@ -16,17 +14,21 @@
             <span>Username:</span>
             <input class="login__username" />
           </label>
-          <button type="submit">Login</button>
+          <button type="button">Login</button>
         </form>
       </div>
       <div class="content">
         <div class="controls">
-          <h3 class="title">Welcome !!</h3>
           <button class="logout">Logout</button>
         </div>
-        <div class="inventory-div"></div>
+        <div class="inventory"></div>
+        <form action="#">
+          <button type="button" class="decrement">-</button>
+          <input class="inventory-val" readonly />
+          <button type="button" class="increment">+</button>
+        </form>
       </div>
     </main>
-    <script type="text/javascript" src="./src/index.js"></script>
+    <script src="inventory.js"></script>
   </body>
 </html>

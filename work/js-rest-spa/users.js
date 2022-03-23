@@ -4,8 +4,11 @@ function getUserData(username) {
   return users[username];
 }
 
-function addUserData(username, data) {
-  users[username] = data;
+function addUserData(username, userData) {
+  users[username] = userData;
 }
 
-module.exports = { getUserData, addUserData };
+module.exports = {
+  getUserData,
+  addUserData,
+};
