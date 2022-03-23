@@ -1,0 +1,34 @@
+* { 
+  box-sizing: border-box;
+}
+
+body { 
+  margin: 0;
+
+  font-family: sans-serif;
+}
+
+.content { 
+  display: none;
+}
+
+.login { 
+  display: none;
+}
+
+.logged-in .content { 
+  display: block;
+}
+
+.not-logged-in .login {
+  display: block;
+}
+
+@keyframes fadeIn { 
+  from { 
+    opacity: 0;
+  }
+  to { 
+    opacity: 1;
+  }
+}
