@@ -24,11 +24,11 @@ app.get("/api/session", (req, res) => {
 app.post("/api/session", (req, res) => {
   const { username } = req.body;
   if (!username) {
-    res.status(400).json({ error: "required-username" });
+    res.status(400).json({ error: "auth-insufficient" });
     return;
   }
   if (username === "dog") {
-    res.status(403).json({ error: "auth-insufficient" });
+    res.status(403).json({ error: "dog-not-allowed-in-username" });
     return;
   }
   const sid = sessions.addSession(username);

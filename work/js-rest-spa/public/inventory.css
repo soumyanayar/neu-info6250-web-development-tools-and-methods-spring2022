@@ -3,7 +3,7 @@
 }
 
 body { 
-  margin: 0;
+  margin: 2rem;
 
   font-family: sans-serif;
 }
@@ -23,7 +23,20 @@ body {
 .not-logged-in .login {
   display: block;
 }
-
+.controls{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+button{
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.2rem;
+  margin: 8px 0;
+  border: 0.1px solid black;
+  cursor: pointer;
+  width: 5rem;
+}
 @keyframes fadeIn { 
   from { 
     opacity: 0;

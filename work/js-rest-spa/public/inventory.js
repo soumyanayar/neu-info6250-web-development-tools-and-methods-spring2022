@@ -8,48 +8,33 @@
   const MESSAGES = {
     networkError: "Trouble connecting to the network.  Please try again",
     default: "Something went wrong.  Please try again",
+    "dog-not-allowed-in-username": "Dog is not allowed in username",
+    "auth-insufficient": "Enter a valid username",
   };
 
-  checkForSession();
-  addAbilityToLogin();
-  addAbilityToLogout();
-  addAbilityToIncrementInventory();
-  addAbilityToDecrementInventory();
-
-  /////////////////////////////////
-  function setLoggedIn(isLoggedIn) {
-    // Notice how more complicated this is because we're not basing this off of state data
-    // Not just here, but in the places we have to change our login status
-    const loginEl = document.querySelector("main");
-    if (isLoggedIn) {
-      loginEl.classList.remove("not-logged-in");
-      loginEl.classList.add("logged-in");
-    } else {
-      loginEl.classList.add("not-logged-in");
-      loginEl.classList.remove("logged-in");
-    }
-    render();
-    renderStatus("");
-  }
-
-  function renderOnLogin(inventory) {
-    stateInventory = inventory;
-    setLoggedIn(true);
-  }
-
-  function checkForSession() {
-    fetchSession()
-      .then(populateInventory)
-      .catch(() => setLoggedIn(false));
-  }
+  fetchSession()
+    .then(() => {
+      fetchInventory()
+        .then((inventory) => {
+          stateInventory = inventory;
+          renderMain();
+        })
+        .catch((error) => {
+          renderStatus(error);
+        });
+    })
+    .catch(() => renderLogin());
 
   function addAbilityToLogin() {
-    const buttonEl = document.querySelector(".login button");
-    const usernameEl = document.querySelector(".login__username");
+    const buttonEl = document.querySelector(".login-button");
+    const usernameEl = document.querySelector(".login-username");
     buttonEl.addEventListener("click", (e) => {
       const username = usernameEl.value;
       fetchLogin(username)
-        .then(renderOnLogin)
+        .then((inventory) => {
+          stateInventory = inventory;
+          renderMain();
+        })
         .catch((error) => renderStatus(error));
     });
   }
@@ -59,45 +44,32 @@
     buttonEl.addEventListener("click", (e) => {
       stateInventory = undefined;
       fetchLogout()
-        .then(() => setLoggedIn(false))
+        .then(() => {
+          renderLogin();
+        })
         .catch((error) => renderStatus(error));
     });
   }
 
-  function populateInventory() {
-    fetchInventory()
-      .then((inventory) => {
-        stateInventory = inventory;
-        setLoggedIn(true);
-        render();
-        renderStatus("");
-      })
-      .catch((error) => {
-        renderStatus(error);
-      });
-  }
-
   function addAbilityToIncrementInventory() {
-    const buttonEl = document.querySelector(".increment");
+    const buttonEl = document.querySelector(".button-increment");
     buttonEl.addEventListener("click", (e) => {
       fetchUpdateInventory(stateInventory + 1)
         .then((inventory) => {
           stateInventory = inventory;
-          render();
-          renderStatus("");
+          renderMain();
         })
         .catch((error) => renderStatus(error));
     });
   }
 
   function addAbilityToDecrementInventory() {
-    const buttonEl = document.querySelector(".decrement");
+    const buttonEl = document.querySelector(".button-decrement");
     buttonEl.addEventListener("click", (e) => {
       fetchUpdateInventory(stateInventory - 1)
         .then((inventory) => {
           stateInventory = inventory;
-          render();
-          renderStatus("");
+          renderMain();
         })
         .catch((error) => renderStatus(error));
     });
@@ -189,19 +161,45 @@
       });
   }
 
-  function render() {
-    const decrementButton = document.querySelector(".decrement");
+  function renderLogin() {
+    const loginEl = document.querySelector(".container");
+    loginEl.innerHTML = `
+      <div class="login">
+        <h1>Login</h1>
+        <input class="login-username" type="text" placeholder="username">
+        <button class="login-button">Login</button>
+      </div>
+    `;
+
+    addAbilityToLogin();
+  }
+
+  function renderMain() {
+    const mainEl = document.querySelector(".container");
+    mainEl.innerHTML = `
+      <div class="login">
+        <h1>Inventory</h1>
+        <button class="logout">Logout</button>
+        <div class="inventory">
+          <button class="button-increment">+</button>
+          <span class="inventory-count">${stateInventory}</span>
+          <button class="button-decrement">-</button>
+        </div>        
+      </div>
+    `;
+    addAbilityToIncrementInventory();
+    addAbilityToDecrementInventory();
+    addAbilityToLogout();
+    const decrementButton = document.querySelector(".button-decrement");
     if (stateInventory <= 0) {
       decrementButton.disabled = true;
     } else {
       decrementButton.disabled = false;
     }
-
-    const inventoryVal = document.querySelector(".inventory-val");
-    inventoryVal.value = stateInventory;
   }
 
   function renderStatus(message) {
+    console.log(message);
     const statusEl = document.querySelector(".status");
     if (!message) {
       statusEl.innerText = "";
