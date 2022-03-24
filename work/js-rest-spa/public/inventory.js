@@ -31,9 +31,13 @@
     buttonEl.addEventListener("click", (e) => {
       const username = usernameEl.value;
       fetchLogin(username)
-        .then((inventory) => {
-          stateInventory = inventory;
-          renderMain();
+        .then(() => {
+          fetchInventory()
+            .then((inventory) => {
+              stateInventory = inventory;
+              renderMain();
+            })
+            .catch((error) => renderStatus(error));
         })
         .catch((error) => renderStatus(error));
     });
@@ -152,7 +156,7 @@
       .catch(() => Promise.reject({ error: "networkError" }))
       .then((response) => {
         if (response.ok) {
-          return response.json();
+          return;
         }
         return response
           .json()

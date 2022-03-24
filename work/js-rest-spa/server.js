@@ -36,7 +36,7 @@ app.post("/api/session", (req, res) => {
     users.addUserData(username, 8);
   }
   res.cookie("sid", sid);
-  res.json(users.getUserData(username));
+  res.sendStatus(200);
 });
 
 app.delete("/api/session", (req, res) => {
