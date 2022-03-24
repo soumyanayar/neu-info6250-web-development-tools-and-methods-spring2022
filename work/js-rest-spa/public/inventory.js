@@ -2,6 +2,7 @@
 (function () {
   // We store these as an object because we will access by id
   let stateInventory = undefined;
+  let stateUser = undefined;
 
   // These messages are incomplete and just to demonstrate the technique
   // you will have to expand to cover your scenarios!
@@ -12,18 +13,23 @@
     "auth-insufficient": "Enter a valid username",
   };
 
-  fetchSession()
-    .then(() => {
-      fetchInventory()
-        .then((inventory) => {
-          stateInventory = inventory;
-          renderMain();
-        })
-        .catch((error) => {
-          renderStatus(error);
-        });
-    })
-    .catch(() => renderLogin());
+  checkSession();
+
+  function checkSession() {
+    fetchSession()
+      .then((user) => {
+        stateUser = user.username;
+        fetchInventory()
+          .then((inventory) => {
+            stateInventory = inventory;
+            renderMain();
+          })
+          .catch((error) => {
+            renderStatus(error);
+          });
+      })
+      .catch(() => renderLogin());
+  }
 
   function addAbilityToLogin() {
     const buttonEl = document.querySelector(".login-button");
@@ -31,14 +37,7 @@
     buttonEl.addEventListener("click", (e) => {
       const username = usernameEl.value;
       fetchLogin(username)
-        .then(() => {
-          fetchInventory()
-            .then((inventory) => {
-              stateInventory = inventory;
-              renderMain();
-            })
-            .catch((error) => renderStatus(error));
-        })
+        .then(checkSession)
         .catch((error) => renderStatus(error));
     });
   }
@@ -51,7 +50,7 @@
         .then(() => {
           renderLogin();
         })
-        .catch((error) => renderStatus(error));
+        .catch();
     });
   }
 
@@ -63,7 +62,7 @@
           stateInventory = inventory;
           renderMain();
         })
-        .catch((error) => renderStatus(error));
+        .catch();
     });
   }
 
@@ -75,7 +74,7 @@
           stateInventory = inventory;
           renderMain();
         })
-        .catch((error) => renderStatus(error));
+        .catch();
     });
   }
 
@@ -172,6 +171,7 @@
         <h1>Login</h1>
         <input class="login-username" type="text" placeholder="username">
         <button class="login-button">Login</button>
+        <div class="status"></div>
       </div>
     `;
 
@@ -182,13 +182,15 @@
     const mainEl = document.querySelector(".container");
     mainEl.innerHTML = `
       <div class="login">
-        <h1>Inventory</h1>
+      <div class="title">
+        <h3>Welcome ${stateUser}</h3>
         <button class="logout">Logout</button>
+        </div>
         <div class="inventory">
-          <button class="button-increment">+</button>
-          <span class="inventory-count">${stateInventory}</span>
           <button class="button-decrement">-</button>
-        </div>        
+          <span class="inventory-count">${stateInventory}</span>
+          <button class="button-increment">+</button>
+        </div>     
       </div>
     `;
     addAbilityToIncrementInventory();

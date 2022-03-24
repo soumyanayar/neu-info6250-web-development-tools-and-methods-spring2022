@@ -1,47 +1,55 @@
 * { 
   box-sizing: border-box;
+  background-color: aliceblue;
 }
 
-body { 
-  margin: 2rem;
+.login { 
+  margin-left: 2rem;
+  margin-top: 2rem;
 
   font-family: sans-serif;
 }
 
-.content { 
-  display: none;
-}
-
-.login { 
-  display: none;
-}
-
-.logged-in .content { 
-  display: block;
-}
-
-.not-logged-in .login {
-  display: block;
-}
-.controls{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-button{
-  background-color: #4CAF50;
+.login-button, .logout{
+  background-color:black;
   color: white;
   padding: 0.2rem;
   margin: 8px 0;
   border: 0.1px solid black;
+  border-radius: 0.1rem;
   cursor: pointer;
   width: 5rem;
 }
-@keyframes fadeIn { 
-  from { 
-    opacity: 0;
-  }
-  to { 
-    opacity: 1;
-  }
+.title{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+
+.button-increment, .button-decrement{
+  color: white;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  border: 0.1px solid black;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  width: 2rem;
+}
+
+.button-increment{
+  background-color: #4CAF50;
+}
+
+.button-decrement{
+  background-color: #f44336;
+}
+.inventory-count{
+margin : 1rem;
+padding : 0.5rem;
+font-size: 1rem;
+}
+
+.status{
+  font-size: 1rem;
+  color: #f44336;
 }
