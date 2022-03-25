@@ -1,80 +1,74 @@
 "use strict";
-(function () {
-  // We store these as an object because we will access by id
-  let stateInventory = undefined;
-  let stateUser = undefined;
 
-  // These messages are incomplete and just to demonstrate the technique
-  // you will have to expand to cover your scenarios!
-  const MESSAGES = {
+require("core-js/modules/es.object.to-string.js");
+
+require("core-js/modules/es.promise.js");
+
+require("core-js/modules/es.array.concat.js");
+
+(function () {
+  var stateInventory = undefined;
+  var stateUser = undefined;
+  var MESSAGES = {
     networkError: "Trouble connecting to the network.  Please try again",
     default: "Something went wrong.  Please try again",
     "dog-not-allowed-in-username": "Dog is not allowed in username",
-    "auth-insufficient": "Enter a valid username",
+    "auth-insufficient": "Enter a valid username"
   };
-
   checkSession();
 
   function checkSession() {
-    fetchSession()
-      .then((user) => {
-        stateUser = user.username;
-        fetchInventory()
-          .then((inventory) => {
-            stateInventory = inventory;
-            renderMain();
-          })
-          .catch((error) => {
-            renderStatus(error);
-          });
-      })
-      .catch(() => renderLogin());
+    fetchSession().then(function (user) {
+      stateUser = user.username;
+      fetchInventory().then(function (inventory) {
+        stateInventory = inventory;
+        renderMain();
+      }).catch(function (error) {
+        renderStatus(error);
+      });
+    }).catch(function () {
+      return renderLogin();
+    });
   }
 
   function addAbilityToLogin() {
-    const buttonEl = document.querySelector(".login-button");
-    const usernameEl = document.querySelector(".login-username");
-    buttonEl.addEventListener("click", (e) => {
-      const username = usernameEl.value;
-      fetchLogin(username)
-        .then(checkSession)
-        .catch((error) => renderStatus(error));
+    var buttonEl = document.querySelector(".login-button");
+    var usernameEl = document.querySelector(".login-username");
+    buttonEl.addEventListener("click", function (e) {
+      var username = usernameEl.value;
+      fetchLogin(username).then(checkSession).catch(function (error) {
+        return renderStatus(error);
+      });
     });
   }
 
   function addAbilityToLogout() {
-    const buttonEl = document.querySelector(".logout");
-    buttonEl.addEventListener("click", (e) => {
+    var buttonEl = document.querySelector(".logout");
+    buttonEl.addEventListener("click", function (e) {
       stateInventory = undefined;
-      fetchLogout()
-        .then(() => {
-          renderLogin();
-        })
-        .catch();
+      fetchLogout().then(function () {
+        renderLogin();
+      }).catch();
     });
   }
 
   function addAbilityToIncrementInventory() {
-    const buttonEl = document.querySelector(".button-increment");
-    buttonEl.addEventListener("click", (e) => {
-      fetchUpdateInventory(stateInventory + 1)
-        .then((inventory) => {
-          stateInventory = inventory;
-          renderMain();
-        })
-        .catch();
+    var buttonEl = document.querySelector(".button-increment");
+    buttonEl.addEventListener("click", function (e) {
+      fetchUpdateInventory(stateInventory + 1).then(function (inventory) {
+        stateInventory = inventory;
+        renderMain();
+      }).catch();
     });
   }
 
   function addAbilityToDecrementInventory() {
-    const buttonEl = document.querySelector(".button-decrement");
-    buttonEl.addEventListener("click", (e) => {
-      fetchUpdateInventory(stateInventory - 1)
-        .then((inventory) => {
-          stateInventory = inventory;
-          renderMain();
-        })
-        .catch();
+    var buttonEl = document.querySelector(".button-decrement");
+    buttonEl.addEventListener("click", function (e) {
+      fetchUpdateInventory(stateInventory - 1).then(function (inventory) {
+        stateInventory = inventory;
+        renderMain();
+      }).catch();
     });
   }
 
@@ -82,121 +76,136 @@
     return fetch("/api/inventory", {
       method: "POST",
       headers: new Headers({
-        "content-type": "application/json",
+        "content-type": "application/json"
       }),
-      body: JSON.stringify({ inventory }),
-    })
-      .catch(() => Promise.reject({ error: "networkError" }))
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        return response
-          .json()
-          .catch((error) => Promise.reject({ error }))
-          .then((err) => Promise.reject(err));
+      body: JSON.stringify({
+        inventory: inventory
+      })
+    }).catch(function () {
+      return Promise.reject({
+        error: "networkError"
       });
+    }).then(function (response) {
+      if (response.ok) {
+        return response.json();
+      }
+
+      return response.json().catch(function (error) {
+        return Promise.reject({
+          error: error
+        });
+      }).then(function (err) {
+        return Promise.reject(err);
+      });
+    });
   }
 
   function fetchInventory() {
-    return fetch("/api/inventory")
-      .catch(() => Promise.reject({ error: "networkError" }))
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        return response
-          .json()
-          .catch((error) => Promise.reject({ error }))
-          .then((err) => Promise.reject(err));
+    return fetch("/api/inventory").catch(function () {
+      return Promise.reject({
+        error: "networkError"
       });
+    }).then(function (response) {
+      if (response.ok) {
+        return response.json();
+      }
+
+      return response.json().catch(function (error) {
+        return Promise.reject({
+          error: error
+        });
+      }).then(function (err) {
+        return Promise.reject(err);
+      });
+    });
   }
 
   function fetchSession() {
     return fetch("/api/session", {
-      method: "GET",
-    })
-      .catch(() => Promise.reject({ error: "networkError" }))
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        return response
-          .json()
-          .catch((error) => Promise.reject({ error }))
-          .then((err) => Promise.reject(err));
+      method: "GET"
+    }).catch(function () {
+      return Promise.reject({
+        error: "networkError"
       });
+    }).then(function (response) {
+      if (response.ok) {
+        return response.json();
+      }
+
+      return response.json().catch(function (error) {
+        return Promise.reject({
+          error: error
+        });
+      }).then(function (err) {
+        return Promise.reject(err);
+      });
+    });
   }
 
   function fetchLogout() {
     return fetch("/api/session", {
-      method: "DELETE",
-    })
-      .catch(() => Promise.reject({ error: "networkError" }))
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        return response
-          .json()
-          .catch((error) => Promise.reject({ error }))
-          .then((err) => Promise.reject(err));
+      method: "DELETE"
+    }).catch(function () {
+      return Promise.reject({
+        error: "networkError"
       });
+    }).then(function (response) {
+      if (response.ok) {
+        return response.json();
+      }
+
+      return response.json().catch(function (error) {
+        return Promise.reject({
+          error: error
+        });
+      }).then(function (err) {
+        return Promise.reject(err);
+      });
+    });
   }
 
   function fetchLogin(username) {
     return fetch("/api/session", {
       method: "POST",
       headers: new Headers({
-        "content-type": "application/json",
+        "content-type": "application/json"
       }),
-      body: JSON.stringify({ username }),
-    })
-      .catch(() => Promise.reject({ error: "networkError" }))
-      .then((response) => {
-        if (response.ok) {
-          return;
-        }
-        return response
-          .json()
-          .catch((error) => Promise.reject({ error }))
-          .then((err) => Promise.reject(err));
+      body: JSON.stringify({
+        username: username
+      })
+    }).catch(function () {
+      return Promise.reject({
+        error: "networkError"
       });
+    }).then(function (response) {
+      if (response.ok) {
+        return;
+      }
+
+      return response.json().catch(function (error) {
+        return Promise.reject({
+          error: error
+        });
+      }).then(function (err) {
+        return Promise.reject(err);
+      });
+    });
   }
 
   function renderLogin() {
-    const loginEl = document.querySelector(".container");
-    loginEl.innerHTML = `
-      <div class="login">
-        <h1>Login</h1>
-        <input class="login-username" type="text" placeholder="username">
-        <button class="login-button">Login</button>
-        <div class="status"></div>
-      </div>
-    `;
-
+    var loginEl = document.querySelector(".container");
+    loginEl.innerHTML = "\n      <div class=\"login\">\n        <h1>Login</h1>\n        <input class=\"login-username\" type=\"text\" placeholder=\"username\">\n        <button class=\"login-button\">Login</button>\n        <div class=\"status\"></div>\n      </div>\n    ";
     addAbilityToLogin();
   }
 
   function renderMain() {
-    const mainEl = document.querySelector(".container");
-    mainEl.innerHTML = `
-      <div class="login">
-      <div class="title">
-        <h3>Welcome ${stateUser}</h3>
-        <button class="logout">Logout</button>
-        </div>
-        <div class="inventory">
-          <button class="button-decrement">-</button>
-          <span class="inventory-count">${stateInventory}</span>
-          <button class="button-increment">+</button>
-        </div>     
-      </div>
-    `;
+    var mainEl = document.querySelector(".container");
+    mainEl.innerHTML = "\n      <div class=\"login\">\n      <div class=\"title\">\n        <h3>Welcome ".concat(stateUser, "</h3>\n        <button class=\"logout\">Logout</button>\n        </div>\n        <div class=\"inventory\">\n          <button class=\"button-decrement\">-</button>\n          <span class=\"inventory-count\">").concat(stateInventory, "</span>\n          <button class=\"button-increment\">+</button>\n        </div>     \n      </div>\n    ");
     addAbilityToIncrementInventory();
     addAbilityToDecrementInventory();
     addAbilityToLogout();
-    const decrementButton = document.querySelector(".button-decrement");
+    var decrementButton = document.querySelector(".button-decrement");
+
     if (stateInventory <= 0) {
       decrementButton.disabled = true;
     } else {
@@ -206,12 +215,14 @@
 
   function renderStatus(message) {
     console.log(message);
-    const statusEl = document.querySelector(".status");
+    var statusEl = document.querySelector(".status");
+
     if (!message) {
       statusEl.innerText = "";
       return;
     }
-    const key = message?.error ? message.error : "default";
+
+    var key = message !== null && message !== void 0 && message.error ? message.error : "default";
     statusEl.innerText = MESSAGES[key] || MESSAGES.default;
   }
 })();
