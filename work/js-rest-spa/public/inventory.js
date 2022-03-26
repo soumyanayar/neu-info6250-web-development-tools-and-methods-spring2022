@@ -1,17 +1,17 @@
-"use strict";
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+var __webpack_exports__ = {};
+/*!**************************!*\
+  !*** ./src/inventory.js ***!
+  \**************************/
 
-require("core-js/modules/es.object.to-string.js");
-
-require("core-js/modules/es.promise.js");
-
-require("core-js/modules/es.array.concat.js");
 
 (function () {
   var stateInventory = undefined;
   var stateUser = undefined;
   var MESSAGES = {
     networkError: "Trouble connecting to the network.  Please try again",
-    default: "Something went wrong.  Please try again",
+    "default": "Something went wrong.  Please try again",
     "dog-not-allowed-in-username": "Dog is not allowed in username",
     "auth-insufficient": "Enter a valid username"
   };
@@ -23,10 +23,10 @@ require("core-js/modules/es.array.concat.js");
       fetchInventory().then(function (inventory) {
         stateInventory = inventory;
         renderMain();
-      }).catch(function (error) {
+      })["catch"](function (error) {
         renderStatus(error);
       });
-    }).catch(function () {
+    })["catch"](function () {
       return renderLogin();
     });
   }
@@ -36,7 +36,7 @@ require("core-js/modules/es.array.concat.js");
     var usernameEl = document.querySelector(".login-username");
     buttonEl.addEventListener("click", function (e) {
       var username = usernameEl.value;
-      fetchLogin(username).then(checkSession).catch(function (error) {
+      fetchLogin(username).then(checkSession)["catch"](function (error) {
         return renderStatus(error);
       });
     });
@@ -48,7 +48,7 @@ require("core-js/modules/es.array.concat.js");
       stateInventory = undefined;
       fetchLogout().then(function () {
         renderLogin();
-      }).catch();
+      })["catch"]();
     });
   }
 
@@ -58,7 +58,7 @@ require("core-js/modules/es.array.concat.js");
       fetchUpdateInventory(stateInventory + 1).then(function (inventory) {
         stateInventory = inventory;
         renderMain();
-      }).catch();
+      })["catch"]();
     });
   }
 
@@ -68,7 +68,7 @@ require("core-js/modules/es.array.concat.js");
       fetchUpdateInventory(stateInventory - 1).then(function (inventory) {
         stateInventory = inventory;
         renderMain();
-      }).catch();
+      })["catch"]();
     });
   }
 
@@ -81,7 +81,7 @@ require("core-js/modules/es.array.concat.js");
       body: JSON.stringify({
         inventory: inventory
       })
-    }).catch(function () {
+    })["catch"](function () {
       return Promise.reject({
         error: "networkError"
       });
@@ -90,7 +90,7 @@ require("core-js/modules/es.array.concat.js");
         return response.json();
       }
 
-      return response.json().catch(function (error) {
+      return response.json()["catch"](function (error) {
         return Promise.reject({
           error: error
         });
@@ -101,7 +101,7 @@ require("core-js/modules/es.array.concat.js");
   }
 
   function fetchInventory() {
-    return fetch("/api/inventory").catch(function () {
+    return fetch("/api/inventory")["catch"](function () {
       return Promise.reject({
         error: "networkError"
       });
@@ -110,7 +110,7 @@ require("core-js/modules/es.array.concat.js");
         return response.json();
       }
 
-      return response.json().catch(function (error) {
+      return response.json()["catch"](function (error) {
         return Promise.reject({
           error: error
         });
@@ -123,7 +123,7 @@ require("core-js/modules/es.array.concat.js");
   function fetchSession() {
     return fetch("/api/session", {
       method: "GET"
-    }).catch(function () {
+    })["catch"](function () {
       return Promise.reject({
         error: "networkError"
       });
@@ -132,7 +132,7 @@ require("core-js/modules/es.array.concat.js");
         return response.json();
       }
 
-      return response.json().catch(function (error) {
+      return response.json()["catch"](function (error) {
         return Promise.reject({
           error: error
         });
@@ -145,7 +145,7 @@ require("core-js/modules/es.array.concat.js");
   function fetchLogout() {
     return fetch("/api/session", {
       method: "DELETE"
-    }).catch(function () {
+    })["catch"](function () {
       return Promise.reject({
         error: "networkError"
       });
@@ -154,7 +154,7 @@ require("core-js/modules/es.array.concat.js");
         return response.json();
       }
 
-      return response.json().catch(function (error) {
+      return response.json()["catch"](function (error) {
         return Promise.reject({
           error: error
         });
@@ -173,7 +173,7 @@ require("core-js/modules/es.array.concat.js");
       body: JSON.stringify({
         username: username
       })
-    }).catch(function () {
+    })["catch"](function () {
       return Promise.reject({
         error: "networkError"
       });
@@ -182,7 +182,7 @@ require("core-js/modules/es.array.concat.js");
         return;
       }
 
-      return response.json().catch(function (error) {
+      return response.json()["catch"](function (error) {
         return Promise.reject({
           error: error
         });
@@ -223,6 +223,9 @@ require("core-js/modules/es.array.concat.js");
     }
 
     var key = message !== null && message !== void 0 && message.error ? message.error : "default";
-    statusEl.innerText = MESSAGES[key] || MESSAGES.default;
+    statusEl.innerText = MESSAGES[key] || MESSAGES["default"];
   }
 })();
+/******/ })()
+;
+//# sourceMappingURL=inventory.js.map
