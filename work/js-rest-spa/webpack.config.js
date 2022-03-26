@@ -5,7 +5,7 @@ module.exports = {
   devtool: "source-map",
   output: {
     filename: "inventory.js",
-    path: path.resolve(__dirname, "public"),
+    path: path.resolve(__dirname, "public", "js"),
   },
   module: {
     rules: [

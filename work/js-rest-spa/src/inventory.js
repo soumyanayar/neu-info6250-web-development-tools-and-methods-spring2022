@@ -57,7 +57,7 @@
       fetchUpdateInventory(stateInventory + 1)
         .then((inventory) => {
           stateInventory = inventory;
-          renderMain();
+          updateInventoryCountDomInMain();
         })
         .catch();
     });
@@ -69,7 +69,7 @@
       fetchUpdateInventory(stateInventory - 1)
         .then((inventory) => {
           stateInventory = inventory;
-          renderMain();
+          updateInventoryCountDomInMain();
         })
         .catch();
     });
@@ -173,6 +173,11 @@
     `;
 
     addAbilityToLogin();
+  }
+
+  function updateInventoryCountDomInMain() {
+    const inventoryEl = document.querySelector(".inventory-count");
+    inventoryEl.innerHTML = stateInventory;
   }
 
   function renderMain() {

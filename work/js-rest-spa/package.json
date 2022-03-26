@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "start": "npx webpack && node server.js"
   },
   "keywords": [],
   "author": "Soumya Nayar <nayar.s@northeastern.edu>",
