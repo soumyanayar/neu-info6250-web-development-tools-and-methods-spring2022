@@ -10,19 +10,20 @@ function App() {
 
   const fetchUserFromSession = () => {
     fetchSession().then((user) => {
-      console.log(user);
+      console.log("username:", user.username);
+      setUser(user.username);
       setIsLoggedIn(true);
     });
   };
 
   useEffect(() => {
     fetchUserFromSession();
-  }, []);
+  }, [setIsLoggedIn]);
 
   if (!isLoggedIn) {
-    return <Login setIsLoggedIn={setIsLoggedIn} setUser={setUser} />;
+    return <Login setIsLoggedIn={isLoggedIn} />;
   }
-  return <MainPage setUser={setUser} />;
+  return <MainPage setUser={user} />;
 }
 
 export default App;
