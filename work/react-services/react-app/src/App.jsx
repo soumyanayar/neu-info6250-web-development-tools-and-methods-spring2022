@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import "./App.css";
 import {
   fetchSession,
   fetchLogin,
@@ -39,6 +40,7 @@ const App = () => {
     fetchLogin(loginFormUserName)
       .then((user) => {
         fetchUserFromSession();
+        setError("");
       })
       .catch((error) => {
         setError(error);
@@ -64,12 +66,17 @@ const App = () => {
   const handleAddTodo = (event) => {
     event.preventDefault();
     const todoText = todoFormText;
-    fetchAddTodo(todoText).then(() => {
-      fetchTodos().then((todos) => {
-        setTodoFormText("");
-        setTodos(todos);
+    fetchAddTodo(todoText)
+      .then(() => {
+        setError("");
+        fetchTodos().then((todos) => {
+          setTodoFormText("");
+          setTodos(todos);
+        });
+      })
+      .catch((error) => {
+        setError(error);
       });
-    });
   };
 
   const handleUpdateTodo = (todoId, todoText, todoDone) => {
@@ -90,9 +97,9 @@ const App = () => {
 
   if (!isLoggedIn) {
     return (
-      <div>
-        <h1>Login</h1>
-        <form onSubmit={handleLoginSubmit}>
+      <div className="login-div">
+        <h1>Please Login here!!</h1>
+        <form onSubmit={handleLoginSubmit} className="login-form">
           <label>
             Username:
             <input
@@ -104,17 +111,20 @@ const App = () => {
           </label>
           <button type="submit">Submit</button>
         </form>
+        {error && <p>{error.error}</p>}
       </div>
     );
   }
 
   return (
-    <div>
-      <h1>Welcome {user}</h1>
-      <button onClick={handleLogoutSubmit}>Logout</button>
+    <div className="main-page-div">
+      <div className="title-div">
+        <h1>Welcome {user}</h1>
+        <button onClick={handleLogoutSubmit}>Logout</button>
+      </div>
       {Object.keys(todos).map(function (todoId) {
         return (
-          <div key={todos[todoId].id}>
+          <div key={todos[todoId].id} className="todo-list-div">
             <input
               type="checkbox"
               checked={todos[todoId].done}
@@ -127,11 +137,11 @@ const App = () => {
               }
             />
             {todos[todoId].done ? (
-              <span>
+              <span className="checked-todo">
                 <s>{todos[todoId].task}</s>{" "}
               </span>
             ) : (
-              <span>{todos[todoId].task}</span>
+              <span className="unchecked-todo">{todos[todoId].task}</span>
             )}
             <a href="#" onClick={() => handleDeleteTodo(todos[todoId].id)}>
               X
@@ -140,7 +150,7 @@ const App = () => {
         );
       })}
       <div>
-        <form>
+        <form className="add-todo-form">
           <input
             required
             type="text"
@@ -149,6 +159,7 @@ const App = () => {
           />
           <button onClick={handleAddTodo}>Add Todo</button>
         </form>
+        {error && <p>{error.error}</p>}
       </div>
     </div>
   );
