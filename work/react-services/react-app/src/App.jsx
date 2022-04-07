@@ -7,6 +7,7 @@ import {
   fetchTodos,
   fetchAddTodo,
   fetchDeleteTodo,
+  fetchUpdateTodo,
 } from "./services";
 
 const App = () => {
@@ -65,6 +66,18 @@ const App = () => {
     });
   };
 
+  const handleUpdateTodo = (todoId, todoText, todoDone) => {
+    const todoUpdates = {
+      task: todoText,
+      done: todoDone,
+    };
+    fetchUpdateTodo(todoId, todoUpdates).then(() => {
+      fetchTodos().then((todos) => {
+        setTodos(todos);
+      });
+    });
+  };
+
   useEffect(() => {
     fetchUserFromSession();
   }, []);
@@ -95,7 +108,24 @@ const App = () => {
       {Object.keys(todos).map(function (todoId) {
         return (
           <div key={todos[todoId].id}>
-            <span>{todos[todoId].task}</span>{" "}
+            <input
+              type="checkbox"
+              checked={todos[todoId].done}
+              onClick={() =>
+                handleUpdateTodo(
+                  todos[todoId].id,
+                  todos[todoId].task,
+                  !todos[todoId].done
+                )
+              }
+            />
+            {todos[todoId].done ? (
+              <span>
+                <s>{todos[todoId].task}</s>{" "}
+              </span>
+            ) : (
+              <span>{todos[todoId].task}</span>
+            )}
             <a href="#" onClick={() => handleDeleteTodo(todos[todoId].id)}>
               X
             </a>
