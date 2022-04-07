@@ -1,5 +1,5 @@
 import { fetchLogin } from "./services";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
 const Login = ({ setIsLoggedIn }) => {
@@ -9,9 +9,12 @@ const Login = ({ setIsLoggedIn }) => {
   const fetchPostSession = () => {
     fetchLogin(username).then((user) => {
       console.log("user:", user);
-      setIsLoggedIn(true);
     });
   };
+
+  useEffect(() => {
+    fetchPostSession();
+  }, [username]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -21,7 +24,7 @@ const Login = ({ setIsLoggedIn }) => {
   return (
     <div>
       <h1>Login</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           Username:
           <input
@@ -30,8 +33,9 @@ const Login = ({ setIsLoggedIn }) => {
             onChange={(event) => setUsername(event.target.value)}
           />
         </label>
-        <button onClick={handleSubmit}>Submit</button>
+        <button type="submit">Submit</button>
       </form>
+      {error && <p>{error}</p>}
     </div>
   );
 };

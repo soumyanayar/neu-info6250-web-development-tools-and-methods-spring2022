@@ -18,12 +18,12 @@ function App() {
 
   useEffect(() => {
     fetchUserFromSession();
-  }, [setIsLoggedIn]);
+  });
 
   if (!isLoggedIn) {
     return <Login setIsLoggedIn={isLoggedIn} />;
   }
-  return <MainPage setUser={user} />;
+  return <MainPage setUser={user} setIsLoggedIn={isLoggedIn} />;
 }
 
 export default App;

@@ -1,6 +1,6 @@
 import { fetchTodos } from "./services";
 import React from "react";
-import { fetchLogout } from "./services";
+import { fetchLogout, fetchDeleteTodo } from "./services";
 import { useState, useEffect } from "react";
 import Login from "./Login";
 
@@ -30,8 +30,28 @@ function MainPage({ setUser, setIsLoggedIn }) {
     setIsLoggedOut(true);
   };
 
+  const deleteToDo = (id) => {
+    fetchDeleteTodo(id)
+      .then((fetchedTodos) => {
+        setTodos(fetchedTodos);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  };
+
+  // Onclicking X button the todo is deleted from the list and displayed on the screen
+  const handleDelete = (id) => {
+    deleteToDo(id);
+    Object.values(todos).map((todo) => {
+      if (todo.id === id) {
+        todo.isDeleted = true;
+      }
+    });
+  };
+
   if (isLoggedOut) {
-    return <Login setIsLoggedIn={setIsLoggedIn} />;
+    return <Login setIsLoggedIn={isLoggedOut} />;
   }
 
   return (
@@ -44,12 +64,16 @@ function MainPage({ setUser, setIsLoggedIn }) {
       {Object.keys(todos).map(function (todoId) {
         return (
           <div key={todos[todoId]}>
-            <h2>{todos[todoId].task}</h2>
+            <span>{todos[todoId].task}</span>{" "}
+            <button onClick={() => handleDelete(todos[todoId])}>X</button>
           </div>
         );
       })}
-
-      {error && <div>{error}</div>}
+      <form>
+        <label>Add task : </label>
+        <input type="text" />
+        <button>Add</button>
+      </form>
     </div>
   );
 }
