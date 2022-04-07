@@ -14,6 +14,7 @@ const App = () => {
   const [loginFormUserName, setLoginFormUserName] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [todos, setTodos] = useState([]);
+  const [todoFormText, setTodoFormText] = useState("");
 
   const fetchUserFromSession = () => {
     fetchSession()
@@ -55,9 +56,10 @@ const App = () => {
 
   const handleAddTodo = (event) => {
     event.preventDefault();
-    const todoText = event.target.elements.todoText.value;
+    const todoText = todoFormText;
     fetchAddTodo(todoText).then(() => {
       fetchTodos().then((todos) => {
+        setTodoFormText("");
         setTodos(todos);
       });
     });
@@ -100,6 +102,16 @@ const App = () => {
           </div>
         );
       })}
+      <div>
+        <form>
+          <input
+            type="text"
+            value={todoFormText}
+            onChange={(event) => setTodoFormText(event.target.value)}
+          />
+          <button onClick={handleAddTodo}>Add Todo</button>
+        </form>
+      </div>
     </div>
   );
 };
