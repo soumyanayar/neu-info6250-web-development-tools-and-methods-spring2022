@@ -16,6 +16,7 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [todos, setTodos] = useState([]);
   const [todoFormText, setTodoFormText] = useState("");
+  const [error, setError] = useState("");
 
   const fetchUserFromSession = () => {
     fetchSession()
@@ -35,9 +36,14 @@ const App = () => {
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
-    fetchLogin(loginFormUserName).then((user) => {
-      fetchUserFromSession();
-    });
+    fetchLogin(loginFormUserName)
+      .then((user) => {
+        fetchUserFromSession();
+      })
+      .catch((error) => {
+        setError(error);
+        console.log(error.error);
+      });
   };
 
   const handleLogoutSubmit = (event) => {
@@ -90,6 +96,7 @@ const App = () => {
           <label>
             Username:
             <input
+              required
               type="text"
               value={loginFormUserName}
               onChange={(event) => setLoginFormUserName(event.target.value)}
@@ -135,6 +142,7 @@ const App = () => {
       <div>
         <form>
           <input
+            required
             type="text"
             value={todoFormText}
             onChange={(event) => setTodoFormText(event.target.value)}
