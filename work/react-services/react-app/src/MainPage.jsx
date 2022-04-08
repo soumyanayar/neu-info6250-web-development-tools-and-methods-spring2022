@@ -1,13 +1,11 @@
-import { fetchTodos } from "./services";
-import React from "react";
 import {
   fetchLogout,
   fetchDeleteTodo,
   fetchAddTodo,
+  fetchTodos,
   fetchUpdateTodo,
 } from "./services";
 import { useState, useEffect } from "react";
-import Login from "./Login";
 
 function MainPage({ user, setIsLoggedIn }) {
   const [todos, setTodos] = useState([]);
@@ -16,14 +14,18 @@ function MainPage({ user, setIsLoggedIn }) {
   const [isPageLoading, setIsPageLoading] = useState(true);
 
   useEffect(() => {
-    fetchTodos()
-      .then((fetchedTodos) => {
-        setTodos(fetchedTodos);
-      })
-      .catch((error) => {
-        setError(error);
-      });
-  }, []);
+    setTimeout(() => {
+      fetchTodos()
+        .then((fetchedTodos) => {
+          setTodos(fetchedTodos);
+          setIsPageLoading(false);
+        })
+        .catch((error) => {
+          setError(error);
+          setIsPageLoading(false);
+        });
+    }, 2000);
+  }, [setTodos, setIsPageLoading]);
 
   const handlelogout = () => {
     fetchLogout()
@@ -71,6 +73,10 @@ function MainPage({ user, setIsLoggedIn }) {
     });
   };
 
+  if (isPageLoading) {
+    return <h2 className="loading-div">Loading..!</h2>;
+  }
+
   return (
     <div className="main-page-div">
       <div className="title-div">
@@ -112,6 +118,7 @@ function MainPage({ user, setIsLoggedIn }) {
             required
             type="text"
             value={todoFormText}
+            placeholder="Add a todo"
             onChange={(event) => setTodoFormText(event.target.value)}
           />
           <button onClick={handleAddTodo}>Add Todo</button>

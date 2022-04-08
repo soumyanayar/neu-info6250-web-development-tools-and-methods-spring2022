@@ -7,10 +7,14 @@ const Login = ({ setIsLoggedIn, setUser }) => {
   const [error, setError] = useState("");
 
   const fetchPostSession = () => {
-    fetchLogin(username).then((user) => {
-      setUser(username);
-      setIsLoggedIn(true);
-    });
+    fetchLogin(username)
+      .then((user) => {
+        setUser(user.username);
+        setError("");
+      })
+      .catch((error) => {
+        setError(error);
+      });
   };
 
   const handleSubmit = (event) => {
@@ -25,6 +29,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
         <label>
           Username:
           <input
+            placeholder="username"
             type="text"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
@@ -32,7 +37,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
         </label>
         <button type="submit">Submit</button>
       </form>
-      {error && <p>{error}</p>}
+      {error && <p>{error.error}</p>}
     </div>
   );
 };

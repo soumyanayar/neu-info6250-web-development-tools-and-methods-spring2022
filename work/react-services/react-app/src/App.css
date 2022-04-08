@@ -95,3 +95,8 @@ p{
   display:flex;
   flex-direction:column;
 }
+
+.loading-div{
+  margin-top:15%;
+text-align: center;
+}
