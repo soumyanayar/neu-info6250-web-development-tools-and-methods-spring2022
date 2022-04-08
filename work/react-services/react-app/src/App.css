@@ -41,7 +41,13 @@ body{
   cursor: pointer;
   margin-left:8rem;
 }
+.todo-list-container{
+  margin-left:40%;
+  margin-right: 40%;
 
+  display:flex;
+  flex-direction:column;
+}
 .todo-list-div{
 margin:1rem;
 padding:0.5rem;
@@ -66,7 +72,6 @@ a:hover{
 }
 
 .add-todo-form input{
-  width:20%;
   margin-left:1rem;
   padding:0.2rem;
   border:0.1rem solid black;
@@ -81,4 +86,12 @@ a:hover{
 p{
   margin-left:1rem;
   color:red;
+}
+
+.add-todo-form{
+  margin-left:40%;
+  margin-right: 40%;
+
+  display:flex;
+  flex-direction:column;
 }
