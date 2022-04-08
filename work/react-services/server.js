@@ -10,7 +10,7 @@ const sessions = require("./sessions");
 const users = require("./users");
 
 app.use(cookieParser());
-// app.use(express.static("./public"));
+app.use(express.static("./build"));
 app.use(express.json());
 
 // Sessions
