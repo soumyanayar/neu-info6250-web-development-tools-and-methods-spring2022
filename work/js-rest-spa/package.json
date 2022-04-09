@@ -1,0 +1,26 @@
+{
+  "name": "js-rest-spa",
+  "version": "1.0.0",
+  "description": "* start from the up-to-date main branch (`git checkout main; git pull origin main`) * Create a feature branch named 'js-rest-spa' (`git checkout -b js-rest-spa`) * modify the files in this directory to have the require features * add, commit, and push the branch to github * Create a PR to merge to main * Be sure to include the TA(s) and I as reviewers.   * Due by **Sun Mar 27 11:59pm (PT)**",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx webpack",
+    "start": "npm run build && node server.js"
+  },
+  "keywords": [],
+  "author": "Soumya Nayar <nayar.s@northeastern.edu>",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.4",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
