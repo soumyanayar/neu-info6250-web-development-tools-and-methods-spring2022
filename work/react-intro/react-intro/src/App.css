@@ -1,0 +1,45 @@
+body{
+  margin: 1rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: #d2e7eb;
+}
+
+.app-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h2{
+  color: brown;
+}
+
+input{
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button{
+  width: 20%;
+  padding: 0.5rem;
+  margin-left: 40%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: rgb(125, 126, 189);
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover{
+  background-color: rgb(50, 47, 201);
+  color: #fff;
+}
+.prev-msg{
+  color:darkgreen;
+  font-size: bold;
+}
