@@ -13,7 +13,11 @@ const Login = ({ setIsLoggedIn, setUser }) => {
         setError("");
       })
       .catch((error) => {
-        setError(error);
+        if (error.error === "auth-insufficient") {
+          setError("Dog is not authorized to login");
+        } else if (error.error === "required-username") {
+          setError("Please enter a valid username");
+        }
       });
   };
 
@@ -37,7 +41,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
         </label>
         <button type="submit">Submit</button>
       </form>
-      {error && <p>{error.error}</p>}
+      {error && <p>{error}</p>}
     </div>
   );
 };
