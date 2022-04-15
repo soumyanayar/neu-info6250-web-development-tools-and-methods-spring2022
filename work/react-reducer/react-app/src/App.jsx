@@ -2,8 +2,6 @@ import { useState, useEffect, useReducer } from "react";
 import { fetchSession } from "./services";
 import { reducer, initialState } from "./reducer";
 import loginContext from "./loginContext";
-import titleContext from "./titleContext";
-import todosContext from "./todosContext";
 import MainPage from "./MainPage";
 import Login from "./Login";
 
@@ -18,7 +16,7 @@ function App() {
       .then((username) => {
         const user = username.username;
         dispatch({ type: "FETCH_USER", user });
-        console.log(user);
+        console.log("username" + user);
       })
       .catch((error) => {
         setError(error);
@@ -26,18 +24,14 @@ function App() {
   };
   // console.log(state);
   console.log(state);
-  console.log(state.user);
+  console.log(state.username);
 
   useEffect(() => {
     fetchUserFromSession();
-  }, []);
+  }, [state.isLoggedIn]);
 
   if (state.isLoggedIn) {
-    return (
-      <div>
-        <MainPage dispatch={dispatch} state={state} />
-      </div>
-    );
+    return <MainPage dispatch={dispatch} state={state} />;
   } else {
     return (
       <loginContext.Provider value={{ dispatch }}>
