@@ -16,15 +16,11 @@ function App() {
       .then((username) => {
         const user = username.username;
         dispatch({ type: "FETCH_USER", user });
-        console.log("username" + user);
       })
       .catch((error) => {
         setError(error);
       });
   };
-  // console.log(state);
-  console.log(state);
-  console.log(state.username);
 
   useEffect(() => {
     fetchUserFromSession();
