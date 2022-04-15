@@ -10,7 +10,7 @@ const Login = () => {
   const fetchPostSession = () => {
     fetchLogin(username)
       .then((todos) => {
-        dispatch({ type: "LOGIN", todos });
+        dispatch({ type: "LOGIN", user: username });
         setError("");
       })
       .catch((error) => {

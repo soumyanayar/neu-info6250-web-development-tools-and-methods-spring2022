@@ -15,7 +15,7 @@ function App() {
     fetchSession()
       .then((username) => {
         const user = username.username;
-        dispatch({ type: "FETCH_USER", user });
+        dispatch({ type: "LOGIN", user });
       })
       .catch((error) => {
         setError(error);
@@ -24,7 +24,7 @@ function App() {
 
   useEffect(() => {
     fetchUserFromSession();
-  }, [state.isLoggedIn]);
+  }, []);
 
   if (state.isLoggedIn) {
     return <MainPage dispatch={dispatch} state={state} />;

@@ -48,13 +48,6 @@ export function reducer(state = initialState, action) {
     case "LOGIN":
       return {
         ...state,
-        todos: action.todos,
-        isLoggedIn: true,
-      };
-
-    case "FETCH_USER":
-      return {
-        ...state,
         username: action.user,
         isLoggedIn: true,
       };
