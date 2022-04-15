@@ -54,7 +54,6 @@ export function reducer(state = initialState, action) {
     case "LOGIN":
       return {
         ...state,
-        // username: action.username,
         todos: action.todos,
         isLoggedIn: true,
       };

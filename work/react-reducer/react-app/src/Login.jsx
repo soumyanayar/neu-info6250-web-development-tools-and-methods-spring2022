@@ -1,13 +1,12 @@
 import { fetchLogin } from "./services";
-import React, { useEffect, useReducer } from "react";
-import { reducer, initialState } from "./reducer";
+import { useContext } from "react";
 import { useState } from "react";
+import loginContext from "./loginContext";
 
-const Login = ({ dispatch }) => {
+const Login = () => {
   const [username, setUsername] = useState("");
-  // const [state, dispatch] = useReducer(reducer, initialState);
   const [error, setError] = useState("");
-
+  const { dispatch } = useContext(loginContext);
   const fetchPostSession = () => {
     fetchLogin(username)
       .then((todos) => {

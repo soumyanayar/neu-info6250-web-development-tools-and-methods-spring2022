@@ -16,12 +16,15 @@ const MainPage = ({ dispatch, state }) => {
     setTimeout(() => {
       fetchTodos()
         .then((fetchedTodos) => {
+          dispatch({ type: "TOGGLE_PAGE_LOADING" });
           dispatch({ type: "FETCH_TODOS", fetchedTodos });
         })
         .catch((error) => {
           setError(error);
+          dispatch({ type: "TOGGLE_PAGE_LOADING" });
         });
-    }, 2000);
+      dispatch({ type: "TOGGLE_PAGE_LOADING" });
+    }, 5000);
   }, []);
 
   const handlelogout = () => {
@@ -71,10 +74,13 @@ const MainPage = ({ dispatch, state }) => {
     });
   };
 
+  if (state.isPageLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="main-page-div">
       <div className="title-div">
-        <h1>Welcome {state.user}</h1>
+        <h1>Welcome {state.username}</h1>
         <button onClick={handlelogout}>Logout</button>
       </div>
       <div className="todo-list-container">
