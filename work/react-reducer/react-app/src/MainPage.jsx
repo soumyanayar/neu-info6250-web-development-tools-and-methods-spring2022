@@ -11,20 +11,20 @@ import {
 const MainPage = ({ dispatch, state }) => {
   const [newTodo, setNewTodo] = useState("");
   const [error, setError] = useState("");
+  const [isPageLoading, setIsPageLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
       fetchTodos()
         .then((fetchedTodos) => {
-          dispatch({ type: "TOGGLE_PAGE_LOADING" });
           dispatch({ type: "FETCH_TODOS", fetchedTodos });
+          setIsPageLoading(false);
         })
         .catch((error) => {
           setError(error);
-          dispatch({ type: "TOGGLE_PAGE_LOADING" });
+          setIsPageLoading(false);
         });
-      dispatch({ type: "TOGGLE_PAGE_LOADING" });
-    }, 5000);
+    }, 2000);
   }, []);
 
   const handlelogout = () => {
@@ -74,9 +74,10 @@ const MainPage = ({ dispatch, state }) => {
     });
   };
 
-  if (state.isPageLoading) {
-    return <div>Loading...</div>;
+  if (isPageLoading) {
+    return <h2 className="loading-div">Loading..!</h2>;
   }
+
   return (
     <div className="main-page-div">
       <div className="title-div">

@@ -26,6 +26,7 @@ function App() {
   };
   // console.log(state);
   console.log(state);
+  console.log(state.user);
 
   useEffect(() => {
     fetchUserFromSession();

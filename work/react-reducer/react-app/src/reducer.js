@@ -1,5 +1,4 @@
 export const initialState = {
-  isPageLoading: false,
   isLoggedIn: false,
   username: "",
   todos: {},
@@ -7,11 +6,6 @@ export const initialState = {
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
-    case "TOGGLE_PAGE_LOADING":
-      return {
-        ...state,
-        isPageLoading: !state.isPageLoading,
-      };
     case "FETCH_TODOS":
       return {
         ...state,
@@ -62,7 +56,6 @@ export function reducer(state = initialState, action) {
       return {
         ...state,
         username: action.user,
-        // todos: action.todos,
         isLoggedIn: true,
       };
     default:
