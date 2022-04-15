@@ -1,0 +1,13 @@
+{
+  "name": "react-reducer",
+  "version": "1.0.0",
+  "description": "* Start from the up-to-date main branch (`git checkout main; git pull origin main`) * Create a feature branch named 'react-reducer' (`git checkout -b react-reducer`) * Create a react application in this directory using create-react-app * Modify and add files in `src/` to fulfill the requirements below * Add, commit, and push the branch to github * Create a PR to merge to main * Be sure to include the TA(s) and I as reviewers on the PR.   * Due by Sun Apr 17 11:59pm (PT)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
