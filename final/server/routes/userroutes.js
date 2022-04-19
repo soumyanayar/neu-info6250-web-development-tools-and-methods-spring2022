@@ -82,6 +82,13 @@ module.exports = (userData, sessions, userToSessionsMap) => {
       });
     }
 
+    // check if email is a valid email
+    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(req.body.email)) {
+      return res.status(400).json({
+        message: "email is not a valid email",
+      });
+    }
+
     // check if the user exists
     if (!userData.checkIfUserExists(req.body.email)) {
       return res.status(400).json({

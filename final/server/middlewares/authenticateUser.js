@@ -13,7 +13,7 @@ module.exports = (data, sessions) => {
         // delete the session id from the sessions object
         delete sessions[sessionId];
         return res.status(401).json({
-          message: "Unauthorized, please login again",
+          message: "SessionExpired",
         });
       }
     } else {
