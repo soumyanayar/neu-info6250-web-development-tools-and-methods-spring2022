@@ -1,11 +1,18 @@
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchLogout } from "../../services";
+import { fetchLogout } from "../../services/userservices";
 
 const Navbar = ({ user, setIsLoggedIn }) => {
+  const [error, setError] = useState("");
   const handleLogout = async () => {
-    await fetchLogout();
-    setIsLoggedIn(false);
+    try {
+      await fetchLogout();
+      setIsLoggedIn(false);
+      setError("");
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (

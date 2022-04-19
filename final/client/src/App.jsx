@@ -6,7 +6,7 @@ import Navbar from "./Components/home-Pages/Navbar";
 import Home from "./Components/home-Pages/Home";
 import AddHabit from "./Components/home-Pages/AddHabit";
 import "./App.css";
-import { fetchSession } from "./services";
+import { fetchGetUser } from "./services/userservices";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -15,13 +15,12 @@ const App = () => {
 
   const getUser = async () => {
     try {
-      const response = await fetchSession();
-      const user = await response.json();
+      const user = await fetchGetUser();
       setUser(user);
+      setIsLoggedIn(true);
       setError("");
-    } catch {
-      setUser({});
-      setError("Something went wrong.. !");
+    } catch (error) {
+      setError(error.message);
     }
   };
 

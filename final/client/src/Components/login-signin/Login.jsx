@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchPostLogin } from "../../services";
+import { fetchPostLogin } from "../../services/userservices";
 import SignUp from "./SignUp";
 
 const Login = ({ setIsLoggedIn, setUser }) => {
@@ -14,8 +14,8 @@ const Login = ({ setIsLoggedIn, setUser }) => {
       await fetchPostLogin(emailId, password);
       setError("");
       setIsLoggedIn(true);
-    } catch {
-      setError("Email Id or Password is incorrect");
+    } catch (error) {
+      setError(error.message);
       setIsLoggedIn(false);
     }
   };

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchCreateUser } from "../../services";
+import { fetchCreateUser } from "../../services/userservices";
 import { Link } from "react-router-dom";
 import Login from "./Login";
 
@@ -9,6 +9,7 @@ const SignUp = ({ setIsLoggedIn }) => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [isUserCreated, setIsUserCreated] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,9 +17,9 @@ const SignUp = ({ setIsLoggedIn }) => {
       await fetchCreateUser(emailId, password, firstname, lastname);
       setIsLoggedIn(false);
       setIsUserCreated(true);
-      //Redirect to Login Page"
+      setError("");
     } catch (err) {
-      console.log(err);
+      setError(err.message);
     }
   };
 
@@ -77,6 +78,7 @@ const SignUp = ({ setIsLoggedIn }) => {
           to continue!!
         </span>
       )}
+      {error && <span className="error-field">{error}</span>}
     </div>
   );
 };
