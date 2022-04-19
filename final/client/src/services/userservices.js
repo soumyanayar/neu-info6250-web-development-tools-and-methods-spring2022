@@ -142,11 +142,11 @@ const fetchUpdateUser = async (email, password, firstName, lastName) => {
       throw new Error("Internal server error");
     }
 
-    const responseJson = await response.json();
-    if (response.ok) {
-      return responseJson;
+    if (response.status === 204) {
+      return;
     }
 
+    const responseJson = await response.json();
     switch (responseJson.message) {
       case "SessionExpired":
         throw new Error("Your login session has expired, please login again");
