@@ -125,7 +125,7 @@ module.exports = (userData, habitData, sessions) => {
     }
 
     if (!checkIfHabitLogExists(habitId)) {
-      return res.status(404).send("Habit log doesnot exist for this habit");
+      return res.status(404).send("Habit log does not exist for this habit");
     }
 
     const habitType = getUserHabitType(userEmail, habitId);
