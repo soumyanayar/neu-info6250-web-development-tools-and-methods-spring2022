@@ -1,0 +1,388 @@
+body {
+  margin: 0;
+  /* background-image: url("./background.jpeg"); */
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: white;
+  line-height: 1.4;
+  font-size: 1rem;
+  font-weight: 300;
+  background-color: #0e0202;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.section-title {
+  margin-bottom: 1.3rem;
+  margin-top: 1rem;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: lightgreen;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* ///////------Login Page------/////// */
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* /////////--------  Navbar ---------/////////// */
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  background: #2d2a42;
+  border-bottom: 2px solid #fff;
+  box-shadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+}
+
+.nav-title {
+  display: flex;
+  height: 2rem;
+}
+
+.title-text {
+  margin-top: 0.5rem;
+  margin-left: 0;
+
+  font-size: 1.5rem;
+  font-weight: bold;
+
+  color: #1d522a;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.nav-center {
+  display: flex;
+  justify-content: space-between;
+
+  margin: 0.5rem;
+  margin-top: 1rem;
+
+  align-items: center;
+}
+
+.logo {
+  width: 5.7rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.nav-links li {
+  list-style-type: none;
+}
+
+.nav-links a {
+  display: inline-block;
+
+  margin-right: 0.5rem;
+  margin-left: 1.5rem;
+  padding: 0.1rem;
+
+  transition: all 0.2s linear;
+
+  letter-spacing: 2px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #46dee4;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+
+  color: #43cfcf;
+}
+
+.nav-links a:active {
+  color: #43cfcf
+}
+
+@media screen and (min-width: 576px) {
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    height: 6.5rem;
+  }
+
+  .nav-title {
+    height: 3rem;
+  }
+
+  .nav-center {
+    margin: auto;
+  }
+
+  .nav-links a:hover {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    background-color: #ad4040;
+    border: 2px solid #476a2e;
+    border-radius: 0.25rem;
+    color: white;
+  }
+}
+
+/* /////////--------  Home Page ---------/////////// */
+/* .description{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin: 1rem;
+/* }
+/* place at the centre */
+/*  */
+
+/* /////////--------  Signup and Login Page ---------/////////// */
+
+.credential-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-container {
+  border: 0.1rem solid white;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1da1b2;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.form-container input {
+  padding: 0.5rem;
+  margin-bottom: 1.2rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: none;
+}
+
+.form-container label {
+  color: rgb(46, 214, 102);
+}
+
+.form-container button {
+  margin: 1.2rem;
+  border-radius: 0.5rem;
+  background-color: #1da1b2;
+  color: white;
+  font-weight: bold;
+  padding: 0.3rem;
+  cursor: pointer;
+}
+
+.form-container button:hover {
+  background-color: #1db25e;
+  color: white;
+}
+
+.form-container span {
+  color: #1da1b2;
+}
+
+.form-container a {
+  color: lightyellow;
+}
+
+.error-field{
+  margin-top: 2rem;
+  color: red;
+  font-weight: bold;
+}
+.user-message{
+  margin-top: 2rem;
+  font-weight: bold;
+}
+.user-message a {
+  color: rgb(197, 222, 33);
+  cursor: pointer;
+}
+
+/* //// ------  Add a habit ------ //// */
+.tool-tabs-container{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 3rem auto 0;
+
+  background: rgb(198, 238, 179);
+  word-break: break-word;
+  border: 1px solid rgba(0, 0, 0, 0.274);
+  box-shadow: 1rem solid black;
+}
+
+.tool-tabs-div {
+  display: flex;
+}
+
+.tools-tabs {
+  position: relative;
+  width: 50%;
+  padding: 0.3rem 0.6rem;
+
+  text-align: center;
+  box-sizing: content-box;
+  outline: none;
+  letter-spacing: 0.1rem;
+  background: rgb(198, 238, 179);
+  color:#080808;
+  border-bottom: 0.1rem solid #476a2e;
+  cursor: pointer;
+  font-size: 0.8rem;
+  background: transparent;
+
+  transition: all 0.3s linear;
+}
+
+.tools-tabs:not(:last-child) {
+  border-right: 0.1rem solid green;
+}
+
+.tools-tabs:focus {
+  border-top: 0.2rem solid green;
+}   
+
+
+.current-tools-tab {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid Green;
+  background-color: white;
+}
+
+.current-tools-tab::after {
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  height: 5px;
+}
+
+.content-tabs-div {
+  flex-grow: 1;
+}
+
+.tools-content {
+  background: white;
+  display: none;
+  height: auto;
+}
+
+.tools-content h2 {
+  padding: 0px 0 5px 0px;
+  margin: 0.5rem ;
+}
+.tools-content hr {
+  width: 100px;
+  height: 100%;
+  margin-bottom: 5px;
+
+  background: #222;
+}
+
+.tools-content p {
+  width: 100%;
+  height: 100%;
+
+  color: black;
+}
+
+.current-tools-content {
+  display: block;
+  height: auto;
+}
+
+@media only screen and (min-width: 500px) {
+  .main-div{
+    margin-bottom: 4rem;
+  }
+  .container-div {
+    margin: 3rem auto 0;
+  }
+  .tool-tabs-container{
+    width:65%;
+    background: rgb(198, 238, 179);
+  }
+  .tool-sub-container{
+    display: flex;
+  }
+  .bmi-status-div{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* /////////--------  Create A Habit ---------/////////// */
+.habit-container{
+  display: flex;
+  flex-direction: column;
+  width:auto;
+  height: auto;
+  padding: 0.5rem;
+}
+.habit-data-1 input{
+  width: 40%;
+  height: auto;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  padding: 0.3rem;
+}
+.habit-data-2 input{
+  width: 5%;
+  height: auto;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  padding: 0.3rem;
+}
+#units{
+  width: 17%;
+  height: auto;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  padding: 0.3rem;
+}
+#start-date{
+  width: 25%;
+  height: auto;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  padding: 0.3rem;
+}
+.save-btn{
+  width: 20%;
+  height: auto;
+  margin-left: 1rem;
+  border-radius: 0.25rem;
+  padding: 0.3rem;
+  background-color: #b0f1a5;
+  margin-left: 5rem;
+  margin-top: 1rem;
+}
