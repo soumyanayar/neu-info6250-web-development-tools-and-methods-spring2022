@@ -42,7 +42,11 @@ const newCreateGoodHabit = (
   const habitId = uuidv4();
   const userFilePath = "./data/users/" + userEmail + ".json";
   const user = User.fromJson(readFromJson(userFilePath));
-  user.habits[habitId] = HabitType.CreateGoodHabit;
+  user.habits[habitId] = {
+    habitId: habitId,
+    habitType: HabitType.CreateGoodHabit,
+    habitName: habitName,
+  };
   writeToJson(userFilePath, User.toJson(user));
 
   const createGoodHabitFilePath = "./data/habits/" + habitId + ".json";
@@ -71,7 +75,11 @@ const newLimitBadHabit = (
   const habitId = uuidv4();
   const userFilePath = "./data/users/" + userEmail + ".json";
   const user = User.fromJson(readFromJson(userFilePath));
-  user.habits[habitId] = HabitType.LimitBadHabit;
+  user.habits[habitId] = {
+    habitId: habitId,
+    habitType: HabitType.LimitBadHabit,
+    habitName: habitName,
+  };
   writeToJson(userFilePath, User.toJson(user));
 
   const limitBadHabitFilePath = "./data/habits/" + habitId + ".json";
@@ -86,7 +94,11 @@ const newQuitBadHabit = (userEmail, habitName, startDate) => {
   const habitId = uuidv4();
   const userFilePath = "./data/users/" + userEmail + ".json";
   const user = User.fromJson(readFromJson(userFilePath));
-  user.habits[habitId] = HabitType.QuitBadHabit;
+  user.habits[habitId] = {
+    habitId: habitId,
+    habitType: HabitType.QuitBadHabit,
+    habitName: habitName,
+  };
   writeToJson(userFilePath, User.toJson(user));
 
   const quitBadHabitFilePath = "./data/habits/" + habitId + ".json";

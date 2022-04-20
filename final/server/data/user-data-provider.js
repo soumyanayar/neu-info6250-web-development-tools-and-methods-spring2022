@@ -67,8 +67,13 @@ const getUserHabits = (email) => {
   const user = User.fromJson(readFromJson(userFilePath));
   let userHabits = {};
   for (const habitId in user.habits) {
-    const habitTypeName = getHabitTypeName(user.habits[habitId]);
-    userHabits[habitId] = habitTypeName;
+    const habitTypeName = getHabitTypeName(user.habits[habitId].habitType);
+    const habitName = user.habits[habitId].habitName;
+    userHabits[habitId] = {
+      habitId: habitId,
+      habitType: habitTypeName,
+      habitName: habitName,
+    };
   }
 
   return userHabits;
