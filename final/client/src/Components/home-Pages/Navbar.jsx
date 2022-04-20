@@ -36,7 +36,7 @@ const Navbar = ({ user, setIsLoggedIn }) => {
         </ul>
       </div>
       <div className="nav-right">
-        <span>{user.firstname}</span>
+        <span>{user.firstName}</span>
         <Link to="/">
           <button className="logout-btn" onClick={handleLogout}>
             LOGOUT

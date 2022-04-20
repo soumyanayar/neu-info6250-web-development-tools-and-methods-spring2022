@@ -26,7 +26,7 @@ const App = () => {
 
   useEffect(() => {
     getUser();
-  }, []);
+  }, [isLoggedIn]);
 
   if (!isLoggedIn) {
     return (

@@ -111,7 +111,7 @@ const deleteHabit = (userEmail, habitId) => {
   }
 };
 
-const getHabit = (habitId, habitType) => {
+const getHabit = (habitId, habitType, habitName) => {
   const habitFilePath = "./data/habits/" + habitId + ".json";
   const habitJson = readFromJson(habitFilePath);
 
