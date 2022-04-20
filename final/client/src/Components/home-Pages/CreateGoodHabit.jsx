@@ -3,15 +3,17 @@ import { useState } from "react";
 const CreateGoodHabit = () => {
   const [habitName, setHabitName] = useState("");
   const [goal, setGoal] = useState("");
-  const [unit, setUnit] = useState("");
-  const [duration, setDuration] = useState("");
-  const [startDate, setStartDate] = useState(Date.now());
+  const [unit, setUnit] = useState("times");
+  const [duration, setDuration] = useState("daily");
+  const [startDate, setStartDate] = useState(
+    new Date().toISOString().slice(0, 10)
+  );
   return (
     <div className="habit-container">
       <div className="form-div">
         <form>
           <div className="habit-data-1">
-            <label for="habit-name">Habit Name:</label>
+            <label htmlFor="habit-name">Habit Name:</label>
             <input
               type="text"
               value={habitName}
@@ -20,27 +22,24 @@ const CreateGoodHabit = () => {
             ></input>
           </div>
           <div className="habit-data-2">
-            <label for="goal">Goal:</label>
+            <label htmlFor="goal">Goal:</label>
             <input
               id="goal"
               type="number"
               value={goal}
-              min="0"
+              min="1"
               placeholder="1"
               onChange={(e) => setGoal(e.target.value)}
             ></input>
             <select
               name="unit"
               id="units"
-              value={unit}
+              defaultValue={unit}
               onChange={(e) => setUnit(e.target.value)}
             >
-              <option value="times" selected>
-                Times
-              </option>
+              <option value={unit}>Times</option>
               <option value="minutes">Minutes</option>
               <option value="hour">Hour</option>
-              <option value="day">Day</option>
               <option value="meter">Meter</option>
               <option value="km">kilometer</option>
               <option value="mg">miligram</option>
@@ -48,22 +47,21 @@ const CreateGoodHabit = () => {
             <select
               name="unit"
               id="units"
-              value={duration}
+              defaultValue={duration}
               onChange={(e) => setDuration(e.target.value)}
             >
-              <option value="days" selected>
-                Daily
-              </option>
-              <option value="week">Weekly</option>
-              <option value="month">Monthly</option>
+              <option value={duration}>Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
             </select>
           </div>
           <div>
-            <label for="start">Start Date:</label>
+            <label htmlFor="start">Start Date:</label>
             <input
               type="date"
               id="start-date"
               name="start-date"
+              format="yyyy-mm-dd"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
             ></input>

@@ -13,6 +13,12 @@ const AddHabit = () => {
   return (
     <div className="main-div">
       <h3 className="section-title">ADD A HABIT</h3>
+      <div className="introduction">
+        <p>
+          You can add a habit by clicking on the tabs below. You can add a Good
+          Habit, Quit Bad Habit, or Limit Bad Habit.
+        </p>
+      </div>
       <div className="tool-tabs-container">
         <div className="tool-tabs-div">
           <button

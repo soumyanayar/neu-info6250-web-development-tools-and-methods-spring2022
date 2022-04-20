@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { fetchPostLogin } from "../../services/userservices";
 import SignUp from "./SignUp";
 
-const Login = ({ setIsLoggedIn, setUser }) => {
+const Login = ({ setIsLoggedIn }) => {
   const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -29,14 +29,14 @@ const Login = ({ setIsLoggedIn, setUser }) => {
       <span className="subtitle">LOGIN WITH YOUR DETAILS</span>
       <div className="form-container">
         <form onSubmit={handleSubmit} className="form">
-          <label>Email Id</label>
+          <label htmlFor="email_id">Email Id</label>
           <input
             type="email"
             value={emailId}
             onChange={(e) => setEmailId(e.target.value)}
             required
           />
-          <label>Password</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             value={password}

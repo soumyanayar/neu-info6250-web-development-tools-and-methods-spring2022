@@ -32,28 +32,28 @@ const SignUp = ({ setIsLoggedIn }) => {
       <span className="subtitle">SIGNUP WITH YOUR DETAILS </span>
       <div className="form-container">
         <form onSubmit={handleSubmit} className="form">
-          <label>Email Id</label>
+          <label htmlFor="email-id">Email Id</label>
           <input
             type="email"
             value={emailId}
             onChange={(e) => setEmailId(e.target.value)}
             required
           />
-          <label>Password</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <label>First Name</label>
+          <label htmlFor="first-name">First Name</label>
           <input
             type="text"
             value={firstname}
             onChange={(e) => setFirstname(e.target.value)}
             required
           />
-          <label>Last Name</label>
+          <label htmlFor="last-name">Last Name</label>
           <input
             type="text"
             value={lastname}

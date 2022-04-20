@@ -113,7 +113,19 @@ h6,
 .nav-links a:active {
   color: #43cfcf
 }
-
+.logout-btn{
+  width:100%;
+  padding:0.5rem;
+  margin-right:1rem;
+  background-color: #b0f1a5;
+  border-radius: 0.5rem;
+  border:0.1px solid grey;
+  font-weight:bold;
+  cursor: pointer;
+}
+.logout-btn:hover{
+  background-color: #0fe70c;
+}
 @media screen and (min-width: 576px) {
   .navbar {
     display: flex;
@@ -225,6 +237,11 @@ h6,
 }
 
 /* //// ------  Add a habit ------ //// */
+.main-div{
+  margin-left:30%;
+  margin-right: 30%;
+ 
+}
 .tool-tabs-container{
   display: flex;
   flex-direction: column;
@@ -317,40 +334,30 @@ h6,
   height: auto;
 }
 
-@media only screen and (min-width: 500px) {
-  .main-div{
-    margin-bottom: 4rem;
-  }
-  .container-div {
-    margin: 3rem auto 0;
-  }
-  .tool-tabs-container{
-    width:65%;
-    background: rgb(198, 238, 179);
-  }
-  .tool-sub-container{
-    display: flex;
-  }
-  .bmi-status-div{
-    display: flex;
-    flex-direction: column;
-  }
-}
-
 /* /////////--------  Create A Habit ---------/////////// */
 .habit-container{
   display: flex;
   flex-direction: column;
-  width:auto;
-  height: auto;
-  padding: 0.5rem;
+  color:#364a28;
 }
+
+.form-div form{
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 25%;
+  background-color: azure;
+}
+
 .habit-data-1 input{
   width: 40%;
   height: auto;
   margin-bottom: 1rem;
   border-radius: 0.25rem;
   padding: 0.3rem;
+  margin-left: 0.6rem;
 }
 .habit-data-2 input{
   width: 5%;
@@ -381,8 +388,14 @@ h6,
   height: auto;
   margin-left: 1rem;
   border-radius: 0.25rem;
-  padding: 0.3rem;
+  padding: 0.5rem;
   background-color: #b0f1a5;
-  margin-left: 5rem;
+  margin-left: 25%;
+  margin-right: 25%;
   margin-top: 1rem;
+  cursor: pointer;
+}
+.save-btn:hover{
+  background-color: #3d5124;
+  color: white;
 }

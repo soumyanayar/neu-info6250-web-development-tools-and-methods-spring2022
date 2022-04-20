@@ -3,60 +3,70 @@ import { useState } from "react";
 const LimitBadHabit = () => {
   const [habitName, setHabitName] = useState("");
   const [goal, setGoal] = useState("");
-  const [unit, setUnit] = useState("");
-  const [duration, setDuration] = useState("");
-  const [startDate, setStartDate] = useState(Date.now());
+  const [unit, setUnit] = useState("times");
+  const [duration, setDuration] = useState("daily");
+  const [startDate, setStartDate] = useState(
+    new Date().toISOString().slice(0, 10)
+  );
   return (
-    <div className="container-div">
+    <div className="habit-container">
       <div className="form-div">
         <form>
-          <input
-            type="text"
-            value={habitName}
-            onChange={(e) => setHabitName(e.target.value)}
-          ></input>
-          <input
-            type="number"
-            value={goal}
-            onChange={(e) => setGoal(e.target.value)}
-          ></input>
-          <select
-            name="unit"
-            id="units"
-            value={unit}
-            onChange={(e) => setUnit(e.target.value)}
-          >
-            <option value="times" selected>
-              Times
-            </option>
-            <option value="minutes">Minutes</option>
-            <option value="hour">Hour</option>
-            <option value="day">Day</option>
-            <option value="meter">Meter</option>
-            <option value="km">kilometer</option>
-            <option value="mg">miligram</option>
-          </select>
-          <select
-            name="unit"
-            id="units"
-            value={duration}
-            onChange={(e) => setDuration(e.target.value)}
-          >
-            <option value="days" selected>
-              Days
-            </option>
-            <option value="week">Week</option>
-            <option value="month">Month</option>
-          </select>
-          <label for="start">Start Date:</label>
+          <div className="habit-data-1">
+            <label htmlFor="habit-name">Habit Name:</label>
+            <input
+              type="text"
+              value={habitName}
+              placeholder="Example : Social Media"
+              onChange={(e) => setHabitName(e.target.value)}
+            ></input>
+          </div>
+          <div className="habit-data-2">
+            <label htmlFor="goal">Goal:</label>
+            <input
+              id="goal"
+              type="number"
+              value={goal}
+              min="1"
+              placeholder="1"
+              onChange={(e) => setGoal(e.target.value)}
+            ></input>
+            <select
+              name="unit"
+              id="units"
+              defaultValue={unit}
+              onChange={(e) => setUnit(e.target.value)}
+            >
+              <option value={unit}>Times</option>
+              <option value="minutes">Minutes</option>
+              <option value="hour">Hour</option>
+              <option value="meter">Meter</option>
+              <option value="km">kilometer</option>
+              <option value="mg">miligram</option>
+            </select>
+            <select
+              name="unit"
+              id="units"
+              defaultValue={duration}
+              onChange={(e) => setDuration(e.target.value)}
+            >
+              <option value={duration}>Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="start">Start Date:</label>
+            <input
+              type="date"
+              id="start-date"
+              name="start-date"
+              format="yyyy-mm-dd"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            ></input>
+          </div>
 
-          <input
-            type="date"
-            id="start-date"
-            name="trip-start"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          ></input>
           <button className="save-btn" type="submit">
             Save Data
           </button>
