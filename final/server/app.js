@@ -7,7 +7,7 @@ module.exports = (userData, habitData, sessions, userToSessionsMap) => {
     sessions,
     userToSessionsMap
   );
-  const habitRoutes = require("./routes/habitroutes")(
+  const habitRoutes = require("./routes/habitRoutes")(
     userData,
     habitData,
     sessions
