@@ -59,7 +59,7 @@ const checkIfUserHasHabit = (email, habitId) => {
 const getUserHabitType = (email, habitId) => {
   const userFilePath = "./data/users/" + email + ".json";
   const user = User.fromJson(readFromJson(userFilePath));
-  return user.habits[habitId];
+  return user.habits[habitId].habitType;
 };
 
 const getUserHabits = (email) => {
