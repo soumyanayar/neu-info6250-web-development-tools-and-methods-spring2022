@@ -561,6 +561,12 @@ ul {
     color: white !important;
 }
 
+.days li .failed {
+    padding: 0.313rem;
+    background: darkred;
+    color: white !important;
+}
+
 /* Add media queries for smaller screens */
 @media screen and (max-width: 720px) {
     .weekdays li,

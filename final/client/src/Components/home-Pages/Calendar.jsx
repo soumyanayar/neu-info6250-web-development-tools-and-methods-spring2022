@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 
-const Calendar = ({ month, year, habit, habitLogs }) => {
+const Calendar = ({ month, year, habit, habitType, habitLogs }) => {
     const [activeYear, setActiveYear] = useState(year);
     const [activeMonth, setActiveMonth] = useState(month);
-    const [activeDaysOfMonth, setActiveDaysOfMonth] = useState([]);
+    const [goalMetDays, setGoalMetDays] = useState([]);
+    const [goalFailedDays, setGoalFailedDays] = useState([]);
 
     const getMonthName = (month) => {
         switch (month) {
@@ -36,26 +37,50 @@ const Calendar = ({ month, year, habit, habitLogs }) => {
         }
     };
 
-    const getActiveDaysFromHabitLogs = () => {
-        const activeDays = [];
+    const getGoalMetDaysFromHabitLogs = () => {
+        let goalReachedDays = [];
         habitLogs.forEach((habitLog) => {
             const date = new Date(habitLog.date);
             if (
                 date.getMonth() === activeMonth &&
                 date.getFullYear() === activeYear
             ) {
-                activeDays.push(date.getDate());
+                goalReachedDays.push(date.getDate());
             }
         });
-        return activeDays;
+
+        return goalReachedDays;
+    };
+
+    const getGoalFailedDaysFromHabitLogs = () => {
+        let goalNotReachedDays = [];
+        if (habitType == "QuitBadHabit" && habitLogs.length > 0) {
+            console.log("here");
+        }
+        habitLogs.forEach((habitLog) => {
+            const date = new Date(habitLog.date);
+            if (
+                date.getMonth() === activeMonth &&
+                date.getFullYear() === activeYear
+            ) {
+                if (
+                    habitType === "QuitBadHabit" &&
+                    habitLog.isSuccess === "false"
+                ) {
+                    goalNotReachedDays.push(date.getDate());
+                }
+            }
+        });
+
+        return goalNotReachedDays;
     };
 
     const addEmptyDaysUntilFirstDayOfTheMonth = () => {
         const firstDayOfTheMonth = new Date(activeYear, activeMonth, 1);
-        const daysToSkip = firstDayOfTheMonth.getDate();
+        const daysToSkip = firstDayOfTheMonth.getDay();
 
         let emptyDays = [];
-        for (let index = 0; index < daysToSkip - 1; index++) {
+        for (let index = 0; index < daysToSkip; index++) {
             emptyDays.push(<li key={index}></li>);
         }
 
@@ -67,15 +92,21 @@ const Calendar = ({ month, year, habit, habitLogs }) => {
         const currentDay = new Date().getDate();
         const daysInMonth = new Date(activeYear, activeMonth + 1, 0).getDate();
         let days = [];
-        console.log(`Active Days: ${activeDaysOfMonth}`);
+        console.log(`Goal Failed Days: ${goalFailedDays}`);
         for (let index = 1; index <= daysInMonth; index++) {
-            if (activeDaysOfMonth.includes(index - 1)) {
+            if (goalFailedDays.includes(index - 1)) {
+                days.push(
+                    <li key={index}>
+                        <span class="failed">{index}</span>
+                    </li>
+                );
+            } else if (goalMetDays.includes(index - 1)) {
                 days.push(
                     <li key={index}>
                         <span class="active">{index}</span>
                     </li>
                 );
-            } else if (activeMonth == currentMonth && index == currentDay) {
+            } else if (activeMonth === currentMonth && index === currentDay) {
                 days.push(
                     <li key={index}>
                         <span class="today">{index}</span>
@@ -108,7 +139,8 @@ const Calendar = ({ month, year, habit, habitLogs }) => {
     };
 
     useEffect(() => {
-        setActiveDaysOfMonth(getActiveDaysFromHabitLogs());
+        setGoalMetDays(getGoalMetDaysFromHabitLogs());
+        setGoalFailedDays(getGoalFailedDaysFromHabitLogs());
     }, [activeMonth, activeYear, habit, habitLogs]);
 
     return (
@@ -129,13 +161,13 @@ const Calendar = ({ month, year, habit, habitLogs }) => {
             </div>
 
             <ul className="weekdays">
+                <li>Sun</li>
                 <li>Mon</li>
                 <li>Tue</li>
                 <li>Wed</li>
                 <li>Thu</li>
                 <li>Fri</li>
                 <li>Sat</li>
-                <li>Sun</li>
             </ul>
 
             <ul className="days">

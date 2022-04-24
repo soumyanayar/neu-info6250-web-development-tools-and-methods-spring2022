@@ -89,6 +89,7 @@ const ViewHabitDetailsAccordian = ({ habitId, habitType }) => {
                         month={new Date().getMonth()}
                         year={new Date().getFullYear()}
                         habit={habit}
+                        habitType={habitType}
                         habitLogs={habitLogs}
                     />
                 </div>
