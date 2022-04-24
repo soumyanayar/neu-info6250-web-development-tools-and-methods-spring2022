@@ -1,1 +1,8 @@
-{"name":"yoga","goal":1,"unit":"times","duration":"daily","startDate":"2022-03-19","userEmail":"sandeep@gmail.com"}
+{
+    "name": "Meditate",
+    "goal": 2,
+    "unit": "times",
+    "duration": "daily",
+    "startDate": "2022-03-19",
+    "userEmail": "sandeep@gmail.com"
+}

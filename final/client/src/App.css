@@ -407,3 +407,54 @@ h6,
   background-color: #3d5124;
   color: white;
 }
+
+/* Accordion */
+
+.accordion { 
+  display: flex;
+  flex-direction: column;
+
+  margin: 0;
+  width: 100%;
+  max-width: 40rem;
+}
+
+.accordion__title { 
+  position: relative;
+
+  display: inline-block;
+  width: 100%;
+  padding: 1rem;
+  padding-right: 3rem;
+  border: none;
+
+  background-color: lightcyan;
+  font: inherit;
+  font-weight: bold;
+  text-align: left;
+}
+
+.accordion__title::after { 
+  position: absolute;
+  right: 1rem;
+  top: calc(50% - 1ch);
+}
+
+.accordion__title::after { 
+  content: "\2795";
+}
+
+.accordion__entry--open .accordion__title::after { 
+  content: "\2796";
+}
+
+.accordion__body { 
+  display: none;
+
+  padding: 0.1rem;
+ 
+}
+
+.accordion__entry--open .accordion__body { 
+  display: block;
+}

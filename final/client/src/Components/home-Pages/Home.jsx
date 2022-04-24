@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ViewLog from "./ViewLog";
 import { fetchGetAllHabits } from "../../services/habitservices";
+import ViewHabitDetailsAccordian from './ViewHabitDetailsAccordian';
 
 const Home = () => {
   const [allHabits, setAllHabits] = useState({});
@@ -17,10 +18,6 @@ const Home = () => {
     } catch (error) {
       setError(error.message);
     }
-  };
-
-  const navigateToViewLog = (id) => {
-    return <ViewLog id={id} />;
   };
 
   useEffect(() => {
@@ -45,9 +42,8 @@ const Home = () => {
           {Object.entries(allHabits).map(([key, value]) => {
             return (
               <li key={key}>
-                <span>{value.habitName}</span>
-                <button>Add Logs</button>
-                <button onClick={() => navigateToViewLog({ key })}>View</button>
+                <span><b>{value.habitName}</b></span>
+                <ViewHabitDetailsAccordian habitId={value.habitId} habitType={value.habitType}/>
               </li>
             );
           })}
