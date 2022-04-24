@@ -58,11 +58,11 @@ const getHabitsGoalStatus = (habit, habitType, habitLogs) => {
 
             habitLogsByDate.forEach((value, key) => {
                 if (value >= habit.goal) {
-                    habitsGoalStatus.CompletedDays.concat(key);
+                    habitsGoalStatus.CompletedDays.push(key);
                 } else if (value > 0) {
-                    habitsGoalStatus.PartialCompletedDays.concat(key);
+                    habitsGoalStatus.PartialCompletedDays.push(key);
                 } else if (value === 0) {
-                    habitsGoalStatus.FailedDays.concat(key);
+                    habitsGoalStatus.FailedDays.push(key);
                 }
             });
         } else if (habit.duration === "weekly") {
@@ -113,14 +113,81 @@ const getHabitsGoalStatus = (habit, habitType, habitLogs) => {
         }
     } else if (habitType === "LimitBadHabit") {
         if (habit.duration === "daily") {
+            let habitLogsByDate = new Map();
+            habitLogs.forEach((habitLog) => {
+                const dateInObj = new Date(habitLog.date);
+                if (habitLogsByDate.has(dateInObj)) {
+                    habitLogsByDate.set(
+                        dateInObj,
+                        habitLogsByDate.get(dateInObj) + habitLog.number
+                    );
+                } else {
+                    habitLogsByDate.set(dateInObj, habitLog.number);
+                }
+            });
+
+            habitLogsByDate.forEach((value, key) => {
+                if (value <= habit.goal) {
+                    habitsGoalStatus.CompletedDays.push(key);
+                } else if (value > habit.goal) {
+                    habitsGoalStatus.FailedDays.push(key);
+                }
+            });
         } else if (habit.duration === "weekly") {
+            let habitLogsByWeek = new Map();
+            habitLogs.forEach((habitLog) => {
+                const dateOfFirstDayOfTheWeek = getDateOfFirstDayOfTheWeek(
+                    habitLog.date
+                );
+                if (habitLogsByWeek.has(dateOfFirstDayOfTheWeek)) {
+                    habitLogsByWeek.set(
+                        dateOfFirstDayOfTheWeek,
+                        habitLogsByWeek.get(dateOfFirstDayOfTheWeek) +
+                            habitLog.number
+                    );
+                } else {
+                    habitLogsByWeek.set(
+                        dateOfFirstDayOfTheWeek,
+                        habitLog.number
+                    );
+                }
+            });
+
+            habitLogsByWeek.forEach((value, key) => {
+                const dateOfLastDayOfTheWeek = getDateOfLastDayOfTheWeek(key);
+                const datesArray = getDatesArrayFromRange(
+                    key,
+                    dateOfLastDayOfTheWeek
+                );
+                if (value <= habit.goal) {
+                    habitsGoalStatus.CompletedDays.push.apply(
+                        habitsGoalStatus.CompletedDays,
+                        datesArray
+                    );
+                } else if (value > habit.goal) {
+                    habitsGoalStatus.FailedDays.push.apply(
+                        habitsGoalStatus.FailedDays,
+                        datesArray
+                    );
+                }
+            });
         } else {
             console.log("Error: Invalid habit duration");
         }
     } else if (habitType === "QuitBadHabit") {
+        habitLogs.forEach((habitLog) => {
+            const dateInObj = new Date(habitLog.date);
+            if (habitLog.isSuccess === "false") {
+                habitsGoalStatus.FailedDays.push(dateInObj);
+            } else {
+                habitsGoalStatus.CompletedDays.push(dateInObj);
+            }
+        });
     } else {
         console.log("Error: habitType not found");
     }
+
+    return habitsGoalStatus;
 };
 
 export default getHabitsGoalStatus;
