@@ -173,7 +173,7 @@ h6,
 }
 
 .form-container {
-  border: 0.1rem solid white;
+  border: 0.2rem solid black;
 }
 
 .form {
@@ -211,6 +211,10 @@ h6,
   font-weight: bold;
   padding: 0.3rem;
   cursor: pointer;
+}
+
+.form-container button:hover {
+  background-color: #0fe70c;
 }
 
 .form-container button:hover {

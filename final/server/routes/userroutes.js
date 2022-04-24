@@ -134,8 +134,8 @@ module.exports = (userData, sessions, userToSessionsMap) => {
   // POST /v1/user/logout : logout a user and invalidate the session id
   userRouter.post("/logout", authenticateUser, (req, res) => {
     const sessionId = req.cookies.sessionId;
-    delete sessions[sessionId];
     delete userToSessionsMap[sessions[sessionId]];
+    delete sessions[sessionId];
     res.clearCookie("sessionId");
     res.sendStatus(200);
   });
