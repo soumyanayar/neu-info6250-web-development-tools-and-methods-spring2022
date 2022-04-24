@@ -557,6 +557,12 @@ ul {
     color: white !important;
 }
 
+.days li .today {
+    padding: 0.313rem;
+    background: blueviolet;
+    color: white !important;
+}
+
 /* Add media queries for smaller screens */
 @media screen and (max-width: 720px) {
     .weekdays li,

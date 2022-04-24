@@ -15,6 +15,11 @@
             "habitId": "f687c62d-8a36-4262-a326-614f783b1488",
             "habitType": 0,
             "habitName": "Meditate"
+        },
+        "03aedd62-20c5-403c-a477-3253b706b16d": {
+            "habitId": "03aedd62-20c5-403c-a477-3253b706b16d",
+            "habitType": 2,
+            "habitName": "Junk Food"
         }
     }
 }

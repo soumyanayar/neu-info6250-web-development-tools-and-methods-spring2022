@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
-import { fetchGetSingleHabit } from "../../services/habitservices";
+import {
+    fetchGetSingleHabit,
+    fetchGetLogsOfAHabit,
+} from "../../services/habitservices";
 import Calendar from "./Calendar";
 
 const ViewHabitDetailsAccordian = ({ habitId, habitType }) => {
     const [isEntryOpen, setIsEntryOpen] = useState({});
     const [habit, setHabit] = useState({});
+    const [habitLogs, setHabitLogs] = useState([]);
     const [error, setError] = useState("");
 
     function toggleEntry(habitId) {
@@ -19,6 +23,16 @@ const ViewHabitDetailsAccordian = ({ habitId, habitType }) => {
         try {
             const fetchedHabit = await fetchGetSingleHabit(habitId);
             setHabit(fetchedHabit);
+            setError("");
+        } catch (error) {
+            setError(error.message);
+        }
+    };
+
+    const getHabitLogs = async () => {
+        try {
+            const fetchedHabitLogs = await fetchGetLogsOfAHabit(habitId);
+            setHabitLogs(fetchedHabitLogs);
             setError("");
         } catch (error) {
             setError(error.message);
@@ -40,6 +54,7 @@ const ViewHabitDetailsAccordian = ({ habitId, habitType }) => {
 
     useEffect(() => {
         getHabitDetails();
+        getHabitLogs();
     }, []);
 
     return (
@@ -67,6 +82,8 @@ const ViewHabitDetailsAccordian = ({ habitId, habitType }) => {
                     <Calendar
                         month={new Date().getMonth()}
                         year={new Date().getFullYear()}
+                        habit={habit}
+                        habitLogs={habitLogs}
                     />
                 </div>
             </div>

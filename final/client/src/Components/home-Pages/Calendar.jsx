@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const Calendar = ({ month, year }) => {
+const Calendar = ({ month, year, habit, habitLogs }) => {
     const [activeYear, setActiveYear] = useState(year);
     const [activeMonth, setActiveMonth] = useState(month);
+    const [activeDaysOfMonth, setActiveDaysOfMonth] = useState([]);
 
     const getMonthName = (month) => {
         switch (month) {
@@ -35,9 +36,23 @@ const Calendar = ({ month, year }) => {
         }
     };
 
+    const getActiveDaysFromHabitLogs = () => {
+        const activeDays = [];
+        habitLogs.forEach((habitLog) => {
+            const date = new Date(habitLog.date);
+            if (
+                date.getMonth() === activeMonth &&
+                date.getFullYear() === activeYear
+            ) {
+                activeDays.push(date.getDate());
+            }
+        });
+        return activeDays;
+    };
+
     const addEmptyDaysUntilFirstDayOfTheMonth = () => {
         const firstDayOfTheMonth = new Date(activeYear, activeMonth, 1);
-        const daysToSkip = firstDayOfTheMonth.getDay();
+        const daysToSkip = firstDayOfTheMonth.getDate();
 
         let emptyDays = [];
         for (let index = 0; index < daysToSkip - 1; index++) {
@@ -48,10 +63,27 @@ const Calendar = ({ month, year }) => {
     };
 
     const addDaysOfMonth = () => {
+        const currentMonth = new Date().getMonth();
+        const currentDay = new Date().getDate();
         const daysInMonth = new Date(activeYear, activeMonth + 1, 0).getDate();
         let days = [];
+        console.log(`Active Days: ${activeDaysOfMonth}`);
         for (let index = 1; index <= daysInMonth; index++) {
-            days.push(<li key={index}>{index}</li>);
+            if (activeDaysOfMonth.includes(index - 1)) {
+                days.push(
+                    <li key={index}>
+                        <span class="active">{index}</span>
+                    </li>
+                );
+            } else if (activeMonth == currentMonth && index == currentDay) {
+                days.push(
+                    <li key={index}>
+                        <span class="today">{index}</span>
+                    </li>
+                );
+            } else {
+                days.push(<li key={index}>{index}</li>);
+            }
         }
 
         return days;
@@ -74,6 +106,10 @@ const Calendar = ({ month, year }) => {
             setActiveMonth(activeMonth - 1);
         }
     };
+
+    useEffect(() => {
+        setActiveDaysOfMonth(getActiveDaysFromHabitLogs());
+    }, [activeMonth, activeYear, habit, habitLogs]);
 
     return (
         <div>
