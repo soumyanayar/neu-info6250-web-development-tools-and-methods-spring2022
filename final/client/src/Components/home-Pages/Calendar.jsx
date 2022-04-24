@@ -57,27 +57,49 @@ const Calendar = ({ month, year }) => {
         return days;
     };
 
+    const gotoNextMonth = () => {
+        if (activeMonth === 11) {
+            setActiveMonth(0);
+            setActiveYear(activeYear + 1);
+        } else {
+            setActiveMonth(activeMonth + 1);
+        }
+    };
+
+    const gotoPreviousMonth = () => {
+        if (activeMonth === 0) {
+            setActiveMonth(11);
+            setActiveYear(activeYear - 1);
+        } else {
+            setActiveMonth(activeMonth - 1);
+        }
+    };
+
     return (
         <div>
             <div className="month">
                 <ul>
-                    <li className="prev">&#10094;</li>
-                    <li className="next">&#10095;</li>
+                    <li className="prev">
+                        <button onClick={gotoPreviousMonth}>&#10094;</button>
+                    </li>
+                    <li className="next">
+                        <button onClick={gotoNextMonth}>&#10095;</button>
+                    </li>
                     <li>
-                        {getMonthName(activeMonth)}
                         <div className="year">{activeYear}</div>
+                        {getMonthName(activeMonth)}
                     </li>
                 </ul>
             </div>
 
             <ul className="weekdays">
-                <li>Mo</li>
-                <li>Tu</li>
-                <li>We</li>
-                <li>Th</li>
-                <li>Fr</li>
-                <li>Sa</li>
-                <li>Su</li>
+                <li>Mon</li>
+                <li>Tue</li>
+                <li>Wed</li>
+                <li>Thu</li>
+                <li>Fri</li>
+                <li>Sat</li>
+                <li>Sun</li>
             </ul>
 
             <ul className="days">

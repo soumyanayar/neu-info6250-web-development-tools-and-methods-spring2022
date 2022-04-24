@@ -467,11 +467,11 @@ ul {
 }
 
 .year {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .month {
-    padding: 4rem 1.5rem;
+    padding: 0.2rem;
     width: 100%;
     background: #1abc9c;
     text-align: center;
@@ -494,9 +494,30 @@ ul {
     padding-top: 10px;
 }
 
+.month .prev button {
+    background-color: inherit;
+    color: white;
+    border: none;
+}
+
+.month .prev button:hover {
+    color: black;
+}
+
 .month .next {
     float: right;
     padding-top: 10px;
+    font-size: larger;
+}
+
+.month .next button {
+    background-color: inherit;
+    color: white;
+    border: none;
+}
+
+.month .next button:hover {
+    color: black;
 }
 
 .weekdays {
@@ -507,6 +528,7 @@ ul {
 
 .weekdays li {
     display: inline-block;
+    text-transform: uppercase;
     width: 13.6%;
     color: #666;
     text-align: center;
@@ -523,8 +545,9 @@ ul {
     display: inline-block;
     width: 13.6%;
     text-align: center;
-    margin-bottom: 5px;
-    font-size: 12px;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    padding: 0.1rem;
     color: #777;
 }
 
