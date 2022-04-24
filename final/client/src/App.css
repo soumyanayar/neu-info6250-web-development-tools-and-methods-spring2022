@@ -491,7 +491,7 @@ ul {
 
 .month .prev {
     float: left;
-    padding-top: 10px;
+    padding-top: 0.625rem;
 }
 
 .month .prev button {
@@ -506,7 +506,7 @@ ul {
 
 .month .next {
     float: right;
-    padding-top: 10px;
+    padding-top: 0.625rem;
     font-size: larger;
 }
 
@@ -522,7 +522,7 @@ ul {
 
 .weekdays {
     margin: 0;
-    padding: 10px 0;
+    padding: 0.625rem 0;
     background-color: #ddd;
 }
 
@@ -535,7 +535,7 @@ ul {
 }
 
 .days {
-    padding: 10px 0;
+    padding: 0.625rem 0;
     background: #eee;
     margin: 0;
 }
@@ -552,7 +552,7 @@ ul {
 }
 
 .days li .active {
-    padding: 5px;
+    padding: 0.313rem;
     background: #1abc9c;
     color: white !important;
 }
