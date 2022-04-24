@@ -39,7 +39,7 @@ const ViewHabitDetailsAccordian = ({ habitId, habitType }) => {
         }
     };
 
-    const getFriendlyNameForHabitType = (habitType) => {
+    const getFriendlyNameForHabitType = () => {
         switch (habitType) {
             case "CreateGoodHabit":
                 return "Create a Good Habit";
@@ -47,6 +47,16 @@ const ViewHabitDetailsAccordian = ({ habitId, habitType }) => {
                 return "Limit a Bad Habit";
             case "QuitBadHabit":
                 return "Quit a Bad Habit";
+            default:
+                return "";
+        }
+    };
+
+    const addHabitGoalDiv = (habitType) => {
+        switch (habitType) {
+            case "CreateGoodHabit":
+            case "LimitBadHabit":
+                return `<div> Habit Goal: {habit.goal} {habit.unit} {habit.duration}</div>`;
             default:
                 return "";
         }
@@ -72,12 +82,8 @@ const ViewHabitDetailsAccordian = ({ habitId, habitType }) => {
                     View Habit Details
                 </button>
                 <div className="accordion__body">
-                    <div>
-                        HabitType: {getFriendlyNameForHabitType(habitType)}{" "}
-                    </div>
-                    <div>
-                        Habit Goal: {habit.goal} {habit.unit} {habit.duration}
-                    </div>
+                    <div>HabitType: {getFriendlyNameForHabitType()} </div>
+                    {addHabitGoalDiv()}
                     <div>Habit Start Date: {habit.startDate}</div>
                     <Calendar
                         month={new Date().getMonth()}

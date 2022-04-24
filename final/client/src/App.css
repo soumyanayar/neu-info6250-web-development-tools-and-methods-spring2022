@@ -422,14 +422,12 @@ h6,
     position: relative;
 
     display: inline-block;
-    width: 100%;
     padding: 1rem;
     padding-right: 3rem;
     border: none;
 
     background-color: lightcyan;
-    font: inherit;
-    font-weight: bold;
+    font-size: 0.8rem;
     text-align: left;
 }
 
