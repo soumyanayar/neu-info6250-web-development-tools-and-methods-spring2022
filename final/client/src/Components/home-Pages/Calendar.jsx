@@ -1,10 +1,16 @@
 import { useState, useEffect } from "react";
+import getHabitsGoalStatus from "../../utils/habitStatusChecker";
 
 const Calendar = ({ month, year, habit, habitType, habitLogs }) => {
     const [activeYear, setActiveYear] = useState(year);
     const [activeMonth, setActiveMonth] = useState(month);
     const [goalMetDays, setGoalMetDays] = useState([]);
     const [goalFailedDays, setGoalFailedDays] = useState([]);
+    const [goalStatus, setGoalStatus] = useState({
+        CompletedDays: [],
+        FailedDays: [],
+        PartialCompletedDays: [],
+    });
 
     const getMonthName = (month) => {
         switch (month) {
@@ -88,6 +94,8 @@ const Calendar = ({ month, year, habit, habitType, habitLogs }) => {
     };
 
     const addDaysOfMonth = () => {
+        console.log(goalStatus);
+
         const currentMonth = new Date().getMonth();
         const currentDay = new Date().getDate();
         const daysInMonth = new Date(activeYear, activeMonth + 1, 0).getDate();
@@ -141,7 +149,8 @@ const Calendar = ({ month, year, habit, habitType, habitLogs }) => {
     useEffect(() => {
         setGoalMetDays(getGoalMetDaysFromHabitLogs());
         setGoalFailedDays(getGoalFailedDaysFromHabitLogs());
-    }, [activeMonth, activeYear, habit, habitLogs]);
+        setGoalStatus(getHabitsGoalStatus(habit, habitType, habitLogs));
+    }, [activeMonth, activeYear, habit, habitType, habitLogs]);
 
     return (
         <div>

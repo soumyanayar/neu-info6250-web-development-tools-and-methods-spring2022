@@ -41,6 +41,16 @@ const getHabitsGoalStatus = (habit, habitType, habitLogs) => {
         PartialCompletedDays: [],
     };
 
+    if (
+        habit == null ||
+        Object.keys(habit).length === 0 ||
+        habitType == null ||
+        habitLogs == null ||
+        habitLogs.length === 0
+    ) {
+        return habitsGoalStatus;
+    }
+
     if (habitType === "CreateGoodHabit") {
         if (habit.duration === "daily") {
             let habitLogsByDate = new Map();
@@ -109,7 +119,11 @@ const getHabitsGoalStatus = (habit, habitType, habitLogs) => {
                 }
             });
         } else {
-            console.log("Error: Invalid habit duration");
+            console.log(
+                `Error: Invalid habit duration ${JSON.stringify(
+                    habit
+                )} ${JSON.stringify(habitType)} ${JSON.stringify(habitLogs)}`
+            );
         }
     } else if (habitType === "LimitBadHabit") {
         if (habit.duration === "daily") {
