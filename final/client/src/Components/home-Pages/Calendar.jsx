@@ -66,25 +66,25 @@ const Calendar = ({ month, year, habit, habitType, habitLogs }) => {
             if (goalStatus.CompletedDays.includes(date)) {
                 days.push(
                     <li key={index}>
-                        <span class="succeeded">{index}</span>
+                        <span className="succeeded">{index}</span>
                     </li>
                 );
             } else if (goalStatus.FailedDays.includes(date)) {
                 days.push(
                     <li key={index}>
-                        <span class="failed">{index}</span>
+                        <span className="failed">{index}</span>
                     </li>
                 );
             } else if (goalStatus.PartialCompletedDays.includes(date)) {
                 days.push(
                     <li key={index}>
-                        <span class="partial">{index}</span>
+                        <span className="partial">{index}</span>
                     </li>
                 );
             } else if (activeMonth === currentMonth && index === currentDay) {
                 days.push(
                     <li key={index}>
-                        <span class="today">{index}</span>
+                        <span className="today">{index}</span>
                     </li>
                 );
             } else {
