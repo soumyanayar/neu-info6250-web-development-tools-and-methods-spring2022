@@ -549,7 +549,7 @@ ul {
     color: #777;
 }
 
-.days li .active {
+.days li .succeeded {
     padding: 0.313rem;
     background: #1abc9c;
     color: white !important;
@@ -567,6 +567,12 @@ ul {
     color: white !important;
 }
 
+.days li .partial {
+    padding: 0.313rem;
+    background: lightyellow;
+    color: darkblue !important;
+}
+
 /* Add media queries for smaller screens */
 @media screen and (max-width: 720px) {
     .weekdays li,
@@ -580,7 +586,16 @@ ul {
     .days li {
         width: 12.5%;
     }
-    .days li .active {
+    .days li .succeeded {
+        padding: 2px;
+    }
+    .days li .failed {
+        padding: 2px;
+    }
+    .days li .partial {
+        padding: 2px;
+    }
+    .days li .today {
         padding: 2px;
     }
 }

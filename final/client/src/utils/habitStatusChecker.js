@@ -67,12 +67,19 @@ const getHabitsGoalStatus = (habit, habitType, habitLogs) => {
             });
 
             habitLogsByDate.forEach((value, key) => {
+                const dateToAdd = new Date(
+                    key.getFullYear(),
+                    key.getMonth(),
+                    key.getDate()
+                )
+                    .toISOString()
+                    .split("T")[0];
                 if (value >= habit.goal) {
-                    habitsGoalStatus.CompletedDays.push(key);
+                    habitsGoalStatus.CompletedDays.push(dateToAdd);
                 } else if (value > 0) {
-                    habitsGoalStatus.PartialCompletedDays.push(key);
+                    habitsGoalStatus.PartialCompletedDays.push(dateToAdd);
                 } else if (value === 0) {
-                    habitsGoalStatus.FailedDays.push(key);
+                    habitsGoalStatus.FailedDays.push(dateToAdd);
                 }
             });
         } else if (habit.duration === "weekly") {
@@ -102,20 +109,41 @@ const getHabitsGoalStatus = (habit, habitType, habitLogs) => {
                     dateOfLastDayOfTheWeek
                 );
                 if (value >= habit.goal) {
-                    habitsGoalStatus.CompletedDays.push.apply(
-                        habitsGoalStatus.CompletedDays,
-                        datesArray
-                    );
+                    for (let i = 0; i < datesArray.length; i++) {
+                        const dateArrayItem = datesArray[i];
+                        const dateToAdd = new Date(
+                            dateArrayItem.getFullYear(),
+                            dateArrayItem.getMonth(),
+                            dateArrayItem.getDate()
+                        )
+                            .toISOString()
+                            .split("T")[0];
+                        habitsGoalStatus.CompletedDays.push(dateToAdd);
+                    }
                 } else if (value > 0) {
-                    habitsGoalStatus.PartialCompletedDays.push.apply(
-                        habitsGoalStatus.PartialCompletedDays,
-                        datesArray
-                    );
+                    for (let i = 0; i < datesArray.length; i++) {
+                        const dateArrayItem = datesArray[i];
+                        const dateToAdd = new Date(
+                            dateArrayItem.getFullYear(),
+                            dateArrayItem.getMonth(),
+                            dateArrayItem.getDate()
+                        )
+                            .toISOString()
+                            .split("T")[0];
+                        habitsGoalStatus.Partial.push(dateToAdd);
+                    }
                 } else if (value === 0) {
-                    habitsGoalStatus.FailedDays.push.apply(
-                        habitsGoalStatus.FailedDays,
-                        datesArray
-                    );
+                    for (let i = 0; i < datesArray.length; i++) {
+                        const dateArrayItem = datesArray[i];
+                        const dateToAdd = new Date(
+                            dateArrayItem.getFullYear(),
+                            dateArrayItem.getMonth(),
+                            dateArrayItem.getDate()
+                        )
+                            .toISOString()
+                            .split("T")[0];
+                        habitsGoalStatus.FailedDays.push(dateToAdd);
+                    }
                 }
             });
         } else {
@@ -141,10 +169,17 @@ const getHabitsGoalStatus = (habit, habitType, habitLogs) => {
             });
 
             habitLogsByDate.forEach((value, key) => {
+                const dateToAdd = new Date(
+                    key.getFullYear(),
+                    key.getMonth(),
+                    key.getDate()
+                )
+                    .toISOString()
+                    .split("T")[0];
                 if (value <= habit.goal) {
-                    habitsGoalStatus.CompletedDays.push(key);
+                    habitsGoalStatus.CompletedDays.push(dateToAdd);
                 } else if (value > habit.goal) {
-                    habitsGoalStatus.FailedDays.push(key);
+                    habitsGoalStatus.FailedDays.push(dateToAdd);
                 }
             });
         } else if (habit.duration === "weekly") {
@@ -174,15 +209,29 @@ const getHabitsGoalStatus = (habit, habitType, habitLogs) => {
                     dateOfLastDayOfTheWeek
                 );
                 if (value <= habit.goal) {
-                    habitsGoalStatus.CompletedDays.push.apply(
-                        habitsGoalStatus.CompletedDays,
-                        datesArray
-                    );
+                    for (let i = 0; i < datesArray.length; i++) {
+                        const dateArrayItem = datesArray[i];
+                        const dateToAdd = new Date(
+                            dateArrayItem.getFullYear(),
+                            dateArrayItem.getMonth(),
+                            dateArrayItem.getDate()
+                        )
+                            .toISOString()
+                            .split("T")[0];
+                        habitsGoalStatus.CompletedDays.push(dateToAdd);
+                    }
                 } else if (value > habit.goal) {
-                    habitsGoalStatus.FailedDays.push.apply(
-                        habitsGoalStatus.FailedDays,
-                        datesArray
-                    );
+                    for (let i = 0; i < datesArray.length; i++) {
+                        const dateArrayItem = datesArray[i];
+                        const dateToAdd = new Date(
+                            dateArrayItem.getFullYear(),
+                            dateArrayItem.getMonth(),
+                            dateArrayItem.getDate()
+                        )
+                            .toISOString()
+                            .split("T")[0];
+                        habitsGoalStatus.FailedDays.push(dateToAdd);
+                    }
                 }
             });
         } else {
@@ -191,10 +240,17 @@ const getHabitsGoalStatus = (habit, habitType, habitLogs) => {
     } else if (habitType === "QuitBadHabit") {
         habitLogs.forEach((habitLog) => {
             const dateInObj = new Date(habitLog.date);
+            const dateToAdd = new Date(
+                dateInObj.getFullYear(),
+                dateInObj.getMonth(),
+                dateInObj.getDate()
+            )
+                .toISOString()
+                .split("T")[0];
             if (habitLog.isSuccess === "false") {
-                habitsGoalStatus.FailedDays.push(dateInObj);
+                habitsGoalStatus.FailedDays.push(dateToAdd);
             } else {
-                habitsGoalStatus.CompletedDays.push(dateInObj);
+                habitsGoalStatus.CompletedDays.push(dateToAdd);
             }
         });
     } else {

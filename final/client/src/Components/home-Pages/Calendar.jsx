@@ -4,8 +4,6 @@ import getHabitsGoalStatus from "../../utils/habitStatusChecker";
 const Calendar = ({ month, year, habit, habitType, habitLogs }) => {
     const [activeYear, setActiveYear] = useState(year);
     const [activeMonth, setActiveMonth] = useState(month);
-    const [goalMetDays, setGoalMetDays] = useState([]);
-    const [goalFailedDays, setGoalFailedDays] = useState([]);
     const [goalStatus, setGoalStatus] = useState({
         CompletedDays: [],
         FailedDays: [],
@@ -43,44 +41,6 @@ const Calendar = ({ month, year, habit, habitType, habitLogs }) => {
         }
     };
 
-    const getGoalMetDaysFromHabitLogs = () => {
-        let goalReachedDays = [];
-        habitLogs.forEach((habitLog) => {
-            const date = new Date(habitLog.date);
-            if (
-                date.getMonth() === activeMonth &&
-                date.getFullYear() === activeYear
-            ) {
-                goalReachedDays.push(date.getDate());
-            }
-        });
-
-        return goalReachedDays;
-    };
-
-    const getGoalFailedDaysFromHabitLogs = () => {
-        let goalNotReachedDays = [];
-        if (habitType == "QuitBadHabit" && habitLogs.length > 0) {
-            console.log("here");
-        }
-        habitLogs.forEach((habitLog) => {
-            const date = new Date(habitLog.date);
-            if (
-                date.getMonth() === activeMonth &&
-                date.getFullYear() === activeYear
-            ) {
-                if (
-                    habitType === "QuitBadHabit" &&
-                    habitLog.isSuccess === "false"
-                ) {
-                    goalNotReachedDays.push(date.getDate());
-                }
-            }
-        });
-
-        return goalNotReachedDays;
-    };
-
     const addEmptyDaysUntilFirstDayOfTheMonth = () => {
         const firstDayOfTheMonth = new Date(activeYear, activeMonth, 1);
         const daysToSkip = firstDayOfTheMonth.getDay();
@@ -100,18 +60,33 @@ const Calendar = ({ month, year, habit, habitType, habitLogs }) => {
         const currentDay = new Date().getDate();
         const daysInMonth = new Date(activeYear, activeMonth + 1, 0).getDate();
         let days = [];
-        console.log(`Goal Failed Days: ${goalFailedDays}`);
         for (let index = 1; index <= daysInMonth; index++) {
-            if (goalFailedDays.includes(index - 1)) {
+            const date = new Date(activeYear, activeMonth, index)
+                .toISOString()
+                .split("T")[0];
+            if (
+                goalStatus.CompletedDays.length === 4 &&
+                date === "2022-04-18"
+            ) {
+                console.log(goalStatus.CompletedDays, date);
+            }
+
+            if (goalStatus.CompletedDays.includes(date)) {
+                days.push(
+                    <li key={index}>
+                        <span class="succeeded">{index}</span>
+                    </li>
+                );
+            } else if (goalStatus.FailedDays.includes(date)) {
                 days.push(
                     <li key={index}>
                         <span class="failed">{index}</span>
                     </li>
                 );
-            } else if (goalMetDays.includes(index - 1)) {
+            } else if (goalStatus.PartialCompletedDays.includes(date)) {
                 days.push(
                     <li key={index}>
-                        <span class="active">{index}</span>
+                        <span class="partial">{index}</span>
                     </li>
                 );
             } else if (activeMonth === currentMonth && index === currentDay) {
@@ -147,8 +122,6 @@ const Calendar = ({ month, year, habit, habitType, habitLogs }) => {
     };
 
     useEffect(() => {
-        setGoalMetDays(getGoalMetDaysFromHabitLogs());
-        setGoalFailedDays(getGoalFailedDaysFromHabitLogs());
         setGoalStatus(getHabitsGoalStatus(habit, habitType, habitLogs));
     }, [activeMonth, activeYear, habit, habitType, habitLogs]);
 
