@@ -4,6 +4,7 @@ import getHabitsGoalStatus from "../../utils/habitStatusChecker";
 const Calendar = ({ month, year, habit, habitType, habitLogs }) => {
     const [activeYear, setActiveYear] = useState(year);
     const [activeMonth, setActiveMonth] = useState(month);
+    const [habitLogsForTheDay, setHabitLogsForTheDay] = useState({});
     const [goalStatus, setGoalStatus] = useState({
         CompletedDays: [],
         FailedDays: [],
@@ -41,6 +42,33 @@ const Calendar = ({ month, year, habit, habitType, habitLogs }) => {
         }
     };
 
+    const getFullMonth = (month) => {
+        if (month < 10) {
+            return `0${month}`;
+        } else {
+            return month;
+        }
+    };
+
+    const getHabitLogsPerDay = () => {
+        const habitLogsPerDay = {};
+        for (let i = 0; i < habitLogs.length; i++) {
+            const dateObj = new Date(habitLogs[i].date);
+            const date =
+                dateObj.getFullYear() +
+                "-" +
+                getFullMonth(dateObj.getMonth() + 1) +
+                "-" +
+                dateObj.getDate();
+            if (habitLogsPerDay[date]) {
+                habitLogsPerDay[date].push(habitLogs[i]);
+            } else {
+                habitLogsPerDay[date] = [habitLogs[i]];
+            }
+        }
+        return habitLogsPerDay;
+    };
+
     const addEmptyDaysUntilFirstDayOfTheMonth = () => {
         const firstDayOfTheMonth = new Date(activeYear, activeMonth, 1);
         const daysToSkip = firstDayOfTheMonth.getDay();
@@ -64,17 +92,53 @@ const Calendar = ({ month, year, habit, habitType, habitLogs }) => {
                 .split("T")[0];
 
             if (goalStatus.CompletedDays.includes(date)) {
-                days.push(
-                    <li key={index}>
-                        <span className="succeeded">{index}</span>
-                    </li>
-                );
+                if (habitLogsForTheDay[date]) {
+                    days.push(
+                        <li key={index}>
+                            <div className="dropdown">
+                                <span className="succeeded">{index}</span>
+                                <div className="dropdown-content">
+                                    {JSON.stringify(habitLogsForTheDay[date])}
+                                </div>
+                            </div>
+                        </li>
+                    );
+                } else {
+                    days.push(
+                        <li key={index}>
+                            <div className="dropdown">
+                                <span className="succeeded">{index}</span>
+                                <div className="dropdown-content">
+                                    No Habit Logs available for this date
+                                </div>
+                            </div>
+                        </li>
+                    );
+                }
             } else if (goalStatus.FailedDays.includes(date)) {
-                days.push(
-                    <li key={index}>
-                        <span className="failed">{index}</span>
-                    </li>
-                );
+                if (habitLogsForTheDay[date]) {
+                    days.push(
+                        <li key={index}>
+                            <div className="dropdown">
+                                <span className="failed">{index}</span>
+                                <div className="dropdown-content">
+                                    {JSON.stringify(habitLogsForTheDay[date])}
+                                </div>
+                            </div>
+                        </li>
+                    );
+                } else {
+                    days.push(
+                        <li key={index}>
+                            <div className="dropdown">
+                                <span className="failed">{index}</span>
+                                <div className="dropdown-content">
+                                    No Habit Logs available for this date
+                                </div>
+                            </div>
+                        </li>
+                    );
+                }
             } else if (goalStatus.PartialCompletedDays.includes(date)) {
                 days.push(
                     <li key={index}>
@@ -84,11 +148,25 @@ const Calendar = ({ month, year, habit, habitType, habitLogs }) => {
             } else if (activeMonth === currentMonth && index === currentDay) {
                 days.push(
                     <li key={index}>
-                        <span className="today">{index}</span>
+                        <div className="dropdown">
+                            <span className="today">{index}</span>
+                            <div className="dropdown-content">
+                                No Habit Logs available for this date
+                            </div>
+                        </div>
                     </li>
                 );
             } else {
-                days.push(<li key={index}>{index}</li>);
+                days.push(
+                    <li key={index}>
+                        <div className="dropdown">
+                            {index}
+                            <div className="dropdown-content">
+                                No Habit Logs available for this date
+                            </div>
+                        </div>
+                    </li>
+                );
             }
         }
 
@@ -115,6 +193,7 @@ const Calendar = ({ month, year, habit, habitType, habitLogs }) => {
 
     useEffect(() => {
         setGoalStatus(getHabitsGoalStatus(habit, habitType, habitLogs));
+        setHabitLogsForTheDay(getHabitLogsPerDay());
     }, [activeMonth, activeYear, habit, habitType, habitLogs]);
 
     return (
