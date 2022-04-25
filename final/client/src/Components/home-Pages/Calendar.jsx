@@ -54,8 +54,6 @@ const Calendar = ({ month, year, habit, habitType, habitLogs }) => {
     };
 
     const addDaysOfMonth = () => {
-        console.log(goalStatus);
-
         const currentMonth = new Date().getMonth();
         const currentDay = new Date().getDate();
         const daysInMonth = new Date(activeYear, activeMonth + 1, 0).getDate();
@@ -64,12 +62,6 @@ const Calendar = ({ month, year, habit, habitType, habitLogs }) => {
             const date = new Date(activeYear, activeMonth, index)
                 .toISOString()
                 .split("T")[0];
-            if (
-                goalStatus.CompletedDays.length === 4 &&
-                date === "2022-04-18"
-            ) {
-                console.log(goalStatus.CompletedDays, date);
-            }
 
             if (goalStatus.CompletedDays.includes(date)) {
                 days.push(
