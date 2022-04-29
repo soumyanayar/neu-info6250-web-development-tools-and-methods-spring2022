@@ -1,12 +1,12 @@
 const fetchCreateNewGoodHabit = async (
     habitName,
-    habitType,
     goal,
     unit,
     duration,
     startDate
 ) => {
     try {
+        const habitType = "CreateGoodHabit";
         const response = await fetch("/v1/user/habits", {
             method: "POST",
             body: JSON.stringify({
@@ -35,9 +35,6 @@ const fetchCreateNewGoodHabit = async (
             case "habitName is required":
                 throw new Error("HabitName is required");
 
-            case "habitType is required":
-                throw new Error("HabitType is required");
-
             case "goal is required":
                 throw new Error("Goal is required");
 
@@ -50,11 +47,6 @@ const fetchCreateNewGoodHabit = async (
             case "startDate is required":
                 throw new Error("StartDate is required");
 
-            case "Invalid habitType":
-                throw new Error(
-                    "Invalid HabitType, must be either CreateGoodHabit or LimitBadHabit or QuitBadHabit"
-                );
-
             default:
                 throw new Error("Something went wrong");
         }
@@ -64,15 +56,15 @@ const fetchCreateNewGoodHabit = async (
     }
 };
 
-const fetchLimitBadHabit = async (
+const fetchLimitNewBadHabit = async (
     habitName,
-    habitType,
     goal,
     unit,
     duration,
     startDate
 ) => {
     try {
+        const habitType = "LimitBadHabit";
         const response = await fetch("/v1/user/habits", {
             method: "POST",
             body: JSON.stringify({
@@ -101,9 +93,6 @@ const fetchLimitBadHabit = async (
             case "habitName is required":
                 throw new Error("HabitName is required");
 
-            case "habitType is required":
-                throw new Error("HabitType is required");
-
             case "goal is required":
                 throw new Error("Goal is required");
 
@@ -115,11 +104,6 @@ const fetchLimitBadHabit = async (
 
             case "startDate is required":
                 throw new Error("StartDate is required");
-
-            case "Invalid habitType":
-                throw new Error(
-                    "Invalid HabitType, must be either CreateGoodHabit or LimitBadHabit or QuitBadHabit"
-                );
 
             default:
                 throw new Error("Something went wrong");
@@ -517,7 +501,7 @@ const fetchDeleteAllHabits = async () => {
 
 module.exports = {
     fetchCreateNewGoodHabit,
-    fetchLimitBadHabit,
+    fetchLimitNewBadHabit,
     fetchQuitBadHabit,
     fetchGetAllHabits,
     fetchDeleteSingleHabit,
