@@ -5,6 +5,8 @@ import Login from "./Components/login-signin/Login";
 import Navbar from "./Components/home-Pages/Navbar";
 import Home from "./Components/home-Pages/Home";
 import AddHabit from "./Components/home-Pages/AddHabit";
+import Profile from "./Components/home-Pages/Profile";
+import About from "./Components/home-Pages/About";
 import "./App.css";
 import { fetchGetUser } from "./services/userservices";
 
@@ -51,6 +53,16 @@ const App = () => {
         </Route>
         <Route path="/add-habit">
           <AddHabit />
+        </Route>
+        <Route path="/about">
+          <About />;
+        </Route>
+        <Route path="/profile">
+          <Profile
+            user={user}
+            setUser={setUser}
+            setIsLoggedIn={setIsLoggedIn}
+          />
         </Route>
       </Switch>
     </Router>

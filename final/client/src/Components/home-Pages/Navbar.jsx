@@ -35,14 +35,21 @@ const Navbar = ({ user, setIsLoggedIn }) => {
           </li>
         </ul>
       </div>
-      <div className="nav-right">
-        <span>{user.firstName}</span>
-        <Link to="/">
-          <button className="logout-btn" onClick={handleLogout}>
-            LOGOUT
-          </button>
-        </Link>
-      </div>
+      <nav className="dropdown">
+        <button type="button" className="drop-btn">
+          {user.firstName} {""} {user.lastName}
+        </button>
+        <div className="dropdown-content">
+          <li>
+            <Link to="/profile">Profile</Link>{" "}
+          </li>
+          <li>
+            <Link to="/" onClick={handleLogout}>
+              Logout
+            </Link>
+          </li>
+        </div>
+      </nav>
     </nav>
   );
 };

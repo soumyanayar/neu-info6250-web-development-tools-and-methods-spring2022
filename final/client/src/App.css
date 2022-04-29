@@ -114,23 +114,46 @@ h6,
 .nav-links a:active {
     color: #43cfcf;
 }
-.logout-btn {
-    padding: 0.5rem;
-    margin-right: 1rem;
-    background-color: #b0f1a5;
-    border-radius: 0.5rem;
-    border: 0.1px solid grey;
-    font-weight: bold;
-    cursor: pointer;
-}
-.logout-btn:hover {
-    background-color: #0fe70c;
-}
 
-.nav-right span {
-    color: white;
-    margin-right: 2rem;
+.dropdown{
+    position: relative;
+    display: inline-block;
 }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    padding:0;
+  }
+
+  .dropdown-content li {
+    color: black;
+    padding: 0.3rem;
+    width:100%;
+    display: block;
+    cursor: pointer;
+  }
+  .dropdown-content a{
+      text-decoration: none;
+      cursor: pointer;
+  }
+  .dropdown:hover .dropdown-content {
+      display: block;
+      max-height: 90vh;
+    }
+.drop-btn {
+    color: #43cfcf;
+    background-color: rgb(43, 59, 90);
+    padding: 0.56rem;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0px;
+    color: white;
+    transition: all 0.2s linear;
+    border: none;
+    margin-right:2rem;
+    cursor: pointer;
+  }
+
 @media screen and (min-width: 576px) {
     .navbar {
         display: flex;
