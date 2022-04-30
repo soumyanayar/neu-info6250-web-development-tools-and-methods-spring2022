@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { fetchUpdateUser, fetchDeleteUser } from "../../services/userservices";
 import { fetchDeleteAllHabits } from "../../services/habitservices";
+import DeleteWarningModal from "./DeleteWarningModal";
 
 const Profile = ({ user, setUser, setIsLoggedIn }) => {
   const [firstName, setFirstName] = useState("");
@@ -9,26 +10,17 @@ const Profile = ({ user, setUser, setIsLoggedIn }) => {
   const [error, setError] = useState("");
 
   const handleResetData = async () => {
-    try {
-      await fetchDeleteAllHabits();
-      setError("");
-    } catch (error) {
-      setError(error.message);
-    }
+    <DeleteWarningModal />;
   };
 
   const handleDeleteUser = async () => {
-    try {
-      await fetchDeleteUser();
-      setError("");
-    } catch (error) {
-      setError(error.message);
-    }
+    <DeleteWarningModal />;
   };
 
   const handleUpdateUser = async () => {
     try {
       await fetchUpdateUser(firstName, lastName, password);
+      setUser({ firstName, lastName, password });
       setError("");
     } catch (error) {
       setError(error.message);
@@ -36,34 +28,45 @@ const Profile = ({ user, setUser, setIsLoggedIn }) => {
   };
 
   return (
-    <div className="profile-container">
-      <form>
-        <label>First Name:</label>
-        <input
-          type="text"
-          value={user.firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-        />
-        <label>Last Name:</label>
-        <input
-          type="text"
-          value={user.lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
-        <label>Password:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit" onClick={handleUpdateUser} className="btn-update">
-          SAVE DATA
-        </button>
-      </form>
-      <div>
-        <button onClick={handleResetData}>Reset All the habits</button>
-        <button onClick={handleDeleteUser}>Delete User</button>
+    <div className="profile-div">
+      <div className="profile-container">
+        <form>
+          <label>First Name:</label>
+          <input
+            type="text"
+            value={user.firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          <label>Last Name:</label>
+          <input
+            type="text"
+            value={user.lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+          <label>Password:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button
+            type="submit"
+            onClick={handleUpdateUser}
+            className="btn-update"
+          >
+            SAVE DATA
+          </button>
+        </form>
       </div>
+      <div className="caution-div">
+        <span>
+          Do you want to Reset All the data ? <button>Reset</button>
+        </span>
+        <span>
+          Delete Account ? <button>Delete User</button>
+        </span>
+      </div>
+      {error && <p>{error}</p>}
     </div>
   );
 };

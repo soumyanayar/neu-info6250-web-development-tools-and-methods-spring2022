@@ -180,14 +180,6 @@ h6,
     }
 }
 
-/* /////////--------  Home Page ---------/////////// */
-/* .description{
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  margin: 1rem;
-/* }
-/* place at the centre */
-/*  */
-
 /* /////////--------  Signup and Login Page ---------/////////// */
 
 .credential-container {
@@ -648,4 +640,71 @@ ul {
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+/* Profile */
+.profile-div{
+    display: flex;
+    flex-direction: column;
+    margin-left:40%;
+    padding :2rem;
+}
+
+.profile-container form{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+.profile-container label{
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: green;
+}
+
+.profile-container input{
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: none;
+    font-size: 1rem;
+    width: 30%;
+    background-color: rgb(236, 243, 228);
+}
+.profile-container button{
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    margin-top: 2rem;
+    margin-bottom:2rem;
+    width:30%;
+    background-color: #6aaf21;
+    cursor: pointer;
+}
+
+.profile-container button:hover{
+    background-color: #256b10;
+    color: white;
+    border: 0.2px solid rgb(223, 101, 29);
+}
+.caution-div{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.caution-div span{
+    margin-top: 1rem;
+    color: green;
+}
+
+.caution-div button{
+    background-color: transparent;
+    border: none;
+    color: red;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.caution-div button:hover{
+    color: black;
+    background-color: red;
 }
