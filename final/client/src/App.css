@@ -677,6 +677,7 @@ ul {
     width:30%;
     background-color: #6aaf21;
     cursor: pointer;
+    border:none;
 }
 
 .profile-container button:hover{
@@ -708,3 +709,4 @@ ul {
     color: black;
     background-color: red;
 }
+

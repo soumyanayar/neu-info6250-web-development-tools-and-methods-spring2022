@@ -1,21 +1,13 @@
 import { useState } from "react";
 import { fetchUpdateUser, fetchDeleteUser } from "../../services/userservices";
-import { fetchDeleteAllHabits } from "../../services/habitservices";
-import DeleteWarningModal from "./DeleteWarningModal";
+import ClearModal from "../modals/ClearModal";
 
 const Profile = ({ user, setUser, setIsLoggedIn }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
-  const handleResetData = async () => {
-    <DeleteWarningModal />;
-  };
-
-  const handleDeleteUser = async () => {
-    <DeleteWarningModal />;
-  };
+  const [modalOpen, setModalOpen] = useState(false);
 
   const handleUpdateUser = async () => {
     try {
@@ -60,10 +52,19 @@ const Profile = ({ user, setUser, setIsLoggedIn }) => {
       </div>
       <div className="caution-div">
         <span>
-          Do you want to Reset All the data ? <button>Reset</button>
+          Do you want to Clear all the habits ?{" "}
+          <button
+            className="openModalBtn"
+            onClick={() => {
+              setModalOpen(true);
+            }}
+          >
+            Open
+          </button>
+          {modalOpen && <ClearModal setOpenModal={setModalOpen} />}
         </span>
         <span>
-          Delete Account ? <button>Delete User</button>
+          Delete Account ? <button>Delete Account</button>
         </span>
       </div>
       {error && <p>{error}</p>}
