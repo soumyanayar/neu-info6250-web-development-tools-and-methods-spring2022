@@ -130,7 +130,7 @@ const getHabitsGoalStatus = (habit, habitType, habitLogs) => {
                         )
                             .toISOString()
                             .split("T")[0];
-                        habitsGoalStatus.Partial.push(dateToAdd);
+                        habitsGoalStatus.PartialCompletedDays.push(dateToAdd);
                     }
                 } else if (value === 0) {
                     for (let i = 0; i < datesArray.length; i++) {
