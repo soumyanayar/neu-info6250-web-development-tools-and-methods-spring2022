@@ -1,21 +1,26 @@
 import { useState } from "react";
 import { fetchUpdateUser, fetchDeleteUser } from "../../services/userservices";
 import ClearModal from "../modals/ClearModal";
+import DeleteAccountModal from "../modals/DeleteAccountModal";
 
 const Profile = ({ user, setUser, setIsLoggedIn }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [modalOpen, setModalOpen] = useState(false);
+  const [message, setMessage] = useState("");
+  const [clearDataModalOpen, setClearDataModalModalOpen] = useState(false);
+  const [deleteAccountModal, setDeleteAccountModal] = useState(false);
 
   const handleUpdateUser = async () => {
     try {
       await fetchUpdateUser(firstName, lastName, password);
       setUser({ firstName, lastName, password });
+      setMessage("Profile Updated Successfully");
       setError("");
     } catch (error) {
       setError(error.message);
+      setMessage("");
     }
   };
 
@@ -26,13 +31,13 @@ const Profile = ({ user, setUser, setIsLoggedIn }) => {
           <label>First Name:</label>
           <input
             type="text"
-            value={user.firstName}
+            value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
           <label>Last Name:</label>
           <input
             type="text"
-            value={user.lastName}
+            value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
           <label>Password:</label>
@@ -50,21 +55,38 @@ const Profile = ({ user, setUser, setIsLoggedIn }) => {
           </button>
         </form>
       </div>
+      {message && <p className="message">{message}</p>}
+      <br></br>
       <div className="caution-div">
         <span>
           Do you want to Clear all the habits ?{" "}
           <button
             className="openModalBtn"
             onClick={() => {
-              setModalOpen(true);
+              setClearDataModalModalOpen(true);
             }}
           >
-            Open
+            Clear Data
           </button>
-          {modalOpen && <ClearModal setOpenModal={setModalOpen} />}
+          {clearDataModalOpen && (
+            <ClearModal setOpenModal={setClearDataModalModalOpen} />
+          )}
         </span>
         <span>
-          Delete Account ? <button>Delete Account</button>
+          Delete Account ?
+          <button
+            className="openModalBtn"
+            onClick={() => setDeleteAccountModal(true)}
+          >
+            Delete Account
+          </button>
+          {deleteAccountModal && (
+            <DeleteAccountModal
+              setOpenModal={setDeleteAccountModal}
+              setIsLoggedIn={setIsLoggedIn}
+              setUser={setUser}
+            />
+          )}
         </span>
       </div>
       {error && <p>{error}</p>}

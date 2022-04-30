@@ -213,6 +213,8 @@ h6,
     width: 100%;
     border-radius: 0.5rem;
     border: none;
+    background-color: rgb(232, 240, 254);
+    font-size: 1rem;
 }
 
 .form-container label {
@@ -239,11 +241,11 @@ h6,
 }
 
 .form-container span {
-    color: #1da1b2;
+    color: black;
 }
 
 .form-container a {
-    color: lightyellow;
+    color: #1da1b2;
 }
 
 .error-field {
