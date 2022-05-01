@@ -3,12 +3,21 @@ import {
     fetchGetSingleHabit,
     fetchGetLogsOfAHabit,
 } from "../../services/habitservices";
+import { getHabitStatusPieChartData } from "../../utils/habitStatusChecker";
 import Calendar from "./Calendar";
+import Piechart from "./Piechart";
 
 const ViewHabitDetailsAccordian = ({ habitId, habitType }) => {
     const [isEntryOpen, setIsEntryOpen] = useState({});
     const [habit, setHabit] = useState({});
     const [habitLogs, setHabitLogs] = useState([]);
+    const [pieChartData, setPieChartData] = useState({
+        degree1: 0,
+        degree2: 0,
+        degree3: 0,
+        degree4: 0,
+        degree5: 0,
+    });
     const [error, setError] = useState("");
 
     function toggleEntry(habitId) {
@@ -20,23 +29,31 @@ const ViewHabitDetailsAccordian = ({ habitId, habitType }) => {
     const isOpen = isEntryOpen[habitId];
 
     const getHabitDetails = async () => {
+        let fetchedHabit;
+        let fetchedHabitLogs;
         try {
-            const fetchedHabit = await fetchGetSingleHabit(habitId);
+            fetchedHabit = await fetchGetSingleHabit(habitId);
             setHabit(fetchedHabit);
             setError("");
         } catch (error) {
             setError(error.message);
         }
-    };
 
-    const getHabitLogs = async () => {
         try {
-            const fetchedHabitLogs = await fetchGetLogsOfAHabit(habitId);
+            fetchedHabitLogs = await fetchGetLogsOfAHabit(habitId);
             setHabitLogs(fetchedHabitLogs);
             setError("");
         } catch (error) {
             setError(error.message);
         }
+
+        setPieChartData(
+            getHabitStatusPieChartData(
+                fetchedHabit,
+                habitType,
+                fetchedHabitLogs
+            )
+        );
     };
 
     const getFriendlyNameForHabitType = () => {
@@ -64,7 +81,6 @@ const ViewHabitDetailsAccordian = ({ habitId, habitType }) => {
 
     useEffect(() => {
         getHabitDetails();
-        getHabitLogs();
     }, []);
 
     return (
@@ -85,13 +101,16 @@ const ViewHabitDetailsAccordian = ({ habitId, habitType }) => {
                     <div>HabitType: {getFriendlyNameForHabitType()} </div>
                     {addHabitGoalDiv()}
                     <div>Habit Start Date: {habit.startDate}</div>
-                    <Calendar
-                        month={new Date().getMonth()}
-                        year={new Date().getFullYear()}
-                        habit={habit}
-                        habitType={habitType}
-                        habitLogs={habitLogs}
-                    />
+                    <div className="inline-block-div">
+                        <Calendar
+                            month={new Date().getMonth()}
+                            year={new Date().getFullYear()}
+                            habit={habit}
+                            habitType={habitType}
+                            habitLogs={habitLogs}
+                        />
+                        <Piechart data={pieChartData} />
+                    </div>
                 </div>
             </div>
             {error && <span className="error-field">{error}</span>}

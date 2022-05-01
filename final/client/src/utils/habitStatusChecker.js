@@ -34,7 +34,7 @@ const getDatesArrayFromRange = (startDate, endDate) => {
     return datesArray;
 };
 
-const getHabitsGoalStatus = (habit, habitType, habitLogs) => {
+export function getHabitsGoalStatus(habit, habitType, habitLogs) {
     const habitsGoalStatus = {
         CompletedDays: [],
         FailedDays: [],
@@ -258,6 +258,76 @@ const getHabitsGoalStatus = (habit, habitType, habitLogs) => {
     }
 
     return habitsGoalStatus;
+}
+
+const getTotalDays = (startDate) => {
+    const startDateObj = new Date(startDate);
+    const endDateObj = new Date();
+    const totalDays = Math.ceil(
+        (endDateObj.getTime() - startDateObj.getTime()) / (1000 * 3600 * 24)
+    );
+    return totalDays;
 };
 
-export default getHabitsGoalStatus;
+const calculatePieAngle = (total, condition) => {
+    const angle = (condition / total) * 360;
+    return angle;
+};
+
+export function getHabitStatusPieChartData(habit, habitType, habitLogs) {
+    const goalStatusDetails = getHabitsGoalStatus(habit, habitType, habitLogs);
+
+    let totalDays = getTotalDays(habit.startDate);
+    if (isNaN(totalDays)) {
+        totalDays = 0;
+    }
+
+    let loggingSkippedDays =
+        totalDays -
+        (goalStatusDetails.CompletedDays.length +
+            goalStatusDetails.FailedDays.length +
+            goalStatusDetails.PartialCompletedDays.length);
+
+    const goalStatusNumbers = {
+        CompletedDays: goalStatusDetails.CompletedDays.length,
+        FailedDays: goalStatusDetails.FailedDays.length,
+        PartialCompletedDays: goalStatusDetails.PartialCompletedDays.length,
+        TotalDays: totalDays,
+        LoggingSkippedDays: loggingSkippedDays,
+    };
+
+    const goalStatusAngles = {
+        CompletedDaysAngle: calculatePieAngle(
+            goalStatusNumbers.TotalDays,
+            goalStatusNumbers.CompletedDays
+        ),
+        FailedDaysAngle: calculatePieAngle(
+            goalStatusNumbers.TotalDays,
+            goalStatusNumbers.FailedDays
+        ),
+        PartialCompletedDaysAngle: calculatePieAngle(
+            goalStatusNumbers.TotalDays,
+            goalStatusNumbers.PartialCompletedDays
+        ),
+        LoggingSkippedDaysAngle: calculatePieAngle(
+            goalStatusNumbers.TotalDays,
+            goalStatusNumbers.LoggingSkippedDays
+        ),
+    };
+
+    const degree1 = 0;
+    const degree2 = degree1 + goalStatusAngles.CompletedDaysAngle;
+    const degree3 = degree2 + goalStatusAngles.FailedDaysAngle;
+    const degree4 = degree3 + goalStatusAngles.PartialCompletedDaysAngle;
+    const degree5 = 360;
+
+    const pieChartData = {
+        degree1: degree1,
+        degree2: degree2,
+        degree3: degree3,
+        degree4: degree4,
+        degree5: degree5,
+    };
+
+    return pieChartData;
+}
