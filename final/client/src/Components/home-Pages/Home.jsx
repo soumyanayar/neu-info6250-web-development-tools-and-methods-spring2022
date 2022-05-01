@@ -35,15 +35,15 @@ const Home = () => {
   }
   return (
     <div>
-      <span className="home-title"> You have below habits so far !!</span>
-      <div>
-        <ul>
+      <p className="home-title"> You have below habits so far !!</p>
+      <div className="all-habit-container">
+        <ul className="all-habit-ul">
           {Object.entries(allHabits).map(([key, value]) => {
             return (
               <li key={key}>
-                <span>
+                <p className="habit-name-title">
                   <b>{value.habitName}</b>
-                </span>
+                </p>
                 <ViewHabitDetailsAccordian
                   habitId={value.habitId}
                   habitType={value.habitType}

@@ -94,7 +94,7 @@ function AddHabitLogAccordian({ habitId, habitType }) {
           className="accordion__title"
           onClick={() => toggleEntry(habitId)}
         >
-          Add Logs for habit
+          Add Logs To Habit
         </button>
         <div className="accordion__body">
           <form>
