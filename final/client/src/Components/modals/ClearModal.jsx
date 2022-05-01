@@ -1,17 +1,13 @@
 import "./modalStyle.css";
 import { fetchDeleteAllHabits } from "../../services/habitservices";
-import { useState } from "react";
 
 const ClearModal = ({ setOpenModal }) => {
-  const [error, setError] = useState("");
-
   const handleClearHabits = async () => {
     try {
       await fetchDeleteAllHabits();
-      setError("");
       setOpenModal(false);
     } catch (error) {
-      setError(error.message);
+      console.log(error);
     }
   };
 

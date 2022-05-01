@@ -43,7 +43,6 @@ h6,
     align-items: center;
 
     background: rgb(43, 59, 90);
-    border-bottom: 2px solid #fff;
     box-shadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
 }
 
@@ -123,6 +122,7 @@ h6,
     display: none;
     position: absolute;
     padding:0;
+
   }
 
   .dropdown-content li {
@@ -135,10 +135,15 @@ h6,
   .dropdown-content a{
       text-decoration: none;
       cursor: pointer;
+      color: black;
   }
+    .dropdown-content a:hover{
+        color: #9b0b96;
+        text-decoration: underline;
+    }
   .dropdown:hover .dropdown-content {
       display: block;
-      max-height: 90vh;
+       max-height: 90vh; 
     }
 .drop-btn {
     color: #43cfcf;
@@ -150,7 +155,7 @@ h6,
     color: white;
     transition: all 0.2s linear;
     border: none;
-    margin-right:2rem;
+    /* margin-right:2rem; */
     cursor: pointer;
   }
 
@@ -264,8 +269,8 @@ h6,
 
 /* //// ------  Add a habit ------ //// */
 .main-div {
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left:25%;
+    margin-right: 25%;
 }
 .tool-tabs-container {
     display: flex;
@@ -358,6 +363,12 @@ h6,
     height: auto;
 }
 
+.message{
+    font-weight: bold;
+    color: blue;
+    margin-left: 35%;
+}
+
 /* /////////--------  Create A Habit ---------/////////// */
 .habit-container {
     display: flex;
@@ -384,7 +395,7 @@ h6,
     margin-left: 0.6rem;
 }
 .habit-data-2 input {
-    width: 5%;
+    width: 10%;
     height: auto;
     margin-left: 1rem;
     margin-bottom: 1rem;
@@ -451,7 +462,7 @@ h6,
 .accordion__title::after {
     position: absolute;
     right: 1rem;
-    top: calc(50% - 1ch);
+    top: calc(50% - 1.5ch);
 }
 
 .accordion__title::after {
@@ -712,3 +723,9 @@ ul {
     background-color: red;
 }
 
+/* Home Page */
+.home-title{
+    font-size: 1.2rem;
+    color: rgb(118, 16, 132);
+    font-weight: bold;
+}

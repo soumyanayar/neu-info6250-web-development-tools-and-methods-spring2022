@@ -44,6 +44,7 @@ const SignUp = ({ setIsLoggedIn }) => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            style={{ marginTop: "10px" }}
             required
           />
           <label htmlFor="first-name">First Name</label>

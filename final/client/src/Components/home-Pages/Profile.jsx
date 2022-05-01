@@ -4,20 +4,21 @@ import ClearModal from "../modals/ClearModal";
 import DeleteAccountModal from "../modals/DeleteAccountModal";
 
 const Profile = ({ user, setUser, setIsLoggedIn }) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState(user.firstName);
+  const [lastName, setLastName] = useState(user.lastName);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [clearDataModalOpen, setClearDataModalModalOpen] = useState(false);
   const [deleteAccountModal, setDeleteAccountModal] = useState(false);
 
-  const handleUpdateUser = async () => {
+  const handleUpdateUser = async (e) => {
+    e.preventDefault();
     try {
-      await fetchUpdateUser(firstName, lastName, password);
-      setUser({ firstName, lastName, password });
+      await fetchUpdateUser(user.email, password, firstName, lastName);
       setMessage("Profile Updated Successfully");
       setError("");
+      setUser({ password, firstName, lastName });
     } catch (error) {
       setError(error.message);
       setMessage("");
