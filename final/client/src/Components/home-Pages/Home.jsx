@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import { fetchGetAllHabits } from "../../services/habitservices";
 import ViewHabitDetailsAccordian from "./ViewHabitDetailsAccordian";
 import AddHabitLogAccordian from "./AddHabitLogAccordian";
+import DeleteSingleModal from "../modals/DeleteSingleHabitModal";
 
 const Home = () => {
   const [allHabits, setAllHabits] = useState({});
   const [error, setError] = useState("");
+  const [deleteHabitModalOpen, setDeleteHabitModalOpen] = useState(false);
+  const [habitKey, setHabitKey] = useState(0);
 
   const getAllHabits = async () => {
     try {
@@ -19,9 +22,14 @@ const Home = () => {
     }
   };
 
+  const handleDelete = (habitKey) => {
+    setHabitKey(habitKey);
+    setDeleteHabitModalOpen(true);
+  };
+
   useEffect(() => {
     getAllHabits();
-  }, []);
+  }, [deleteHabitModalOpen]);
 
   if (allHabits.length === 0) {
     return (
@@ -37,12 +45,26 @@ const Home = () => {
     <div>
       <p className="home-title"> You have below habits so far !!</p>
       <div className="all-habit-container">
-        <ul className="all-habit-ul">
+        {deleteHabitModalOpen && (
+          <DeleteSingleModal
+            habitKey={habitKey}
+            setDeleteHabitModalOpen={setDeleteHabitModalOpen}
+          />
+        )}
+        <ul className="all-habit-list">
           {Object.entries(allHabits).map(([key, value]) => {
             return (
               <li key={key}>
                 <p className="habit-name-title">
-                  <b>{value.habitName}</b>
+                  <b>
+                    {value.habitName}{" "}
+                    <button
+                      className="delete-habit-btn"
+                      onClick={() => handleDelete({ key })}
+                    >
+                      X
+                    </button>
+                  </b>
                 </p>
                 <ViewHabitDetailsAccordian
                   habitId={value.habitId}

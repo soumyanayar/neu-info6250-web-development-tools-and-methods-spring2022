@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { fetchUpdateUser, fetchDeleteUser } from "../../services/userservices";
-import ClearModal from "../modals/ClearModal";
+import ClearAllModal from "../modals/ClearAllModal";
 import DeleteAccountModal from "../modals/DeleteAccountModal";
 
 const Profile = ({ user, setUser, setIsLoggedIn }) => {
@@ -70,7 +70,7 @@ const Profile = ({ user, setUser, setIsLoggedIn }) => {
             Clear Data
           </button>
           {clearDataModalOpen && (
-            <ClearModal setOpenModal={setClearDataModalModalOpen} />
+            <ClearAllModal setOpenModal={setClearDataModalModalOpen} />
           )}
         </span>
         <span>

@@ -448,15 +448,14 @@ h6,
 
 .accordion__title {
     position: relative;
-
-    display: inline-block;
+    /* display: inline-block; */
     padding: 1rem;
     padding-right: 3rem;
     border: none;
-
     background-color: lightcyan;
-    font-size: 0.8rem;
+    font-size: 1rem;
     text-align: left;
+    width: 40rem;
 }
 
 .accordion__title::after {
@@ -736,14 +735,30 @@ ul {
     font-weight: bold;
    
 }
-.all-habit-ul{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+.all-habit-list{
+    display:block;
+    margin-left:30%;
+    /* margin-right: 21.5%; */
 }
+
+
 .habit-name-title{
+    width:72.6vh;
     font-size: 1.2rem;
     font-weight: bold;
     color:rgb(116, 68, 160);
-    margin-top: 3rem;
     margin-bottom: 0;
+    margin-top: 1rem;
+    /* border:#080808 solid 1px; */
+}
+.delete-habit-btn{
+   /* Align the button at the right */
+    float: right;
+    margin-right: 0.5rem;
+    background-color: transparent;
+    border: none;
+    color: red;
+    font-size: 1.2rem;
+    cursor: pointer;
+    font-weight: bold;
 }
