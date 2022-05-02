@@ -645,7 +645,6 @@ ul {
     color:white;
 }
 .habit-log-date-input{
-    width: 25%;
     padding: 0.5rem;
     margin-bottom: 0.5rem;
     margin-top:0.5rem;
@@ -665,7 +664,12 @@ ul {
     background-color: rgb(232, 235, 242);
     font-size: 1rem;
 }
-
+.radio-btn-div{
+    margin: 2.5rem; 
+}
+.radio-btn-div input{
+    margin-right: 0.25rem;
+}
 /* Add media queries for smaller screens */
 @media screen and (max-width: 720px) {
     .weekdays li,
@@ -833,4 +837,10 @@ ul {
 }
 .accordion-holder-div{
 border:0.1rem solid black;
+}
+/* Pie Chart */
+.pie-chart-container{
+    display: flex;
+    flex-direction: row;
+    /* background-color: beige; */
 }
