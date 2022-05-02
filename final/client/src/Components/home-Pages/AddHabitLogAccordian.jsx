@@ -13,8 +13,14 @@ function AddHabitLogAccordian({ habitId, habitType }) {
     const [habitLogDate, setHabitLogDate] = useState(
         new Date().toISOString().slice(0, 10)
     );
-    const [habitLogIsSuccess, setHabitLogIsSuccess] = useState(false);
+    const [habitLogIsSuccess, setHabitLogIsSuccess] = useState("Yes");
     const [habitUnit, setHabitUnit] = useState("times");
+    const handleRadioGroupChange = (e) => {
+        const target = e.target;
+        if (target.checked) {
+            setHabitLogIsSuccess(target.value);
+        }
+    };
 
     function toggleEntry(habitId) {
         setIsEntryOpen({
@@ -40,7 +46,7 @@ function AddHabitLogAccordian({ habitId, habitType }) {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         try {
             switch (habitType) {
                 case "CreateGoodHabit":
@@ -64,7 +70,7 @@ function AddHabitLogAccordian({ habitId, habitType }) {
                 case "QuitBadHabit":
                     await fetchPostQuitBadHabitLog(
                         habitId,
-                        habitLogIsSuccess,
+                        habitLogIsSuccess === "Yes" ? true : false,
                         new Date(habitLogDate)
                     );
                     break;
@@ -117,19 +123,43 @@ function AddHabitLogAccordian({ habitId, habitType }) {
                                         {habitUnit}
                                     </span>
                                 </div>
-                                <input
-                                    className="habit-log-date-input"
-                                    type="date"
-                                    value={habitLogDate}
-                                    onChange={(e) =>
-                                        setHabitLogDate(e.target.value)
-                                    }
-                                ></input>
+                                <div>
+                                    <input
+                                        className="habit-log-date-input"
+                                        type="date"
+                                        value={habitLogDate}
+                                        onChange={(e) =>
+                                            setHabitLogDate(e.target.value)
+                                        }
+                                    ></input>
+                                </div>
                             </div>
                         )}
 
                         {habitType === "QuitBadHabit" && (
                             <div className="habit-data-log-div">
+                                <div>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            value="Yes"
+                                            checked={
+                                                habitLogIsSuccess === "Yes"
+                                            }
+                                            onChange={handleRadioGroupChange}
+                                        />
+                                        <span>Yes</span>
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            value="No"
+                                            checked={habitLogIsSuccess === "No"}
+                                            onChange={handleRadioGroupChange}
+                                        />
+                                        <span>No</span>
+                                    </label>
+                                </div>
                                 <input
                                     type="date"
                                     value={habitLogDate}
