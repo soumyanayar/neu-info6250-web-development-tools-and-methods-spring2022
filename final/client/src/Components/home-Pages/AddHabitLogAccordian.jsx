@@ -100,15 +100,19 @@ function AddHabitLogAccordian({ habitId, habitType }) {
           <form>
             {(habitType === "CreateGoodHabit" ||
               habitType === "LimitBadHabit") && (
-              <div className="habit-data-3">
+              <div className="habit-data-log-div">
+                <div className="habit-data-log-sub-div">
+                  <input
+                    className="habit-log-unit-input"
+                    type="number"
+                    value={habitLogNumber}
+                    placeholder={habitUnit}
+                    onChange={(e) => setHabitLogNumber(e.target.value)}
+                  ></input>
+                  <span className="habit-log-unit-input-text">{habitUnit}</span>
+                </div>
                 <input
-                  type="number"
-                  value={habitLogNumber}
-                  placeholder="2"
-                  onChange={(e) => setHabitLogNumber(e.target.value)}
-                ></input>
-                <div>{habitUnit}</div>
-                <input
+                  className="habit-log-date-input"
                   type="date"
                   value={habitLogDate}
                   onChange={(e) => setHabitLogDate(e.target.value)}
@@ -117,7 +121,7 @@ function AddHabitLogAccordian({ habitId, habitType }) {
             )}
 
             {habitType === "QuitBadHabit" && (
-              <div className="habit-data-3">
+              <div className="habit-data-log-div">
                 <input
                   type="date"
                   value={habitLogDate}
@@ -126,8 +130,8 @@ function AddHabitLogAccordian({ habitId, habitType }) {
               </div>
             )}
 
-            <button className="save-btn" type="submit" onClick={handleSubmit}>
-              Save Log!
+            <button className="save-log" type="submit" onClick={handleSubmit}>
+              SAVE LOG
             </button>
           </form>
         </div>

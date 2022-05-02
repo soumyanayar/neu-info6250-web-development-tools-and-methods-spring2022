@@ -456,6 +456,9 @@ h6,
     text-align: left;
     width: 40rem;
 }
+.accordion__title:hover {
+    background-color: rgb(46, 176, 170);
+}
 
 .accordion__title::after {
     position: absolute;
@@ -465,6 +468,7 @@ h6,
 
 .accordion__title::after {
     content: "\2795";
+    
 }
 
 .accordion__entry--open .accordion__title::after {
@@ -480,7 +484,16 @@ h6,
 .accordion__entry--open .accordion__body {
     display: block;
 }
-
+.habit-detail-accord-div{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.3rem;
+    color:rgb(68, 79, 8);
+}
 /* Custom Calendar */
 
 * {
@@ -497,7 +510,7 @@ ul {
 .month {
     padding: 0.2rem;
     width: 100%;
-    background: #1abc9c;
+    background: #fc9881;
     text-align: center;
 }
 
@@ -549,7 +562,7 @@ ul {
 .weekdays {
     margin: 0;
     padding: 0.625rem 0;
-    background-color: #ddd;
+    background-color: linen;
 }
 
 .weekdays li {
@@ -562,7 +575,7 @@ ul {
 
 .days {
     padding: 0.625rem 0;
-    background: #eee;
+    background: linen;
     margin: 0;
 }
 
@@ -599,6 +612,59 @@ ul {
     padding: 0.313rem;
     background: lightyellow;
     color: darkblue !important;
+}
+
+/* Add logs */
+
+.habit-data-log-div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.3rem;
+}
+.save-log{
+    /* place the button at the centre*/
+    margin-left: 40%;
+    margin-right: 40%;  
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    width: 15%;
+    padding: 0.5rem;
+
+    border:none;
+    border-radius: 0.25rem;
+    background-color: rgb(235, 101, 105);
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.save-log:hover{
+    background-color: rgb(100, 8, 13);
+    color:white;
+}
+.habit-log-date-input{
+    width: 25%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-top:0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: rgb(232, 235, 242);
+    font-size: 1rem;
+}
+.habit-log-unit-input{
+    width: 30%;
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-top:0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: rgb(232, 235, 242);
+    font-size: 1rem;
 }
 
 /* Add media queries for smaller screens */
@@ -731,18 +797,18 @@ ul {
     font-weight: bold;
 }
 .all-habit-list {
-    display: block;
-    margin-left: 30%;
-    /* margin-right: 21.5%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .habit-name-title {
-    width: 72.6vh;
+    width: 73vh;
     font-size: 1.2rem;
     font-weight: bold;
-    color: rgb(116, 68, 160);
-    margin-bottom: 0;
-    margin-top: 1rem;
+    color: rgb(91, 28, 150);
+    margin-bottom: 1rem;
     /* border:#080808 solid 1px; */
 }
 .delete-habit-btn {
@@ -756,8 +822,17 @@ ul {
     cursor: pointer;
     font-weight: bold;
 }
-
-.habit-container {
+.delete-habit-btn:hover {
+    color: black;
+}
+.habit-container-div {
+   margin-top:1rem;
+    border-bottom: none;
+    padding: 0.5rem;
     border: 2px solid black;
     padding: 2rem;
+    background-color:  rgb(249, 247, 218);
+}
+.accordion-holder-div{
+border:0.1rem solid black;
 }
