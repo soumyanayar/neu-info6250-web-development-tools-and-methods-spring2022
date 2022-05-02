@@ -6,7 +6,7 @@ import {
   fetchPostQuitBadHabitLog,
 } from "../../services/habitservices";
 
-function AddHabitLogAccordian({ habitId, habitType }) {
+function AddHabitLogAccordian({ habitId, habitType, setIsLoggedIn }) {
   const [isEntryOpen, setIsEntryOpen] = useState({});
   const [error, setError] = useState("");
   const [habitLogNumber, setHabitLogNumber] = useState(1);
@@ -39,6 +39,12 @@ function AddHabitLogAccordian({ habitId, habitType }) {
       setError("");
     } catch (error) {
       setError(error.message);
+      if (
+        error.message === "You have not logged in, please login" ||
+        error.message === "Your login session has expired, please login again"
+      ) {
+        setIsLoggedIn(false);
+      }
     }
   };
 
@@ -79,6 +85,12 @@ function AddHabitLogAccordian({ habitId, habitType }) {
       setError("");
     } catch (err) {
       setError(err.message);
+      if (
+        error.message === "You have not logged in, please login" ||
+        error.message === "Your login session has expired, please login again"
+      ) {
+        setIsLoggedIn(false);
+      }
     }
   };
 

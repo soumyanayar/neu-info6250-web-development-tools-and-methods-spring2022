@@ -3,7 +3,7 @@ import CreateGoodHabit from "./CreateGoodHabit";
 import QuitBadHabit from "./QuitBadHabit";
 import LimitBadHabit from "./LimitBadHabit";
 
-const AddHabit = () => {
+const AddHabit = ({ setIsLoggedIn }) => {
   const [toggleTabs, setToggleTabs] = useState(1);
 
   const toggleTab = (tabNumber) => {
@@ -55,7 +55,7 @@ const AddHabit = () => {
               : "tools-content"
           }
         >
-          <CreateGoodHabit />
+          <CreateGoodHabit setIsLoggedIn={setIsLoggedIn} />
         </div>
 
         <div
@@ -65,7 +65,7 @@ const AddHabit = () => {
               : "tools-content"
           }
         >
-          <QuitBadHabit />
+          <QuitBadHabit setIsLoggedIn={setIsLoggedIn} />
         </div>
 
         <div
@@ -75,7 +75,7 @@ const AddHabit = () => {
               : "tools-content"
           }
         >
-          <LimitBadHabit />
+          <LimitBadHabit setIsLoggedIn={setIsLoggedIn} />
         </div>
       </div>
     </div>

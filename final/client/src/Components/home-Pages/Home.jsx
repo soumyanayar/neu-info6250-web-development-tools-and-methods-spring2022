@@ -8,7 +8,7 @@ import {
 import ViewHabitDetailsAccordian from "./ViewHabitDetailsAccordian";
 import AddHabitLogAccordian from "./AddHabitLogAccordian";
 
-const Home = () => {
+const Home = ({ setIsLoggedIn }) => {
   const [allHabits, setAllHabits] = useState({});
   const [error, setError] = useState("");
   const [updated, setUpdated] = useState(false);
@@ -21,6 +21,12 @@ const Home = () => {
       setError("");
     } catch (error) {
       setError(error.message);
+      if (
+        error.message === "You have not logged in, please login" ||
+        error.message === "Your login session has expired, please login again"
+      ) {
+        setIsLoggedIn(false);
+      }
     }
   };
 
@@ -28,8 +34,15 @@ const Home = () => {
     try {
       await fetchDeleteSingleHabit(key);
       setUpdated(!updated);
+      setError("");
     } catch (error) {
-      console.log(error);
+      setError(error.message);
+      if (
+        error.message === "You have not logged in, please login" ||
+        error.message === "Your login session has expired, please login again"
+      ) {
+        setIsLoggedIn(false);
+      }
     }
   };
 
@@ -55,7 +68,6 @@ const Home = () => {
 
   return (
     <div>
-      {/* <p className="home-title"> You have below habits so far !!</p> */}
       <div className="all-habit-container">
         <ul className="all-habit-list">
           {Object.entries(allHabits).map(([key, value]) => {
@@ -85,6 +97,7 @@ const Home = () => {
               </li>
             );
           })}
+          {error && <p className="error-message">{error}</p>}
         </ul>
       </div>
       {error && <p>{error}</p>}

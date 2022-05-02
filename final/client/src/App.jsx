@@ -49,10 +49,10 @@ const App = () => {
       <Navbar user={user} setIsLoggedIn={setIsLoggedIn} />
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Home setIsLoggedIn={setIsLoggedIn} />
         </Route>
         <Route path="/add-habit">
-          <AddHabit />
+          <AddHabit setIsLoggedIn={setIsLoggedIn} />
         </Route>
         <Route path="/about">
           <About />;

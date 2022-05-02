@@ -2,7 +2,7 @@ import { useState } from "react";
 import { fetchLimitNewBadHabit } from "../../services/habitservices";
 import ErrorModal from "../modals/ErrorModal";
 
-const LimitBadHabit = () => {
+const LimitBadHabit = ({ setIsLoggedIn }) => {
   const [habitName, setHabitName] = useState("");
   const [goal, setGoal] = useState("");
   const [unit, setUnit] = useState("times");
@@ -26,9 +26,16 @@ const LimitBadHabit = () => {
       );
       setError("");
       setMessage("Habit Created Successfully");
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      setError(error.message);
       setMessage("");
+      if (
+        error.message === "You have not logged in, please login" ||
+        error.message === "Your login session has expired, please login again"
+      ) {
+        setIsLoggedIn(false);
+        return (window.location.href = "/");
+      }
     }
   };
 

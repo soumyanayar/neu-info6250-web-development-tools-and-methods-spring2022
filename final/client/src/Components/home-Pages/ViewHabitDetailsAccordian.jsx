@@ -7,7 +7,7 @@ import { getHabitStatusPieChartData } from "../../utils/habitStatusChecker";
 import Calendar from "./Calendar";
 import Piechart from "./Piechart";
 
-const ViewHabitDetailsAccordian = ({ habitId, habitType }) => {
+const ViewHabitDetailsAccordian = ({ habitId, habitType, setIsLoggedIn }) => {
   const [isEntryOpen, setIsEntryOpen] = useState({});
   const [habit, setHabit] = useState({});
   const [habitLogs, setHabitLogs] = useState([]);
@@ -37,6 +37,12 @@ const ViewHabitDetailsAccordian = ({ habitId, habitType }) => {
       setError("");
     } catch (error) {
       setError(error.message);
+      if (
+        error.message === "You have not logged in, please login" ||
+        error.message === "Your login session has expired, please login again"
+      ) {
+        setIsLoggedIn(false);
+      }
     }
 
     try {
@@ -45,6 +51,12 @@ const ViewHabitDetailsAccordian = ({ habitId, habitType }) => {
       setError("");
     } catch (error) {
       setError(error.message);
+      if (
+        error.message === "You have not logged in, please login" ||
+        error.message === "Your login session has expired, please login again"
+      ) {
+        setIsLoggedIn(false);
+      }
     }
 
     setPieChartData(

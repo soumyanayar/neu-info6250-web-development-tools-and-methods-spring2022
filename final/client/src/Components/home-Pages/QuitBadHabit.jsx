@@ -2,7 +2,7 @@ import { useState } from "react";
 import { fetchQuitNewBadHabit } from "../../services/habitservices";
 import ErrorModal from "../modals/ErrorModal";
 
-const QuitBadHabit = () => {
+const QuitBadHabit = ({ setIsLoggedIn }) => {
   const [habitName, setHabitName] = useState("");
   const [startDate, setStartDate] = useState(
     new Date().toISOString().slice(0, 10)
@@ -17,9 +17,16 @@ const QuitBadHabit = () => {
       await fetchQuitNewBadHabit(habitName, new Date(startDate));
       setError("");
       setMessage("Habit Created Successfully");
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      setError(error.message);
       setMessage("");
+      if (
+        error.message === "You have not logged in, please login" ||
+        error.message === "Your login session has expired, please login again"
+      ) {
+        setIsLoggedIn(false);
+        return (window.location.href = "/");
+      }
     }
   };
 
