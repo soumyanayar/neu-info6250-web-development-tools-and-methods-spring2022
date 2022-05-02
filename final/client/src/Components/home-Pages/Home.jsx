@@ -81,10 +81,12 @@ const Home = ({ setIsLoggedIn }) => {
                     <ViewHabitDetailsAccordian
                       habitId={value.habitId}
                       habitType={value.habitType}
+                      setIsLoggedIn={setIsLoggedIn}
                     />
                     <AddHabitLogAccordian
                       habitId={value.habitId}
                       habitType={value.habitType}
+                      setIsLoggedIn={setIsLoggedIn}
                     />
                   </div>
                   <button
