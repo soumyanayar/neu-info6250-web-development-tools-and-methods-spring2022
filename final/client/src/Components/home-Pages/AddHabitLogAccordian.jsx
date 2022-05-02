@@ -9,6 +9,9 @@ import {
 function AddHabitLogAccordian({ habitId, habitType, setIsLoggedIn }) {
   const [isEntryOpen, setIsEntryOpen] = useState({});
   const [error, setError] = useState("");
+  const [habit, setHabit] = useState({
+    startDate: new Date().toISOString(),
+  });
   const [habitLogNumber, setHabitLogNumber] = useState(1);
   const [habitLogDate, setHabitLogDate] = useState(
     new Date().toISOString().slice(0, 10)
@@ -33,6 +36,7 @@ function AddHabitLogAccordian({ habitId, habitType, setIsLoggedIn }) {
   const getHabitDetails = async () => {
     try {
       const fetchedHabit = await fetchGetSingleHabit(habitId);
+      setHabit(fetchedHabit);
       if (habitType === "CreateGoodHabit" || habitType === "LimitBadHabit") {
         setHabitUnit(fetchedHabit.unit);
       }
@@ -130,6 +134,7 @@ function AddHabitLogAccordian({ habitId, habitType, setIsLoggedIn }) {
                   <input
                     className="habit-log-date-input"
                     type="date"
+                    min={habit.startDate.slice(0, 10)}
                     value={habitLogDate}
                     onChange={(e) => setHabitLogDate(e.target.value)}
                   ></input>
@@ -162,6 +167,7 @@ function AddHabitLogAccordian({ habitId, habitType, setIsLoggedIn }) {
                 <input
                   className="habit-log-date-input"
                   type="date"
+                  min={habit.startDate.slice(0, 10)}
                   value={habitLogDate}
                   onChange={(e) => setHabitLogDate(e.target.value)}
                 ></input>
