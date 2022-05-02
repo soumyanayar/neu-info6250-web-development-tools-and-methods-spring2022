@@ -7,81 +7,86 @@ import AddHabitLogAccordian from "./AddHabitLogAccordian";
 import DeleteSingleModal from "../modals/DeleteSingleHabitModal";
 
 const Home = () => {
-  const [allHabits, setAllHabits] = useState({});
-  const [error, setError] = useState("");
-  const [deleteHabitModalOpen, setDeleteHabitModalOpen] = useState(false);
-  const [habitKey, setHabitKey] = useState(0);
+    const [allHabits, setAllHabits] = useState({});
+    const [error, setError] = useState("");
+    const [deleteHabitModalOpen, setDeleteHabitModalOpen] = useState(false);
+    const [habitKey, setHabitKey] = useState(0);
 
-  const getAllHabits = async () => {
-    try {
-      const fetchedHabitIds = await fetchGetAllHabits();
-      setAllHabits(fetchedHabitIds);
-      setError("");
-    } catch (error) {
-      setError(error.message);
-    }
-  };
+    const getAllHabits = async () => {
+        try {
+            const fetchedHabitIds = await fetchGetAllHabits();
+            setAllHabits(fetchedHabitIds);
+            setError("");
+        } catch (error) {
+            setError(error.message);
+        }
+    };
 
-  const handleDelete = (habitKey) => {
-    setHabitKey(habitKey);
-    setDeleteHabitModalOpen(true);
-  };
+    const handleDelete = (habitKey) => {
+        setHabitKey(habitKey);
+        setDeleteHabitModalOpen(true);
+    };
 
-  useEffect(() => {
-    getAllHabits();
-  }, [deleteHabitModalOpen]);
+    useEffect(() => {
+        getAllHabits();
+    }, [deleteHabitModalOpen]);
 
-  if (allHabits.length === 0) {
-    return (
-      <div>
-        <span className="home-title">Welcome to Habit Tracker</span>
-        <p>
-          To get started, create a new habit by clicking <Link>Add habit</Link>
-        </p>
-      </div>
-    );
-  }
-  return (
-    <div>
-      <p className="home-title"> You have below habits so far !!</p>
-      <div className="all-habit-container">
-        {deleteHabitModalOpen && (
-          <DeleteSingleModal
-            habitKey={habitKey}
-            setDeleteHabitModalOpen={setDeleteHabitModalOpen}
-          />
-        )}
-        <ul className="all-habit-list">
-          {Object.entries(allHabits).map(([key, value]) => {
-            return (
-              <li key={key}>
-                <p className="habit-name-title">
-                  <b>
-                    {value.habitName}{" "}
-                    <button
-                      className="delete-habit-btn"
-                      onClick={() => handleDelete({ key })}
-                    >
-                      X
-                    </button>
-                  </b>
+    if (allHabits.length === 0) {
+        return (
+            <div>
+                <span className="home-title">Welcome to Habit Tracker</span>
+                <p>
+                    To get started, create a new habit by clicking{" "}
+                    <Link>Add habit</Link>
                 </p>
-                <ViewHabitDetailsAccordian
-                  habitId={value.habitId}
-                  habitType={value.habitType}
-                />
-                <AddHabitLogAccordian
-                  habitId={value.habitId}
-                  habitType={value.habitType}
-                />
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-      {error && <p>{error}</p>}
-    </div>
-  );
+            </div>
+        );
+    }
+    return (
+        <div>
+            <p className="home-title"> You have below habits so far !!</p>
+            <div className="all-habit-container">
+                {deleteHabitModalOpen && (
+                    <DeleteSingleModal
+                        habitKey={habitKey}
+                        setDeleteHabitModalOpen={setDeleteHabitModalOpen}
+                    />
+                )}
+                <ul className="all-habit-list">
+                    {Object.entries(allHabits).map(([key, value]) => {
+                        return (
+                            <li key={key}>
+                                <div className="habit-container">
+                                    <p className="habit-name-title">
+                                        <b>
+                                            {value.habitName}{" "}
+                                            <button
+                                                className="delete-habit-btn"
+                                                onClick={() =>
+                                                    handleDelete({ key })
+                                                }
+                                            >
+                                                X
+                                            </button>
+                                        </b>
+                                    </p>
+                                    <ViewHabitDetailsAccordian
+                                        habitId={value.habitId}
+                                        habitType={value.habitType}
+                                    />
+                                    <AddHabitLogAccordian
+                                        habitId={value.habitId}
+                                        habitType={value.habitType}
+                                    />
+                                </div>
+                            </li>
+                        );
+                    })}
+                </ul>
+            </div>
+            {error && <p>{error}</p>}
+        </div>
+    );
 };
 
 export default Home;

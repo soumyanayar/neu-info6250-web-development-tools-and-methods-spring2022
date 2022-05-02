@@ -114,37 +114,36 @@ h6,
     color: #43cfcf;
 }
 
-.dropdown{
+.dropdown {
     position: relative;
     display: inline-block;
 }
 .dropdown-content {
     display: none;
     position: absolute;
-    padding:0;
+    padding: 0;
+}
 
-  }
-
-  .dropdown-content li {
+.dropdown-content li {
     color: black;
     padding: 0.3rem;
-    width:100%;
+    width: 100%;
     display: block;
     cursor: pointer;
-  }
-  .dropdown-content a{
-      text-decoration: none;
-      cursor: pointer;
-      color: black;
-  }
-    .dropdown-content a:hover{
-        color: #9b0b96;
-        text-decoration: underline;
-    }
-  .dropdown:hover .dropdown-content {
-      display: block;
-       max-height: 90vh; 
-    }
+}
+.dropdown-content a {
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+.dropdown-content a:hover {
+    color: #9b0b96;
+    text-decoration: underline;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+    max-height: 90vh;
+}
 .drop-btn {
     color: #43cfcf;
     background-color: rgb(43, 59, 90);
@@ -157,7 +156,7 @@ h6,
     border: none;
     /* margin-right:2rem; */
     cursor: pointer;
-  }
+}
 
 @media screen and (min-width: 576px) {
     .navbar {
@@ -269,7 +268,7 @@ h6,
 
 /* //// ------  Add a habit ------ //// */
 .main-div {
-    margin-left:25%;
+    margin-left: 25%;
     margin-right: 25%;
 }
 .tool-tabs-container {
@@ -363,7 +362,7 @@ h6,
     height: auto;
 }
 
-.message{
+.message {
     font-weight: bold;
     color: blue;
     margin-left: 35%;
@@ -484,7 +483,6 @@ h6,
 
 /* Custom Calendar */
 
-
 * {
     box-sizing: border-box;
 }
@@ -603,7 +601,6 @@ ul {
     color: darkblue !important;
 }
 
-
 /* Add media queries for smaller screens */
 @media screen and (max-width: 720px) {
     .weekdays li,
@@ -659,25 +656,25 @@ ul {
 }
 
 /* Profile */
-.profile-div{
+.profile-div {
     display: flex;
     flex-direction: column;
-    margin-left:40%;
-    padding :2rem;
+    margin-left: 40%;
+    padding: 2rem;
 }
 
-.profile-container form{
+.profile-container form {
     display: flex;
     flex-direction: column;
     padding: 0;
 }
-.profile-container label{
+.profile-container label {
     margin-top: 1rem;
     font-size: 1rem;
     color: green;
 }
 
-.profile-container input{
+.profile-container input {
     padding: 0.5rem;
     border-radius: 0.25rem;
     border: none;
@@ -685,34 +682,33 @@ ul {
     width: 30%;
     background-color: rgb(236, 243, 228);
 }
-.profile-container button{
+.profile-container button {
     padding: 0.5rem;
     border-radius: 0.25rem;
     margin-top: 2rem;
-    margin-bottom:2rem;
-    width:30%;
+    margin-bottom: 2rem;
+    width: 30%;
     background-color: #6aaf21;
     cursor: pointer;
-    border:none;
+    border: none;
 }
 
-.profile-container button:hover{
+.profile-container button:hover {
     background-color: #256b10;
     color: white;
     border: 0.2px solid rgb(223, 101, 29);
 }
-.caution-div{
+.caution-div {
     display: flex;
     flex-direction: column;
-
 }
 
-.caution-div span{
+.caution-div span {
     margin-top: 1rem;
     color: green;
 }
 
-.caution-div button{
+.caution-div button {
     background-color: transparent;
     border: none;
     color: red;
@@ -721,38 +717,36 @@ ul {
     font-weight: bold;
 }
 
-.caution-div button:hover{
+.caution-div button:hover {
     color: black;
     background-color: red;
 }
 
 /* Home Page */
-.home-title{
+.home-title {
     margin-left: 40%;
-    margin-top:2rem;
+    margin-top: 2rem;
     font-size: 1.2rem;
     color: rgb(13, 8, 94);
     font-weight: bold;
-   
 }
-.all-habit-list{
-    display:block;
-    margin-left:30%;
+.all-habit-list {
+    display: block;
+    margin-left: 30%;
     /* margin-right: 21.5%; */
 }
 
-
-.habit-name-title{
-    width:72.6vh;
+.habit-name-title {
+    width: 72.6vh;
     font-size: 1.2rem;
     font-weight: bold;
-    color:rgb(116, 68, 160);
+    color: rgb(116, 68, 160);
     margin-bottom: 0;
     margin-top: 1rem;
     /* border:#080808 solid 1px; */
 }
-.delete-habit-btn{
-   /* Align the button at the right */
+.delete-habit-btn {
+    /* Align the button at the right */
     float: right;
     margin-right: 0.5rem;
     background-color: transparent;
@@ -761,4 +755,9 @@ ul {
     font-size: 1.2rem;
     cursor: pointer;
     font-weight: bold;
+}
+
+.habit-container {
+    border: 2px solid black;
+    padding: 2rem;
 }
