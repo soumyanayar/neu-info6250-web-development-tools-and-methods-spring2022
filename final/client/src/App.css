@@ -330,6 +330,8 @@ h6,
 
 .content-tabs-div {
     flex-grow: 1;
+    /* border:0.1rem solid green;
+    border-top:none; */
 }
 
 .tools-content {
@@ -383,6 +385,8 @@ h6,
     padding-bottom: 2rem;
     padding-left: 25%;
     background-color: azure;
+     border:0.1rem solid green;
+    border-top:none; 
 }
 
 .habit-data-1 input {
@@ -843,4 +847,36 @@ border:0.1rem solid black;
     display: flex;
     flex-direction: row;
     /* background-color: beige; */
+}
+.limegreen-div button{
+background-color: limegreen;
+border:none;
+padding:0.3rem;
+margin-bottom: 0.4rem;
+}
+.limegreen-div span, .coral-div span, .light-blue-div span, .pink-div span{
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+    color: black;
+  margin-top:0.1rem;
+  font-size: 0.8rem;
+  margin-left:0.3rem;
+}
+.coral-div button{
+background-color: coral;
+border:none;
+padding:0.3rem;
+margin-bottom: 0.4rem;
+}
+.light-blue-div button{
+background-color: lightblue;
+border:none;
+padding:0.3rem;
+margin-bottom: 0.4rem;
+}
+.pink-div button{
+background-color: pink;
+border:none;
+padding:0.3rem;
+margin-bottom: 0.4rem;
 }

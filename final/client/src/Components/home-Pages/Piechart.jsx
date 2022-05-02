@@ -40,8 +40,11 @@ const Piechart = ({ data }) => {
         <div className="coral-div">
           <button></button> <span>Failed</span>
         </div>
-        <div className="coral-div">
-          <button></button> <span>Failed</span>
+        <div className="light-blue-div">
+          <button></button> <span>Partial</span>
+        </div>
+        <div className="pink-div">
+          <button></button> <span>No Logs</span>
         </div>
       </div>
     </div>
