@@ -508,7 +508,6 @@ ul {
 }
 
 .month {
-    padding: 0.2rem;
     width: 100%;
     background: #fc9881;
     text-align: center;
@@ -812,18 +811,16 @@ ul {
     /* border:#080808 solid 1px; */
 }
 .delete-habit-btn {
-    /* Align the button at the right */
-    float: right;
-    margin-right: 0.5rem;
-    background-color: transparent;
-    border: none;
+    margin-top:1rem;
     color: red;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     cursor: pointer;
     font-weight: bold;
+    border: 0.1rem solid red;
+    background-color: #222;
 }
 .delete-habit-btn:hover {
-    color: black;
+    color: white;
 }
 .habit-container-div {
    margin-top:1rem;
