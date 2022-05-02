@@ -880,3 +880,39 @@ border:none;
 padding:0.3rem;
 margin-bottom: 0.4rem;
 }
+.loading-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    font-size: 2rem;
+    color: #575c51;
+}
+
+/* About Page */
+.about-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+}
+
+.about-container p{
+    font-size: 1.2rem;
+    color: rgb(91, 28, 150);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    word-spacing: 0.1rem;
+}
+
+.about-container a{
+    color: green;
+    text-decoration: none;
+}
+
+.about-container a:hover{
+    color: black;
+    text-decoration: underline;
+}
+

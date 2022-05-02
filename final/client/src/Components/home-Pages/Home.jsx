@@ -12,6 +12,7 @@ const Home = () => {
   const [allHabits, setAllHabits] = useState({});
   const [error, setError] = useState("");
   const [updated, setUpdated] = useState(false);
+  const [isPageLoading, setIsPageLoading] = useState(true);
 
   const getAllHabits = async () => {
     try {
@@ -33,22 +34,30 @@ const Home = () => {
   };
 
   useEffect(() => {
-    getAllHabits();
+    setTimeout(() => {
+      getAllHabits();
+      setIsPageLoading(false);
+    }, 1000);
   }, [updated]);
 
-  if (allHabits.length === 0) {
-    return (
-      <div>
-        <span className="home-title">Welcome to Habit Tracker</span>
-        <p>
-          To get started, create a new habit by clicking <Link>Add habit</Link>
-        </p>
-      </div>
-    );
+  if (isPageLoading) {
+    return <p className="loading-div">Loading..!</p>;
   }
+
+  //else if (allHabits.length === 0) {
+  //   return (
+  //     <div>
+  //       <span className="home-title">Welcome to Habit Tracker</span>
+  //       <p>
+  //         To get started, create a new habit by clicking <Link>Add habit</Link>
+  //       </p>
+  //     </div>
+  //   );
+  // }
+
   return (
     <div>
-      <p className="home-title"> You have below habits so far !!</p>
+      {/* <p className="home-title"> You have below habits so far !!</p> */}
       <div className="all-habit-container">
         <ul className="all-habit-list">
           {Object.entries(allHabits).map(([key, value]) => {
