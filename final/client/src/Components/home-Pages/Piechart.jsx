@@ -22,29 +22,32 @@ const Piechart = ({ data }) => {
       data.degree3 +
       "deg, lightblue " +
       data.degree4 +
-      "deg, pink " +
+      "deg, purple " +
       data.degree4 +
-      "deg, pink " +
+      "deg, purple " +
       data.degree5 +
       "deg)",
   };
 
   return (
-    <div className="pie-chart-container">
-      <div style={mystyle}></div>
-      <div>
-        <p>Legend</p>
-        <div className="limegreen-div">
-          <button></button> <span>Successful</span>
-        </div>
-        <div className="coral-div">
-          <button></button> <span>Failed</span>
-        </div>
-        <div className="light-blue-div">
-          <button></button> <span>Partial</span>
-        </div>
-        <div className="pink-div">
-          <button></button> <span>No Logs</span>
+    <div className="pie-main-div">
+      <p>Habit Logs Distribution View : </p>
+      <div className="pie-chart-container">
+        <div style={mystyle}></div>
+        <div>
+          <p>Legend</p>
+          <div className="limegreen-div">
+            <button></button> <span>Successful</span>
+          </div>
+          <div className="coral-div">
+            <button></button> <span>Failed</span>
+          </div>
+          <div className="light-blue-div">
+            <button></button> <span>Partial</span>
+          </div>
+          <div className="purple-div">
+            <button></button> <span>No Logs</span>
+          </div>
         </div>
       </div>
     </div>

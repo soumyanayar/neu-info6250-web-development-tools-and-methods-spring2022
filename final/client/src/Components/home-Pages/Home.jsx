@@ -42,18 +42,16 @@ const Home = () => {
 
   if (isPageLoading) {
     return <p className="loading-div">Loading..!</p>;
+  } else if (Object.keys(allHabits).length === 0) {
+    return (
+      <div className="about-container">
+        <p>Welcome to Habitizer!!</p>
+        <p>
+          To get started, click on <Link>Add habit</Link>
+        </p>
+      </div>
+    );
   }
-
-  //else if (allHabits.length === 0) {
-  //   return (
-  //     <div>
-  //       <span className="home-title">Welcome to Habit Tracker</span>
-  //       <p>
-  //         To get started, create a new habit by clicking <Link>Add habit</Link>
-  //       </p>
-  //     </div>
-  //   );
-  // }
 
   return (
     <div>

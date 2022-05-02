@@ -595,25 +595,25 @@ ul {
 
 .days li .succeeded {
     padding: 0.313rem;
-    background: #1abc9c;
+    background: limegreen;
     color: white !important;
 }
 
-.days li .today {
+/* .days li .today {
     padding: 0.313rem;
     background: blueviolet;
     color: white !important;
-}
+} */
 
 .days li .failed {
     padding: 0.313rem;
-    background: darkred;
+    background: coral;
     color: white !important;
 }
 
 .days li .partial {
     padding: 0.313rem;
-    background: lightyellow;
+    background: lightblue;
     color: darkblue !important;
 }
 
@@ -832,17 +832,24 @@ ul {
     color: white;
 }
 .habit-container-div {
-   margin-top:1rem;
+   margin-top:2rem;
     border-bottom: none;
     padding: 0.5rem;
-    border: 2px solid black;
     padding: 2rem;
-    background-color:  rgb(249, 247, 218);
+    border-radius: 0.25rem;
+    box-shadow: 3px 3px 3px 3px rgb(54, 10, 10);
+    border: none;
 }
 .accordion-holder-div{
-border:0.1rem solid black;
+/* border:0.1rem solid black; */
+/* border-radius: 0.5rem; */
+    box-shadow: 1px 1px 1px 2px rgb(76, 86, 105);
 }
 /* Pie Chart */
+
+.pie-main-div{   
+    color: rgb(68, 79, 8);
+}
 .pie-chart-container{
     display: flex;
     flex-direction: row;
@@ -854,7 +861,7 @@ border:none;
 padding:0.3rem;
 margin-bottom: 0.4rem;
 }
-.limegreen-div span, .coral-div span, .light-blue-div span, .pink-div span{
+.limegreen-div span, .coral-div span, .light-blue-div span, .purple-div span{
     margin-left: 0.5rem;
     font-size: 0.8rem;
     color: black;
@@ -867,6 +874,7 @@ background-color: coral;
 border:none;
 padding:0.3rem;
 margin-bottom: 0.4rem;
+
 }
 .light-blue-div button{
 background-color: lightblue;
@@ -874,8 +882,8 @@ border:none;
 padding:0.3rem;
 margin-bottom: 0.4rem;
 }
-.pink-div button{
-background-color: pink;
+.purple-div button{
+background-color: purple;
 border:none;
 padding:0.3rem;
 margin-bottom: 0.4rem;
