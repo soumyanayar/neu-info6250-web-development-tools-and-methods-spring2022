@@ -262,7 +262,7 @@ h6,
     font-weight: bold;
 }
 .user-message a {
-    color: rgb(197, 222, 33);
+    /* color: rgb(197, 222, 33); */
     cursor: pointer;
 }
 
@@ -903,7 +903,7 @@ margin-bottom: 0.4rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 5rem;
+    margin-top: 2rem;
 }
 
 .about-container p{

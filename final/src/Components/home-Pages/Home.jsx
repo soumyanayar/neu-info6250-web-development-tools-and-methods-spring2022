@@ -60,7 +60,7 @@ const Home = ({ setIsLoggedIn }) => {
       <div className="about-container">
         <p>Welcome to Habitizer!!</p>
         <p>
-          To get started, click on <Link>Add habit</Link>
+          To get started, click on <Link to="/add-habit">ADD HABIT</Link>
         </p>
       </div>
     );
