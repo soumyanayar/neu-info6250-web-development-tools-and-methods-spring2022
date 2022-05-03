@@ -85,11 +85,14 @@ const ViewHabitDetailsAccordian = ({ habitId, habitType, setIsLoggedIn }) => {
         }
     };
 
-    const addHabitGoalDiv = (habitType) => {
+    const showHabitGoal = () => {
         switch (habitType) {
             case "CreateGoodHabit":
+                return `Habit Goal: Minimum ${habit.goal} ${habit.unit} ${habit.duration}`;
             case "LimitBadHabit":
-                return `<div> Habit Goal: {habit.goal} {habit.unit} {habit.duration}</div>`;
+                return `Habit Goal: Maximum ${habit.goal} ${habit.unit} ${habit.duration}`;
+
+            case "QuitBadHabit":
             default:
                 return "";
         }
@@ -116,10 +119,10 @@ const ViewHabitDetailsAccordian = ({ habitId, habitType, setIsLoggedIn }) => {
                 <div className="accordion__body">
                     <div className="habit-detail-accord-div">
                         <div>HabitType: {getFriendlyNameForHabitType()} </div>
-                        {addHabitGoalDiv()}
                         <div>
                             Habit Start Date: {habit.startDate.split("T")[0]}
                         </div>
+                        {showHabitGoal()}
                     </div>
                     <div className="inline-block-div">
                         <Calendar

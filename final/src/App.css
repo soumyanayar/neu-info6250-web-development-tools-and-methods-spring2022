@@ -154,7 +154,7 @@ h6,
     color: white;
     transition: all 0.2s linear;
     border: none;
-    /* margin-right:2rem; */
+    margin-right: 2rem;
     cursor: pointer;
 }
 
@@ -367,7 +367,6 @@ h6,
 .message {
     font-weight: bold;
     color: blue;
-    margin-left: 35%;
 }
 
 /* /////////--------  Create A Habit ---------/////////// */
@@ -385,8 +384,8 @@ h6,
     padding-bottom: 2rem;
     padding-left: 25%;
     background-color: azure;
-     border:0.1rem solid green;
-    border-top:none; 
+    border: 0.1rem solid green;
+    border-top: none;
 }
 
 .habit-data-1 input {
@@ -472,7 +471,6 @@ h6,
 
 .accordion__title::after {
     content: "\2795";
-    
 }
 
 .accordion__entry--open .accordion__title::after {
@@ -488,15 +486,15 @@ h6,
 .accordion__entry--open .accordion__body {
     display: block;
 }
-.habit-detail-accord-div{
-    display:flex;
+.habit-detail-accord-div {
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 1rem;
     margin-top: 0.2rem;
     margin-bottom: 0.3rem;
-    color:rgb(68, 79, 8);
+    color: rgb(68, 79, 8);
 }
 /* Custom Calendar */
 
@@ -619,7 +617,7 @@ ul {
 
 /* Add logs */
 
-.habit-data-log-div{
+.habit-data-log-div {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -628,50 +626,50 @@ ul {
     margin-top: 0.2rem;
     margin-bottom: 0.3rem;
 }
-.save-log{
+.save-log {
     /* place the button at the centre*/
     margin-left: 40%;
-    margin-right: 40%;  
+    margin-right: 40%;
     margin-top: 0.25rem;
     margin-bottom: 1rem;
     width: 15%;
     padding: 0.5rem;
 
-    border:none;
+    border: none;
     border-radius: 0.25rem;
     background-color: rgb(235, 101, 105);
     font-size: 0.8rem;
     cursor: pointer;
 }
 
-.save-log:hover{
+.save-log:hover {
     background-color: rgb(100, 8, 13);
-    color:white;
+    color: white;
 }
-.habit-log-date-input{
+.habit-log-date-input {
     padding: 0.5rem;
     margin-bottom: 0.5rem;
-    margin-top:0.5rem;
+    margin-top: 0.5rem;
     border-radius: 0.5rem;
     border: none;
     background-color: rgb(232, 235, 242);
     font-size: 1rem;
 }
-.habit-log-unit-input{
+.habit-log-unit-input {
     width: 30%;
     padding: 0.5rem;
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
-    margin-top:0.5rem;
+    margin-top: 0.5rem;
     border-radius: 0.5rem;
     border: none;
     background-color: rgb(232, 235, 242);
     font-size: 1rem;
 }
-.radio-btn-div{
-    margin: 2.5rem; 
+.radio-btn-div {
+    margin: 2.5rem;
 }
-.radio-btn-div input{
+.radio-btn-div input {
     margin-right: 0.25rem;
 }
 /* Add media queries for smaller screens */
@@ -819,7 +817,7 @@ ul {
     /* border:#080808 solid 1px; */
 }
 .delete-habit-btn {
-    margin-top:1rem;
+    margin-top: 1rem;
     padding: 0.3rem;
     color: red;
     font-size: 0.8rem;
@@ -832,7 +830,7 @@ ul {
     color: white;
 }
 .habit-container-div {
-   margin-top:2rem;
+    margin-top: 2rem;
     border-bottom: none;
     padding: 0.5rem;
     padding: 2rem;
@@ -840,55 +838,57 @@ ul {
     box-shadow: 3px 3px 3px 3px rgb(54, 10, 10);
     border: none;
 }
-.accordion-holder-div{
-/* border:0.1rem solid black; */
-/* border-radius: 0.5rem; */
+.accordion-holder-div {
+    /* border:0.1rem solid black; */
+    /* border-radius: 0.5rem; */
     box-shadow: 1px 1px 1px 2px rgb(76, 86, 105);
 }
 /* Pie Chart */
 
-.pie-main-div{   
+.pie-main-div {
     color: rgb(68, 79, 8);
 }
-.pie-chart-container{
+.pie-chart-container {
     display: flex;
     flex-direction: row;
     /* background-color: beige; */
 }
-.limegreen-div button{
-background-color: limegreen;
-border:none;
-padding:0.3rem;
-margin-bottom: 0.4rem;
+.limegreen-div button {
+    background-color: limegreen;
+    border: none;
+    padding: 0.3rem;
+    margin-bottom: 0.4rem;
 }
-.limegreen-div span, .coral-div span, .light-blue-div span, .purple-div span{
+.limegreen-div span,
+.coral-div span,
+.light-blue-div span,
+.purple-div span {
     margin-left: 0.5rem;
     font-size: 0.8rem;
     color: black;
-  margin-top:0.1rem;
-  font-size: 0.8rem;
-  margin-left:0.3rem;
+    margin-top: 0.1rem;
+    font-size: 0.8rem;
+    margin-left: 0.3rem;
 }
-.coral-div button{
-background-color: coral;
-border:none;
-padding:0.3rem;
-margin-bottom: 0.4rem;
-
+.coral-div button {
+    background-color: coral;
+    border: none;
+    padding: 0.3rem;
+    margin-bottom: 0.4rem;
 }
-.light-blue-div button{
-background-color: lightblue;
-border:none;
-padding:0.3rem;
-margin-bottom: 0.4rem;
+.light-blue-div button {
+    background-color: lightblue;
+    border: none;
+    padding: 0.3rem;
+    margin-bottom: 0.4rem;
 }
-.purple-div button{
-background-color: purple;
-border:none;
-padding:0.3rem;
-margin-bottom: 0.4rem;
+.purple-div button {
+    background-color: purple;
+    border: none;
+    padding: 0.3rem;
+    margin-bottom: 0.4rem;
 }
-.loading-div{
+.loading-div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -898,7 +898,7 @@ margin-bottom: 0.4rem;
 }
 
 /* About Page */
-.about-container{
+.about-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -906,7 +906,7 @@ margin-bottom: 0.4rem;
     margin-top: 2rem;
 }
 
-.about-container p{
+.about-container p {
     font-size: 1.2rem;
     color: rgb(91, 28, 150);
     margin-top: 1rem;
@@ -914,13 +914,12 @@ margin-bottom: 0.4rem;
     word-spacing: 0.1rem;
 }
 
-.about-container a{
+.about-container a {
     color: green;
     text-decoration: none;
 }
 
-.about-container a:hover{
+.about-container a:hover {
     color: black;
     text-decoration: underline;
 }
-
