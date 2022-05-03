@@ -9,6 +9,11 @@ There are 3 types of habits
 
 User can also add the logs to the habits created.
 
+#### For Testing, you can either create a new account in the signup page, or use the following credentials of the test account
+
+username: john.doe@gmail.com
+password: hello@123
+
 ## Some of the Screenshots of the Application
 
 ### View the Calendar & Pie chart of a Habit
