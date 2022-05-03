@@ -1,4 +1,4 @@
-const fetchCreateNewGoodHabit = async (
+export const fetchCreateNewGoodHabit = async (
   habitName,
   goal,
   unit,
@@ -62,7 +62,7 @@ const fetchCreateNewGoodHabit = async (
   }
 };
 
-const fetchLimitNewBadHabit = async (
+export const fetchLimitNewBadHabit = async (
   habitName,
   goal,
   unit,
@@ -126,7 +126,7 @@ const fetchLimitNewBadHabit = async (
   }
 };
 
-const fetchQuitNewBadHabit = async (habitName, startDate) => {
+export const fetchQuitNewBadHabit = async (habitName, startDate) => {
   try {
     const habitType = "QuitBadHabit";
     const response = await fetch("/v1/user/habits", {
@@ -171,7 +171,7 @@ const fetchQuitNewBadHabit = async (habitName, startDate) => {
   }
 };
 
-const fetchGetAllHabits = async () => {
+export const fetchGetAllHabits = async () => {
   try {
     const response = await fetch("/v1/user/habits", {
       method: "GET",
@@ -205,7 +205,7 @@ const fetchGetAllHabits = async () => {
   }
 };
 
-const fetchDeleteSingleHabit = async (habitId) => {
+export const fetchDeleteSingleHabit = async (habitId) => {
   try {
     const response = await fetch(`/v1/user/habits/${habitId}`, {
       method: "DELETE",
@@ -239,7 +239,7 @@ const fetchDeleteSingleHabit = async (habitId) => {
   }
 };
 
-const fetchGetSingleHabit = async (habitId) => {
+export const fetchGetSingleHabit = async (habitId) => {
   try {
     const response = await fetch(`/v1/user/habits/${habitId}`, {
       method: "GET",
@@ -276,7 +276,12 @@ const fetchGetSingleHabit = async (habitId) => {
   }
 };
 
-const fetchPostCreateGoodHabitLog = async (habitId, number, unit, date) => {
+export const fetchPostCreateGoodHabitLog = async (
+  habitId,
+  number,
+  unit,
+  date
+) => {
   try {
     const response = await fetch(`/v1/user/habits/${habitId}/log`, {
       method: "POST",
@@ -327,7 +332,12 @@ const fetchPostCreateGoodHabitLog = async (habitId, number, unit, date) => {
   }
 };
 
-const fetchPostLimitBadHabitLog = async (habitId, number, unit, date) => {
+export const fetchPostLimitBadHabitLog = async (
+  habitId,
+  number,
+  unit,
+  date
+) => {
   try {
     const response = await fetch(`/v1/user/habits/${habitId}/log`, {
       method: "POST",
@@ -378,7 +388,7 @@ const fetchPostLimitBadHabitLog = async (habitId, number, unit, date) => {
   }
 };
 
-const fetchPostQuitBadHabitLog = async (habitId, isSuccess, date) => {
+export const fetchPostQuitBadHabitLog = async (habitId, isSuccess, date) => {
   try {
     const response = await fetch(`/v1/user/habits/${habitId}/log`, {
       method: "POST",
@@ -425,7 +435,7 @@ const fetchPostQuitBadHabitLog = async (habitId, isSuccess, date) => {
   }
 };
 
-const fetchGetLogsOfAHabit = async (habitId) => {
+export const fetchGetLogsOfAHabit = async (habitId) => {
   try {
     const response = await fetch(`/v1/user/habits/${habitId}/log`, {
       method: "GET",
@@ -461,7 +471,7 @@ const fetchGetLogsOfAHabit = async (habitId) => {
   }
 };
 
-const fetchDeleteAllHabits = async () => {
+export const fetchDeleteAllHabits = async () => {
   try {
     const response = await fetch("/v1/user/habits", {
       method: "DELETE",
@@ -491,18 +501,4 @@ const fetchDeleteAllHabits = async () => {
     console.log(error.message);
     throw error;
   }
-};
-
-module.exports = {
-  fetchCreateNewGoodHabit,
-  fetchLimitNewBadHabit,
-  fetchQuitNewBadHabit,
-  fetchGetAllHabits,
-  fetchDeleteSingleHabit,
-  fetchGetSingleHabit,
-  fetchPostCreateGoodHabitLog,
-  fetchPostLimitBadHabitLog,
-  fetchPostQuitBadHabitLog,
-  fetchGetLogsOfAHabit,
-  fetchDeleteAllHabits,
 };

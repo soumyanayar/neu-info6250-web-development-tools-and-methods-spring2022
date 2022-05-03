@@ -1,4 +1,4 @@
-const fetchGetUser = async () => {
+export async function fetchGetUser() {
   try {
     const response = await fetch("/v1/user", {
       method: "GET",
@@ -30,9 +30,9 @@ const fetchGetUser = async () => {
     console.log(error.message);
     throw error;
   }
-};
+}
 
-const fetchPostLogin = async (email, password) => {
+export async function fetchPostLogin(email, password) {
   try {
     const response = await fetch("/v1/user/login", {
       method: "POST",
@@ -71,9 +71,9 @@ const fetchPostLogin = async (email, password) => {
     console.log(error.message);
     throw error;
   }
-};
+}
 
-const fetchCreateUser = async (email, password, firstName, lastName) => {
+export async function fetchCreateUser(email, password, firstName, lastName) {
   try {
     const response = await fetch("/v1/user", {
       method: "POST",
@@ -121,9 +121,9 @@ const fetchCreateUser = async (email, password, firstName, lastName) => {
     console.log(error.message);
     throw error;
   }
-};
+}
 
-const fetchUpdateUser = async (email, password, firstName, lastName) => {
+export const fetchUpdateUser = async (email, password, firstName, lastName) => {
   try {
     const response = await fetch("/v1/user", {
       method: "PUT",
@@ -166,7 +166,7 @@ const fetchUpdateUser = async (email, password, firstName, lastName) => {
   }
 };
 
-const fetchDeleteUser = async () => {
+export const fetchDeleteUser = async () => {
   try {
     const response = await fetch("/v1/user", {
       method: "DELETE",
@@ -201,7 +201,7 @@ const fetchDeleteUser = async () => {
   }
 };
 
-const fetchLogout = async () => {
+export const fetchLogout = async () => {
   try {
     const response = await fetch("/v1/user/logout", {
       method: "POST",
@@ -233,13 +233,4 @@ const fetchLogout = async () => {
     console.log(error);
     throw error;
   }
-};
-
-module.exports = {
-  fetchGetUser,
-  fetchPostLogin,
-  fetchCreateUser,
-  fetchUpdateUser,
-  fetchDeleteUser,
-  fetchLogout,
 };

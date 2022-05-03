@@ -40,7 +40,7 @@ const newCreateGoodHabit = (
   const createGoodHabitJson = CreateGoodHabit.toJson(createGoodHabit);
 
   const habitId = uuidv4();
-  const userFilePath = "./data/users/" + userEmail + ".json";
+  const userFilePath = "./server/data/users/" + userEmail + ".json";
   const user = User.fromJson(readFromJson(userFilePath));
   user.habits[habitId] = {
     habitId: habitId,
@@ -49,7 +49,7 @@ const newCreateGoodHabit = (
   };
   writeToJson(userFilePath, User.toJson(user));
 
-  const createGoodHabitFilePath = "./data/habits/" + habitId + ".json";
+  const createGoodHabitFilePath = "./server/data/habits/" + habitId + ".json";
   writeToJson(createGoodHabitFilePath, createGoodHabitJson);
   return habitId;
 };
@@ -73,7 +73,7 @@ const newLimitBadHabit = (
   const limitBadHabitJson = LimitBadHabit.toJson(limitBadHabit);
 
   const habitId = uuidv4();
-  const userFilePath = "./data/users/" + userEmail + ".json";
+  const userFilePath = "./server/data/users/" + userEmail + ".json";
   const user = User.fromJson(readFromJson(userFilePath));
   user.habits[habitId] = {
     habitId: habitId,
@@ -82,7 +82,7 @@ const newLimitBadHabit = (
   };
   writeToJson(userFilePath, User.toJson(user));
 
-  const limitBadHabitFilePath = "./data/habits/" + habitId + ".json";
+  const limitBadHabitFilePath = "./server/data/habits/" + habitId + ".json";
   writeToJson(limitBadHabitFilePath, limitBadHabitJson);
   return habitId;
 };
@@ -92,7 +92,7 @@ const newQuitBadHabit = (userEmail, habitName, startDate) => {
   const quitBadHabitJson = QuitBadHabit.toJson(quitBadHabit);
 
   const habitId = uuidv4();
-  const userFilePath = "./data/users/" + userEmail + ".json";
+  const userFilePath = "./server/data/users/" + userEmail + ".json";
   const user = User.fromJson(readFromJson(userFilePath));
   user.habits[habitId] = {
     habitId: habitId,
@@ -101,30 +101,30 @@ const newQuitBadHabit = (userEmail, habitName, startDate) => {
   };
   writeToJson(userFilePath, User.toJson(user));
 
-  const quitBadHabitFilePath = "./data/habits/" + habitId + ".json";
+  const quitBadHabitFilePath = "./server/data/habits/" + habitId + ".json";
   writeToJson(quitBadHabitFilePath, quitBadHabitJson);
   return habitId;
 };
 
 const deleteHabit = (userEmail, habitId) => {
-  const userFilePath = "./data/users/" + userEmail + ".json";
+  const userFilePath = "./server/data/users/" + userEmail + ".json";
   const user = User.fromJson(readFromJson(userFilePath));
   delete user.habits[habitId];
   writeToJson(userFilePath, User.toJson(user));
 
-  const habitFilePath = "./data/habits/" + habitId + ".json";
+  const habitFilePath = "./server/data/habits/" + habitId + ".json";
   if (checkIfFileExists(habitFilePath)) {
     deleteFile(habitFilePath);
   }
 
-  const habitLogFilePath = "./data/habitlogs/" + habitId + ".csv";
+  const habitLogFilePath = "./server/data/habitlogs/" + habitId + ".csv";
   if (checkIfFileExists(habitLogFilePath)) {
     deleteFile(habitLogFilePath);
   }
 };
 
 const getHabit = (habitId, habitType, habitName) => {
-  const habitFilePath = "./data/habits/" + habitId + ".json";
+  const habitFilePath = "./server/data/habits/" + habitId + ".json";
   const habitJson = readFromJson(habitFilePath);
 
   switch (habitType) {
@@ -143,12 +143,12 @@ const getHabit = (habitId, habitType, habitName) => {
 };
 
 const checkIfHabitLogExists = (habitId) => {
-  const habitLogFilePath = "./data/habitlogs/" + habitId + ".csv";
+  const habitLogFilePath = "./server/data/habitlogs/" + habitId + ".csv";
   return checkIfFileExists(habitLogFilePath);
 };
 
 const getHabitLog = (habitId, habitType) => {
-  const habitLogFilePath = "./data/habitlogs/" + habitId + ".csv";
+  const habitLogFilePath = "./server/data/habitlogs/" + habitId + ".csv";
   const habitLogCSV = readFromCsv(habitLogFilePath);
   const habitLog = [];
   switch (habitType) {
@@ -182,7 +182,7 @@ const getHabitLog = (habitId, habitType) => {
 };
 
 const addHabitLog = (habitId, habitLog) => {
-  const habitLogFilePath = "./data/habitlogs/" + habitId + ".csv";
+  const habitLogFilePath = "./server/data/habitlogs/" + habitId + ".csv";
   appendToCsv(habitLogFilePath, habitLog + "\r\n");
 };
 
@@ -205,7 +205,7 @@ const addQuitBadHabitLog = (habitId, isSuccess, date) => {
 };
 
 const deleteAllHabits = (userEmail) => {
-  const userFilePath = "./data/users/" + userEmail + ".json";
+  const userFilePath = "./server/data/users/" + userEmail + ".json";
   const user = User.fromJson(readFromJson(userFilePath));
   const habitIds = Object.keys(user.habits);
   habitIds.forEach((habitId) => {

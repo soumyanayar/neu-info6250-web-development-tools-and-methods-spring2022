@@ -18,12 +18,12 @@ const createNewUser = (email, password, firstName, lastName) => {
     new Date(),
     {}
   );
-  const userFilePath = "./data/users/" + email + ".json";
+  const userFilePath = "./server/data/users/" + email + ".json";
   writeToJson(userFilePath, User.toJson(user));
 };
 
 const getUser = (email) => {
-  const userFilePath = "./data/users/" + email + ".json";
+  const userFilePath = "./server/data/users/" + email + ".json";
   if (checkIfFileExists(userFilePath)) {
     const userJson = readFromJson(userFilePath);
     return User.fromJson(userJson);
@@ -33,7 +33,7 @@ const getUser = (email) => {
 };
 
 const deleteUser = (email) => {
-  const userFilePath = "./data/users/" + email + ".json";
+  const userFilePath = "./server/data/users/" + email + ".json";
   if (checkIfFileExists(userFilePath)) {
     deleteFile(userFilePath);
   }
@@ -41,29 +41,29 @@ const deleteUser = (email) => {
 
 const updateUser = (user) => {
   user.updatedAt = new Date();
-  const userFilePath = "./data/users/" + user.email + ".json";
+  const userFilePath = "./server/data/users/" + user.email + ".json";
   writeToJson(userFilePath, User.toJson(user));
 };
 
 const checkIfUserExists = (email) => {
-  const userFilePath = "./data/users/" + email + ".json";
+  const userFilePath = "./server/data/users/" + email + ".json";
   return checkIfFileExists(userFilePath);
 };
 
 const checkIfUserHasHabit = (email, habitId) => {
-  const userFilePath = "./data/users/" + email + ".json";
+  const userFilePath = "./server/data/users/" + email + ".json";
   const user = User.fromJson(readFromJson(userFilePath));
   return user.habits[habitId] !== undefined;
 };
 
 const getUserHabitType = (email, habitId) => {
-  const userFilePath = "./data/users/" + email + ".json";
+  const userFilePath = "./server/data/users/" + email + ".json";
   const user = User.fromJson(readFromJson(userFilePath));
   return user.habits[habitId].habitType;
 };
 
 const getUserHabits = (email) => {
-  const userFilePath = "./data/users/" + email + ".json";
+  const userFilePath = "./server/data/users/" + email + ".json";
   const user = User.fromJson(readFromJson(userFilePath));
   let userHabits = {};
   for (const habitId in user.habits) {
