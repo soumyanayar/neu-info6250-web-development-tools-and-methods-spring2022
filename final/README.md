@@ -9,6 +9,24 @@ There are 3 types of habits
 
 User can also add the logs to the habits created.
 
+## Some of the Screenshots of the Application
+
+### View the Calendar & Pie chart of a Habit
+
+![View the Calendar & Pie chart of a Habit](app-screenshots/calendar-and-piechart.png)
+
+### Add a Log for the Habit
+
+![Add a Log for the Habit](app-screenshots/add-habit-log.png)
+
+### Create a new Habit
+
+![Create a new Habit](app-screenshots/add-new-habit.png)
+
+### Update the User Profile
+
+![Update the User Profile](app-screenshots/user-profile.png)
+
 ## Backend
 
 ### User Related APIs:
