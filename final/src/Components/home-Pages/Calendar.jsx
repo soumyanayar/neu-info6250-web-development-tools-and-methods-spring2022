@@ -122,7 +122,7 @@ const Calendar = ({ month, year, habit, habitType, habitLogs }) => {
         const daysInMonth = new Date(activeYear, activeMonth + 1, 0).getDate();
         let days = [];
         for (let index = 1; index <= daysInMonth; index++) {
-            const date = new Date(activeYear, activeMonth, index)
+            const date = new Date(activeYear, activeMonth, index - 1)
                 .toISOString()
                 .split("T")[0];
 
