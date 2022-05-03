@@ -130,7 +130,7 @@ function AddHabitLogAccordian({ habitId, habitType, setIsLoggedIn }) {
                                     <input
                                         className="habit-log-unit-input"
                                         type="number"
-                                        min="1"
+                                        min="0"
                                         value={habitLogNumber}
                                         placeholder={habitUnit}
                                         onChange={(e) =>
