@@ -95,7 +95,7 @@ const Calendar = ({ month, year, habit, habitType, habitLogs }) => {
                             ? "Successful"
                             : "Not Successful") +
                         " on " +
-                        habitLog[i].date;
+                        habitLog[i].date.split("T")[0];
                 }
                 break;
             default:
