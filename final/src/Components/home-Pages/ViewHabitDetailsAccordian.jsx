@@ -15,10 +15,10 @@ const ViewHabitDetailsAccordian = ({ habitId, habitType, setIsLoggedIn }) => {
     const [habitLogs, setHabitLogs] = useState([]);
     const [pieChartData, setPieChartData] = useState({
         degree1: 0,
-        degree2: 0,
-        degree3: 0,
-        degree4: 0,
-        degree5: 0,
+        degree2: 90,
+        degree3: 180,
+        degree4: 270,
+        degree5: 360,
     });
     const [error, setError] = useState("");
 
