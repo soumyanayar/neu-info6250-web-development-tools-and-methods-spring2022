@@ -1,0 +1,138 @@
+/* Modal for Clear Data and Delete Account */
+body{
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+  "Lucida Sans", Arial, sans-serif;
+}
+.modalBackground {
+    width: 20%;
+    height: 20%;
+    position: fixed;
+    display: flex;
+  }
+  
+  .modalContainer {
+    height: 250px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+  
+  .titleCloseBtn {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .titleCloseBtn button {
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  
+  .modalContainer .footer {
+    flex: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modalContainer .footer button {
+    width: 80px;
+    height: 30px;
+    margin: 1rem;
+    border: none;
+    background-color: #6aaf21;
+    color: black;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    font-weight: normal;
+    cursor: pointer;
+    
+  }
+
+  .modalContainer .footer button:hover {
+    background-color: #4d7d0e;
+    border:0.12rem solid black;
+  }
+  
+  #cancelBtn {
+    background-color: crimson;
+ 
+  }
+
+  #cancelBtn:hover {
+    background-color: #ee5813;
+    border:0.12rem solid black;
+  }
+
+  /* Error modal */
+  .error-modalBackground{
+    width: 30%;
+    height: 20%;
+    position: fixed;
+    display: flex;
+    margin-left: 13%;
+    margin-top: 2%;
+  }
+
+  .error-modalContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width:70%;
+
+    /* justify-content: center;
+    align-items: center; */
+    border-radius: 12px;
+    background-color: rgb(160, 167, 166);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 0.5rem;
+  }
+
+  .error-titleCloseBtn {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .error-titleCloseBtn button{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 1rem;
+    border: none;
+    background-color: #ef2b35;
+    color: black;
+    border-radius: 0.25rem; 
+    font-size: 1rem;
+    font-weight: normal;
+    cursor: pointer;
+  }
+
+  .error-titleCloseBtn button:hover{
+    background-color: #0b0b0b;
+    color:white;
+  }
+
+  .error-modal-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-cancelBtn {
+    width:5rem;
+    height:1.5rem;
+    background-color: crimson;
+    cursor: pointer;
+    border-radius: 0.25rem; 
+    border:none;
+    font-size: 1rem;
+  }
+
+  .modal-cancelBtn:hover {
+    background-color: #0b0b0b;
+    color:white;
+  }
+

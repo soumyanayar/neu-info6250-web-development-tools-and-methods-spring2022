@@ -1,0 +1,925 @@
+body {
+    margin: 0;
+    /* background-image: url("./background.jpeg"); */
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    color: black;
+    line-height: 1.4;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.section-title {
+    margin-left: 2rem;
+    margin-bottom: 1.3rem;
+    margin-top: 0.7rem;
+
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    color: rgb(216, 118, 6);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* ///////------Login Page------/////// */
+.login-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* /////////--------  Navbar ---------/////////// */
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    background: rgb(43, 59, 90);
+    box-shadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+}
+
+.nav-title {
+    display: flex;
+    height: 2rem;
+}
+
+.title-text {
+    margin-top: 0.5rem;
+    margin-left: 0;
+
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    color: #1d522a;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.nav-center {
+    display: flex;
+    justify-content: space-between;
+
+    margin: 0.5rem;
+    margin-top: 1rem;
+
+    align-items: center;
+}
+
+.logo {
+    width: 5.7rem;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.nav-links li {
+    list-style-type: none;
+}
+
+.nav-links a {
+    display: inline-block;
+
+    margin-right: 0.5rem;
+    margin-left: 1.5rem;
+    padding: 0.1rem;
+
+    transition: all 0.2s linear;
+
+    letter-spacing: 2px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #46dee4;
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+
+    color: #43cfcf;
+}
+
+.nav-links a:active {
+    color: #43cfcf;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    padding: 0;
+}
+
+.dropdown-content li {
+    color: black;
+    padding: 0.3rem;
+    width: 100%;
+    display: block;
+    cursor: pointer;
+}
+.dropdown-content a {
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+.dropdown-content a:hover {
+    color: #9b0b96;
+    text-decoration: underline;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+    max-height: 90vh;
+}
+.drop-btn {
+    color: #43cfcf;
+    background-color: rgb(43, 59, 90);
+    padding: 0.56rem;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0px;
+    color: white;
+    transition: all 0.2s linear;
+    border: none;
+    margin-right: 2rem;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 576px) {
+    .navbar {
+        display: flex;
+        flex-direction: row;
+        height: 6.5rem;
+    }
+
+    .nav-title {
+        height: 3rem;
+    }
+
+    .nav-center {
+        margin: auto;
+    }
+
+    .nav-links a:hover {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+
+        background-color: #ad4040;
+        border: 2px solid #476a2e;
+        border-radius: 0.25rem;
+        color: white;
+    }
+}
+
+/* /////////--------  Signup and Login Page ---------/////////// */
+
+.credential-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container {
+    border: 0.2rem solid black;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1da1b2;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
+.form-container input {
+    padding: 0.5rem;
+    margin-bottom: 1.2rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: rgb(232, 240, 254);
+    font-size: 1rem;
+}
+
+.form-container label {
+    color: rgb(46, 214, 102);
+}
+
+.form-container button {
+    margin: 1.2rem;
+    border-radius: 0.5rem;
+    background-color: #1da1b2;
+    color: white;
+    font-weight: bold;
+    padding: 0.3rem;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background-color: #0fe70c;
+}
+
+.form-container button:hover {
+    background-color: #1db25e;
+    color: white;
+}
+
+.form-container span {
+    color: black;
+}
+
+.form-container a {
+    color: #1da1b2;
+}
+
+.error-field {
+    margin-top: 2rem;
+    color: red;
+    font-weight: bold;
+}
+.user-message {
+    margin-top: 2rem;
+    font-weight: bold;
+}
+.user-message a {
+    /* color: rgb(197, 222, 33); */
+    cursor: pointer;
+}
+
+/* //// ------  Add a habit ------ //// */
+.main-div {
+    margin-left: 25%;
+    margin-right: 25%;
+}
+.tool-tabs-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 3rem auto 0;
+
+    background: rgb(198, 238, 179);
+    word-break: break-word;
+    border: 1px solid rgba(0, 0, 0, 0.274);
+    box-shadow: 1rem solid black;
+}
+
+.tool-tabs-div {
+    display: flex;
+}
+
+.tools-tabs {
+    position: relative;
+    width: 50%;
+    padding: 0.3rem 0.6rem;
+
+    text-align: center;
+    box-sizing: content-box;
+    outline: none;
+    letter-spacing: 0.1rem;
+    background: rgb(198, 238, 179);
+    color: #080808;
+    border-bottom: 0.1rem solid #476a2e;
+    cursor: pointer;
+    font-size: 0.8rem;
+    background: transparent;
+
+    transition: all 0.3s linear;
+}
+
+.tools-tabs:not(:last-child) {
+    border-right: 0.1rem solid green;
+}
+
+.tools-tabs:focus {
+    border-top: 0.2rem solid green;
+}
+
+.current-tools-tab {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid Green;
+    background-color: white;
+}
+
+.current-tools-tab::after {
+    display: block;
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    height: 5px;
+}
+
+.content-tabs-div {
+    flex-grow: 1;
+    /* border:0.1rem solid green;
+    border-top:none; */
+}
+
+.tools-content {
+    background: white;
+    display: none;
+    height: auto;
+}
+
+.tools-content h2 {
+    padding: 0px 0 5px 0px;
+    margin: 0.5rem;
+}
+.tools-content hr {
+    width: 100px;
+    height: 100%;
+    margin-bottom: 5px;
+
+    background: #222;
+}
+
+.tools-content p {
+    width: 100%;
+    height: 100%;
+
+    color: black;
+}
+
+.current-tools-content {
+    display: block;
+    height: auto;
+}
+
+.message {
+    font-weight: bold;
+    color: blue;
+}
+
+/* /////////--------  Create A Habit ---------/////////// */
+.habit-container {
+    display: flex;
+    flex-direction: column;
+    color: #364a28;
+}
+
+.form-div form {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 25%;
+    background-color: azure;
+    border: 0.1rem solid green;
+    border-top: none;
+}
+
+.habit-data-1 input {
+    width: 40%;
+    height: auto;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    padding: 0.3rem;
+    margin-left: 0.6rem;
+}
+.habit-data-2 input {
+    width: 10%;
+    height: auto;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    padding: 0.3rem;
+}
+#units {
+    width: 17%;
+    height: auto;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    padding: 0.3rem;
+}
+#start-date {
+    width: 25%;
+    height: auto;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    padding: 0.3rem;
+}
+.save-btn {
+    width: 20%;
+    height: auto;
+    margin-left: 1rem;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    background-color: #b0f1a5;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+.save-btn:hover {
+    background-color: #3d5124;
+    color: white;
+}
+
+/* Accordion */
+
+.accordion {
+    display: flex;
+    flex-direction: column;
+
+    margin: 0;
+    width: 100%;
+    max-width: 40rem;
+}
+
+.accordion__title {
+    position: relative;
+    /* display: inline-block; */
+    padding: 1rem;
+    padding-right: 3rem;
+    border: none;
+    background-color: lightcyan;
+    font-size: 1rem;
+    text-align: left;
+    width: 40rem;
+}
+.accordion__title:hover {
+    background-color: rgb(46, 176, 170);
+}
+
+.accordion__title::after {
+    position: absolute;
+    right: 1rem;
+    top: calc(50% - 1.5ch);
+}
+
+.accordion__title::after {
+    content: "\2795";
+}
+
+.accordion__entry--open .accordion__title::after {
+    content: "\2796";
+}
+
+.accordion__body {
+    display: none;
+
+    padding: 0.1rem;
+}
+
+.accordion__entry--open .accordion__body {
+    display: block;
+}
+.habit-detail-accord-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.3rem;
+    color: rgb(68, 79, 8);
+}
+/* Custom Calendar */
+
+* {
+    box-sizing: border-box;
+}
+ul {
+    list-style-type: none;
+}
+
+.year {
+    font-size: 1.5rem;
+}
+
+.month {
+    width: 100%;
+    background: #fc9881;
+    text-align: center;
+}
+
+.month ul {
+    margin: 0rem;
+    padding: 0rem;
+}
+
+.month ul li {
+    color: white;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+.month .prev {
+    float: left;
+    padding-top: 0.625rem;
+}
+
+.month .prev button {
+    background-color: inherit;
+    color: white;
+    border: none;
+    font-size: 1.3rem;
+}
+
+.month .prev button:hover {
+    color: black;
+}
+
+.month .next {
+    float: right;
+    padding-top: 0.625rem;
+    font-size: larger;
+}
+
+.month .next button {
+    background-color: inherit;
+    color: white;
+    border: none;
+    font-size: 1.3rem;
+}
+
+.month .next button:hover {
+    color: black;
+}
+
+.weekdays {
+    margin: 0;
+    padding: 0.625rem 0;
+    background-color: linen;
+}
+
+.weekdays li {
+    display: inline-block;
+    text-transform: uppercase;
+    width: 13.6%;
+    color: #666;
+    text-align: center;
+}
+
+.days {
+    padding: 0.625rem 0;
+    background: linen;
+    margin: 0;
+}
+
+.days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 13.6%;
+    text-align: center;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    padding: 0.1rem;
+    color: #777;
+}
+
+.days li .succeeded {
+    padding: 0.313rem;
+    background: limegreen;
+    color: white !important;
+}
+
+/* .days li .today {
+    padding: 0.313rem;
+    background: blueviolet;
+    color: white !important;
+} */
+
+.days li .failed {
+    padding: 0.313rem;
+    background: coral;
+    color: white !important;
+}
+
+.days li .partial {
+    padding: 0.313rem;
+    background: lightblue;
+    color: darkblue !important;
+}
+
+/* Add logs */
+
+.habit-data-log-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.3rem;
+}
+.save-log {
+    /* place the button at the centre*/
+    margin-left: 40%;
+    margin-right: 40%;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    width: 15%;
+    padding: 0.5rem;
+
+    border: none;
+    border-radius: 0.25rem;
+    background-color: rgb(235, 101, 105);
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.save-log:hover {
+    background-color: rgb(100, 8, 13);
+    color: white;
+}
+.habit-log-date-input {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: rgb(232, 235, 242);
+    font-size: 1rem;
+}
+.habit-log-unit-input {
+    width: 30%;
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: rgb(232, 235, 242);
+    font-size: 1rem;
+}
+.radio-btn-div {
+    margin: 2.5rem;
+}
+.radio-btn-div input {
+    margin-right: 0.25rem;
+}
+/* Add media queries for smaller screens */
+@media screen and (max-width: 720px) {
+    .weekdays li,
+    .days li {
+        width: 13.1%;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .weekdays li,
+    .days li {
+        width: 12.5%;
+    }
+    .days li .succeeded {
+        padding: 2px;
+    }
+    .days li .failed {
+        padding: 2px;
+    }
+    .days li .partial {
+        padding: 2px;
+    }
+    .days li .today {
+        padding: 2px;
+    }
+}
+
+@media screen and (max-width: 290px) {
+    .weekdays li,
+    .days li {
+        width: 12.2%;
+    }
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Profile */
+.profile-div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40%;
+    padding: 2rem;
+}
+
+.profile-container form {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+.profile-container label {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: green;
+}
+
+.profile-container input {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: none;
+    font-size: 1rem;
+    width: 30%;
+    background-color: rgb(236, 243, 228);
+}
+.profile-container button {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 30%;
+    background-color: #6aaf21;
+    cursor: pointer;
+    border: none;
+}
+
+.profile-container button:hover {
+    background-color: #256b10;
+    color: white;
+    border: 0.2px solid rgb(223, 101, 29);
+}
+.caution-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.caution-div span {
+    margin-top: 1rem;
+    color: green;
+}
+
+.caution-div button {
+    background-color: transparent;
+    border: none;
+    color: red;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.caution-div button:hover {
+    color: black;
+    background-color: red;
+}
+
+/* Home Page */
+.home-title {
+    margin-left: 40%;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    color: rgb(13, 8, 94);
+    font-weight: bold;
+}
+.all-habit-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.habit-name-title {
+    /* width: 73vh; */
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: rgb(91, 28, 150);
+    margin-bottom: 1rem;
+    /* border:#080808 solid 1px; */
+}
+.delete-habit-btn {
+    margin-top: 1rem;
+    padding: 0.3rem;
+    color: red;
+    font-size: 0.8rem;
+    cursor: pointer;
+    font-weight: bold;
+    border: 0.1rem solid red;
+    background-color: #222;
+}
+.delete-habit-btn:hover {
+    color: white;
+}
+.habit-container-div {
+    margin-top: 2rem;
+    border-bottom: none;
+    padding: 0.5rem;
+    padding: 2rem;
+    border-radius: 0.25rem;
+    box-shadow: 3px 3px 3px 3px rgb(54, 10, 10);
+    border: none;
+}
+.accordion-holder-div {
+    /* border:0.1rem solid black; */
+    /* border-radius: 0.5rem; */
+    box-shadow: 1px 1px 1px 2px rgb(76, 86, 105);
+}
+/* Pie Chart */
+
+.pie-main-div {
+    color: rgb(68, 79, 8);
+}
+.pie-chart-container {
+    display: flex;
+    flex-direction: row;
+    /* background-color: beige; */
+}
+.limegreen-div button {
+    background-color: limegreen;
+    border: none;
+    padding: 0.3rem;
+    margin-bottom: 0.4rem;
+}
+.limegreen-div span,
+.coral-div span,
+.light-blue-div span,
+.purple-div span {
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+    color: black;
+    margin-top: 0.1rem;
+    font-size: 0.8rem;
+    margin-left: 0.3rem;
+}
+.coral-div button {
+    background-color: coral;
+    border: none;
+    padding: 0.3rem;
+    margin-bottom: 0.4rem;
+}
+.light-blue-div button {
+    background-color: lightblue;
+    border: none;
+    padding: 0.3rem;
+    margin-bottom: 0.4rem;
+}
+.purple-div button {
+    background-color: purple;
+    border: none;
+    padding: 0.3rem;
+    margin-bottom: 0.4rem;
+}
+.loading-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    font-size: 2rem;
+    color: #575c51;
+}
+
+/* About Page */
+.about-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.about-container p {
+    font-size: 1.2rem;
+    color: rgb(91, 28, 150);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    word-spacing: 0.1rem;
+}
+
+.about-container a {
+    color: green;
+    text-decoration: none;
+}
+
+.about-container a:hover {
+    color: black;
+    text-decoration: underline;
+}
